@@ -1,0 +1,24 @@
+\usepackage{icomma}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems,skins,breakable}
+
+\newtcbtheorem[number within=section]{theorem}{Twierdzenie}%
+{enhanced, breakable,
+ skin first=enhanced, skin middle=enhanced, skin last=enhanced,
+ colback=green!5, colframe=green!35!black, fonttitle=\bfseries}{thm}
+
+\newtcbtheorem[number within=section]{lemma}{Lemat}%
+{enhanced, breakable,
+ skin first=enhanced, skin middle=enhanced, skin last=enhanced,
+ colback=blue!5, colframe=blue!35!black, fonttitle=\bfseries}{lem}
+
+\newtcbtheorem[number within=section]{example}{Przykład}%
+{enhanced, breakable,
+ skin first=enhanced, skin middle=enhanced, skin last=enhanced,
+ colback=yellow!5, colframe=yellow!35!black, fonttitle=\bfseries}{ex}
+
+\newtcbtheorem[]{caution}{Achtung!}%
+{enhanced, breakable,
+ skin first=enhanced, skin middle=enhanced, skin last=enhanced,
+ colback=red!5, colframe=red!35!black, fonttitle=\bfseries}{ca}

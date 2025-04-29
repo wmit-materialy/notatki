@@ -1,0 +1,17 @@
+include-in-header:
+  - ${.}/header.latex
+filters:
+  - ${.}/theorem-filter.lua
+resource-path:
+  - ${.}/../
+number-sections: true
+variables:
+  secnumdepth: 3
+
+# NOTE: see https://stackoverflow.com/a/71569780
+# Without it, it would not be possible to combine `include-in-header` in the
+# defaults file and have `header-includes` in the YAML header
+# (e.g. in the sem3/AiSD)
+writer: ${.}/latexcustom.lua
+template: ${.}/eisvogel.latex
+pdf-engine: pdflatex
