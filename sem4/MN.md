@@ -2219,3 +2219,124 @@ Zatem warunek $f(a)\cdot f(b) < 0$ gwarantuje istnienie wewnątrz przedziału
 $[a, b]$ przynajmniej jednego miejsca zerowego
 
 :::
+
+W metodzie tej dla ustalonych końców przedziału $a = a_{0}$ i $b = b_{0}$ w których rozpatrywana funkcja $f(x)$ przyjmuje wartości przeciwnych znaków, znajdujemy środek tego przedziału (punkt $c = \frac{a+b}{2}$) i wyznaczamy dla niego wartość funkcji $f(c)$.
+
+Jeśli wartość funkcji w tym punkcie ma taki sam znak jak $f(a)$, to jako nowy początek przeszukiwanego przedziału przyjmujemy punkt $c = a_{1}$ (koniec tego przedziału pozostaje niezmieniony $b_{1} = b_{0}$). W przeciwnym razie początek przedziału pozostawiamy niezmieniony ($a_{1} = a_{0}$), zaś jako nowy koniec przeszukiwanego przedziału przyjmujemy punkt $c = b_{1}$. Postępowanie to kontynuujemy rekurencyjnie aż do osiągnięcia zadowalającego przybliżenia miejsca zerowego.
+
+Ponieważ działania te wykonywane są w arytmetyce zmiennopozycyjnej, jako kryterium zatrzymania algorytmu, należy poza maksymalną liczbą kroków algorytmu $M$ przyjąć także parametry $\beta$ i $\varepsilon$ określające odpowiednio zadowalającą długość przedziału w którym znajduje się miejsce zerowe (odległość faktycznego miejsca zerowego od uzyskanego przybliżenia na osi $OX$), oraz minimalną wartość bezwzględną wartości funkcji $f$. Algorytm należy zakończyć przy spełnieniu co najmniej jednego z powyższych warunków.
+
+W metodzie bisekcji w każdym kroku otrzymujemy przedział dwa razy krótszy niż w poprzednim kroku:
+$$
+    \begin{aligned}
+    b_{n} - a_{n} &= \frac{1}{2} (b_{n-1} -a_{n-1})\\
+    &= \frac{1}{2^{n}}(b_{0}-a_{0})
+    \end{aligned}
+$$
+
+Ponieważ długości przedziałów w kolejnych krokach dążą do $0$, ciąg lewych końców przedziałów $a_{i}$ jest niemalejący i ograniczony od góry, a ciąg prawych końców przedziałów $b_{i}$ jest nierosnący i ograniczony od dołu. Zatem oba te ciągi mają granicę $r$. Przechodząc zatem do granicy $n \to \infty$ w nierówności $0 > f(a_{n})f(b_{n})$ otrzymujemy $0 \ge f(r)^{2}$, czyli $f(r) = 0$. 
+
+Mimo, że metoda bisekcji jest skuteczna w znajdowaniu miejsca zerowego funkcji, to jest ona stosunkowo wolno zbieżna. Jej zaletą jest jednak, że zawsze prowadzi do odnalezienia przybliżenia miejsca zerowego niezależnie od początkowego doboru przedziału $\left[ a, b \right]$, jeśli tylko $f(a)f(b)<0$
+
+### Metoda Newtona (stycznych)
+
+Znacznie szybszą (choć nie zawsze zbieżną) od metody bisekcji jest metoda Newtona.
+
+Metoda ta jest szczególnie szybko zbieżna w bliskim otoczeniu dokładnego miejsca zerowego, dlatego wygodna jest do wykonania końcowych etapów wyznaczania miejsca zerowego w połączeniu z jakąś wolniejszą ale zawsze zbieżną metodą (np. metodą bisekcji, przy pomocy której wykonujemy początkowe kroki)
+
+Niech $r$ będzie dokładnym miejscem zerowym, a $x = r-h$ jego przybliżeniem. Ze wzoru Taylora mamy wówczas:
+
+$$
+    0 = f(r) = f(x+h) = f(x) + \frac{f'(x)}{1!}h + O(h^{2})
+$$
+
+dla dostatecznie małego $h$ mamy:
+
+$$
+    0 \approx f(x)+f'(x) \cdot h
+$$
+
+czyli
+
+$$
+    h \approx - \frac{f(x)}{f'(x)}
+$$
+
+Zatem lepszym przybliżeniem miejsca zerowego $r$ jest wartość 
+
+$$
+    r \approx x - \frac{f(x)}{f'(x)}
+$$
+
+Otrzymujemy stąd rekurencyjny wzór dla metody Newtona:
+
+$$
+    x_{n+1} = x_{n} - \frac{f( x_{n} )}{f'(x_{n})}
+$$
+
+Metoda Newtona polega na przybliżeniu funkcji $f$ za pomocą funkcji liniowej o tej samej wartości pochodnej w aktualnie rozważanym punkcie. Zatem graficznie metodę tę można zinterpretować jako wyznaczenie stycznej do wykresu funkcji $f$ w rozważanym punkcie, a następnie wyznaczenie punktu przecięcia tej stycznej z osią $OX$, który stanowi kolejne przybliżenie miejsca zerowego.
+
+Metoda Newtona jest kwadratowo zbieżna do dokładnej wartości miejsca zerowego, jeśli $r$ jest dokładną wartością miejsca zerowego, to 
+
+$$
+    \left| x_{n+1}-r \right| \le \left| C(x_{n}-r)^{2} \right|
+$$
+
+gdzie $C$ jest pewną stałą
+
+
+#### Zastosowanie uogólnionej metody Newtona do rozwiązywania układów równań nieliniowych
+
+Metodę Newtona można uogólnić tak, aby mogla służyć do rozwiązywania układów równań nieliniowych. Oznaczmy przez $f \colon (x_{1}, x_{2}, \ldots x_{k})$ kolejne funkcje (równania) których miejsca zerowego poszukujemy. Stosując do pojedynczej funkcji wzór Taylora dla funkcji wielu zmiennych otrzymujemy:
+
+$$
+    0 = f_{i}(x_{1}+h_{1}, x_{2}+h_{2}, \ldots x_{k}+h_{k}) \approx f(x_{1}, x_{2}, \ldots,  x_{k} + h_{1} \frac{\partial f_{i}}{\partial x_{1}} + h_{2} \frac{\partial f_{i}}{\partial x_{2}} + \ldots + h_{k} \frac{\partial f_{i}}{\partial x_{k}} )
+$$
+
+Przenosząc na lewą stronę wartości funkcji $f_{i}(x_{1}, x_{2}, \ldots, x_{k})$ i postępując analogicznie z pozostałymi funkcjami $f_{i}$ otrzymujemy układ równań:
+
+$$
+\begin{cases}
+    f_{1}(x_{1}, x_{2}, \ldots, x_{k}) = f_{1}(x_{1}, x_{2}, \ldots,  x_{k} + h_{1} \frac{\partial f_{1}}{\partial x_{1}} + h_{2} \frac{\partial f_{1}}{\partial x_{2}} + \ldots + h_{k} \frac{\partial f_{1}}{\partial x_{k}} )\\
+    f_{2}(x_{1}, x_{2}, \ldots, x_{k}) = f_{2}(x_{1}, x_{2}, \ldots,  x_{k} + h_{1} \frac{\partial f_{2}}{\partial x_{1}} + h_{2} \frac{\partial f_{2}}{\partial x_{2}} + \ldots + h_{k} \frac{\partial f_{2}}{\partial x_{k}} ) \\
+    \ldots \\
+    f_{k}(x_{1}, x_{2}, \ldots, x_{k}) = f_{k}(x_{1}, x_{2}, \ldots,  x_{k} + h_{1} \frac{\partial f_{k}}{\partial x_{1}} + h_{2} \frac{\partial f_{k}}{\partial x_{2}} + \ldots + h_{k} \frac{\partial f_{k}}{\partial x_{k}} )
+\end{cases}
+$$
+
+Powyższy układ równań jest układem równań liniowych który można rozwiązać względem wektora $H = \left[ h_{1}, h_{2}, \ldots h_{k} \right]^{T}$
+
+Stosując jedną z poznanych metod dla układów równań liniowych, np. metodę eliminacji Gaussa. Macierz współczynników tego układu równań $A$ oraz wektor wyrazów wolnych $b$ mają postać
+
+$$
+    A = F'(x) = \begin{bmatrix}%4x4, ty: continued, tr: N
+        \frac{\partial f_{1}}{\partial x_{1}}  & \frac{\partial f_{1}}{\partial x_{2}}  & \cdots & \frac{\partial f_{1}}{\partial x_{k}} \\
+        \frac{\partial f_{2}}{\partial x_{1}}  & \frac{\partial f_{2}}{\partial x_{2}}  & \cdots & \frac{\partial f_{2}}{\partial x_{k}} \\
+        \vdots & \vdots & \ddots & \vdots\\
+        \frac{\partial f_{k}}{\partial x_{1}}  & \frac{\partial f_{k}}{\partial x_{2}}  & \cdots & \frac{\partial f_{k}}{\partial x_{k}} \\
+    \end{bmatrix}
+$$
+
+$$
+    b = F(X) = \begin{bmatrix}%4x1, ty: continued, tr: N
+        -f_{1}(x_{1}, x_{2}, \ldots, x_{k})\\
+        -f_{2}(x_{1}, x_{2}, \ldots, x_{k})\\
+        \vdots\\
+        -f_{k}(x_{1}, x_{2}, \ldots, x_{k})\\
+    \end{bmatrix}
+$$
+
+Kolejne przybliżenie wektora miejsc zerowych $X$ uzyskujemy dodając do poprzedniego wektora $X$ wyznaczony wektor $H$. Zatem oznaczając:
+$X^{\left( i \right)} = \left[ x^{\left( i \right)}_{1}, x^{\left( i \right)}_{2}, ..., x^{\left( i \right)}_{k} \right]$ możemy opisać tę metodę jako metodę składającą się z dwóch poniższych kroków powtarzanych iteracyjnie:
+
+1) Wyznaczamy wektor nowych poprawek $H^{\left( i \right)}$, rozwiązując względem $H^{\left( i \right)}$ układ równań liniowych
+
+$$
+    F'(X^{\left( i \right)}) H^{\left( i \right)} = F(X^{\left( i \right)})
+$$
+
+2) Wyznaczamy nowy wektor przybliżający miejsca zerowe 
+
+$$
+    X ^{\left( i+1 \right)} = X^{\left( i \right)} + H ^{\left( i \right)}
+$$
