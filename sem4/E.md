@@ -2411,3 +2411,114 @@ $$
 Wnioskujemy, że mamy brak podstaw do odrzucenia hipotezy zerowej
 
 :::
+
+---
+
+# Wykład (2025-04-30)
+
+## Badanie autokorelacji składnika losowego
+
+Przy założeniach standardowego modelu liniowego estymator otrzymany metodą
+najmniejszych kwadratów ma najmniejszą macierz wariacji/kowariancji (w sensie
+twierdzenia Gaussa-Markowa)
+
+W przypadku, gdy odstąpimy od założenia
+
+$$
+  \operatorname{cov} (\varepsilon) = \sigma^2 I
+$$
+
+Poza przekątną mogą się pojawić wyrazy różne od zera. Jeśli taka sytuacja ma
+miejsce, to mówimy że mamy do czynienia z autokorelacją składnika losowego
+
+Rozpatrzmy uogólnienie autokorelacji rzędu pierwszego
+
+$$
+  \varepsilon_{t+1} = \varrho \varepsilon_t + \eta_t \quad (t = 1, 2, \ldots, n - 1)
+$$
+
+gdzie zmienne losowe $\eta_t$ są niezależne i mają jednakowy rozkład.
+
+### Procedura testowania hipotezy o dodatniej autokorelacji
+
+Załóżmy, że testujemy hipotezę $H_0 : \varrho = 0$ przeciwko $H_1 : \varrho > 0$
+
+Statystyką testową jest statystyka Durbina-Watsona o postaci
+
+$$
+  \operatorname{DW}  = \frac{\sum_{t = 1}^{n-1} (e_{t+1} - e_t)^2}{\sum_{t = 1}^{n} e_t^2}
+$$
+
+1. Wyznaczamy dla otrzymanych obserwacji wartość statystyki $\operatorname{DW}$
+2. Następnie dla wybranego z góry poziomu istotności odczytujemy lub obliczamy
+   wartości krytyczne $d_L$ oraz $d_U$
+3. Hipotezę zerową o braku autokorelacji odrzucimy, gdy wartość
+   $\operatorname{DW}$ obliczona na podstawie obserwacji będzie mniejsza od $d_L$
+
+   W przypadku, gdy $\operatorname{DW} > d_U$ stwierdzamy brak podstaw do odrzucenia hipotezy
+   zerowej
+
+   W przypadku, gdy $d_L < \operatorname{DW}  \le d_U$ nie podejmujemy żadnej decyzji
+
+::: {.example title="" ref=""}
+
+Załóżmy, że w wyniku zastosowania metody najmniejszych kwadratów (20 obserwacji)
+zaobserwowano reszty podane niżej:
+
+|       |      |       |       |       |      |      |      |      |       |
+| ---   | ---  | ---   | ---   | ---   | ---  | ---  | ---  | ---  | ---   |
+| -3.83 | -4.2 | -1.88 | -2.15 | -2.01 | 0.98 | 2.58 | 2.6  | 1.43 | 1.05  |
+| 1.46  | 1.23 | -0.1  | -1.09 | -0.12 | 1.2  | 0.29 | 1.53 | 1.09 | -0.06 |
+
+Reszty te obliczono na podstawie modelu z jedną zmienną objaśniającą ($n = 1$)
+
+Zweryfikować hipotezę o dodatniej autokorelacji reszt rozpatrywanej w modelu dla
+$\alpha = 0.05$
+
+$$
+  d_L = 1,2 \qquad d_U = 1,41 \qquad \operatorname{DW} \approx 0.39
+$$
+
+Ponieważ $\operatorname{DW}  < d_L$, odrzucamy hipotezę zerową na korzyść
+hipotezy alternatywnej o dodatniej autokorelacji.
+
+:::
+
+### Procedura testowania hipotezy o ujemnej autokorelacji
+
+W przypadku, gdy hipoteza alternatywna jest postaci
+
+$$
+  H_1 : \varrho < 0 \qquad H_0 : \varrho = 0
+$$
+
+stosujemy procedurę analogiczną jak przy dodatniej autokorelacji.
+Zamiast statystyki $\operatorname{DW}$ stosujemy statystykę
+
+$$
+  \operatorname{DW}' = 4 - \operatorname{DW}
+$$
+
+::: {.example title="" ref=""}
+
+Załóżmy, że w wyniku zastosowania metody najmniejszych kwadratów (20 obserwacji)
+zaobserwowano reszty podane niżej:
+
+|       |       |       |       |       |      |       |      |       |      |
+| ---   | ---   | ---   | ---   | ---   | ---  | ---   | ---  | ---   | ---  |
+| 1.32  | -1.11 | 1.55  | -0.29 | 0.33  | 0.47 | 0.17  | 1.34 | -2.57 | 0.91 |
+| -1.31 | 1.45  | -2.85 | 2.29  | -2.25 | 2.01 | -3.15 | 3.83 | -5.53 | 3.39 |
+
+Reszty te obliczono na podstawie modelu z jedną zmienną objaśniającą ($n = 1$)
+
+Polecenie: zweryfikować hipotezę o ujemnej autokorelacji reszt w rozpatrywanym
+modelu dla $\alpha = 0.01$
+
+$$
+  \operatorname{DW}' \approx 0,44 \qquad d_L = 0,95 \qquad d_U = 1.1
+$$
+
+Ponieważ $\operatorname{DW}' < d_L$, odrzucamy hipotezę zerową na korzyść
+hipotezy alternatywnej o ujemnej autokorelacji.
+
+:::
