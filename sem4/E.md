@@ -1252,7 +1252,7 @@ $$
 Wariancja odchyleń losowych szacuje się na podstawie wzoru
 
 $$
-  S_t^2 = \frac{\sum_{i = 1}^{N} (Y_i - \hat{Y}_i)}{N - k - 1}, \quad
+  s_e^2 = \frac{\sum_{i = 1}^{N} (Y_i - \hat{Y}_i)}{N - k - 1}, \quad
   \text{gdzie $k$ to liczba zmiennych objaśniających}
 $$
 
@@ -1260,7 +1260,7 @@ Macierz wariancji i kowariancji ocen parametrów strukturalnych szacuje się na
 podstawie wzoru
 
 $$
-  D^2(b) = S_C^2(x^T x)^{-1}
+  D^2(b) = s_e^2(x^T x)^{-1}
 $$
 
 W macierzy tej elementy na głównej przekątnej są wariancjami
