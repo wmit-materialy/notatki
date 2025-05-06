@@ -2411,3 +2411,245 @@ iteracyjnie:
    $$
      X ^{\left( i+1 \right)} = X^{\left( i \right)} + H ^{\left( i \right)}
    $$
+
+---
+2025-05-06
+
+### Metoda siecznych
+
+Jedną z głównych trudności pojawiających się w praktycznych zastosowaniach
+metody Newtona jest konieczność wyznaczenia pochodnej $f'(x_{n})$. Wstawiając
+do wzoru Newtona: $$ x_{n+1} = x_{n} - \frac{f(x_{n})}{f'(x_{n})} $$
+
+przybliżoną wartość pochodnej otrzymujemy inne metody rozwiązywania równań
+nieliniowych. Przypomnijmy, że dokładna wartość pochodnej wyraża się wzorem:
+
+$$
+    f'(x_{n}) = \lim_{h \to 0} \frac{f(x_{n}+h) - f(x_{n})}{h}
+$$
+
+W zależności od wyboru postaci przybliżenia pochodnej uzyskujemy różne metody:
+
+1. Biorąc $h = f(x_{n})$ bez przechodzenia z $h$ do granicy otrzymujemy metodę
+   Steffensena:
+
+$$
+\begin{aligned}
+     x_{n+1} &= x_{n} - \frac{f(x_{n})}{f'(x_{n})} \\
+     &= x_{n} - \frac{f(x_{n}) \cdot n}{f(x_{n} +h) - f(x_{n})}\\
+     &= x_{n} - \frac{\left[ f(x_{n}) \right]^{2}}{f(x_{n}+f(x_{n}))- f(x_{n})}
+\end{aligned}
+$$
+
+2. Biorąc przybliżenie pochodnej ilorazami różnicowymi:
+
+$$
+    f'(x_{n}) \approx \frac{f(x_{n})-f(x_{n-1})}{x_{n}-x_{n-1}}
+$$
+
+   otrzymujemy metodę siecznych:
+
+$$
+    x_{n+1} = x_{n} - \frac{f(x_{n})}{f'(x_{n})} = x_{n} - f(x_{n}) \cdot \frac{x_{n}-x_{n-1}}{f(x_{n})-f(x_{n-1})}
+$$
+
+W metodzie siecznych do wyznaczenia kolejnego przybliżenia konieczne jest
+pamiętanie 2 poprzednich przybliżeń. Graficznie metodę tę można zinterpretować
+jako wyznaczanie siecznej do wykresu funkcji $f$, przechodzącego przez dwa
+poprzednio wyznaczone punkty, a następnie wyznaczenie punktu przecięcia tej
+siecznej z osią $OX$, który stanowi nowe przybliżenie miejsca zerowego.
+
+Metoda siecznych jest wolniej zbieżna do dokładnej wartości miejsca zerowego
+niż metoda Newtona, ale szybciej niż metoda bisekcji., ale szybciej niż metoda bisekcji.
+
+Jeżeli $r$ jest dokładną wartością miejsca zerowego, to:
+
+$$
+    \left| x_{n+1} - r \right| \le \left| C(x_{n}-r)^\alpha \right|
+$$
+
+gdzie:
+
+ - $C$ jest pewną stałą
+ - $\alpha = \frac{1+\sqrt{5}}{2} \approx 1.62$
+
+## Pierwiastki wielomianów
+
+Szczególnym rodzajem funkcji nieliniowych są wielomiany
+
+**Wielomianem** nazywamy funkcję:
+
+$$
+    W(x) = a_{n}x^{n} + a_{n-1}x^{n-1} + \ldots + a_{1}x + a_{0}
+$$
+
+gdzie 
+
+ - $a_{n} \ne 0$
+ - $a_{i}$ są liczbami rzeczywistymi (lub zespolonymi) nazywanymi współczynnikami wielomianu
+
+Liczbę naturalną $n$ będącą indeksem współczynnika przy najwyższej potędze $x$
+w wielomianie $w(x)$, nazywamy stopniem tego wielomianu.
+
+W określeniu liczby i przedziłów w których znajdują się miejsca zerowe wielomianów przydatne są następujące twierdzenie:
+
+::: {.theorem title="Zasadnicze twierdzenie algebry" ref=""}
+Wielomianu $w(x)$ stopnia $n$, ma $n$ pierwiastków zespolonych i może być przedstawiony w postaci:
+
+$$
+w(x) = a_{n}(x-x_{1})(x-x_{2})\ldots(x-x_{n})
+$$
+
+gdzie $z_{i}$ są jego pierwiastkami zespolonymi.
+
+Wielomian o współczynnikach rzeczywistych może być przedstawiony w postaci iloczynu czynników liniowych postaci $(x - r_{i})$ odpowiadających jego pierwiastkom rzeczywistym $r_{i}$ oraz czynników kwadratowych nierozkładalnych $(x^{2}+ p_{i}x + q_{i})=(x-z_{i})(x-\overline{z}_{i})$ odpowiadających jego pierwiastkom zespolonym $z_{i}$ i $\overline{z}_{i}$ czyli
+
+$$
+    w(x) = a_{n} (x-r_{1})(x-r_{2})\ldots(x-r_{k})(x^{2}+p_{1}x+q_{1})\ldots(x^{2}+p_{s}x+q_{s})
+$$
+:::
+
+::: {.theorem title="" ref=""}
+Wszystkie pierwiastki wielomianu $w(x)$ leżą w kole o promieniu
+$$
+    \varrho = 1 + \frac{\displaystyle \max_{0\le k\le n}\left| a_{k} \right|}{\left| a_{n} \right|}
+$$
+:::
+
+Oznaczmy przez $x_{0}$ dowolne miejsce zerowe wielomianu
+
+$$
+\begin{aligned}
+    s(x) &= x^{n}w\left( \frac{1}{x} \right)\\
+    &= x^{n} \left[ a_{n} \frac{1}{x^{n}}+a_{n-1} \frac{1}{x^{n-1}} + \ldots + a_{1} \frac{1}{x} + a_{0} \right]\\
+    &= a_{0}x^{n} + a_{1} x^{n-1} + \ldots a_{n-1} x + a_{n}
+\end{aligned}
+$$
+
+Z definicji tej wynika, że jeśli $x_{0} \ne 0$, to $\frac{1}{x_{0}}$ jest miejscem zerowym wielomianu $w(x)$.
+
+Stosując powyższe twierdzenie do pierwiastków wielomianu $s(x)$ otrzymujemy, że:
+
+$$
+    \left| x_{0} \right| \le \varrho_{1} = 1+\frac{\displaystyle \max_{0<k\le n} \left| a_{k} \right|}{\left| a_{0} \right|}
+$$
+
+Ponieważ $\frac{1}{x_{0}}$ jest pierwiastkiem wielomianu $w(x)$, a $\left| x_{0} \right|\le \varrho_{1}$, to $\frac{1}{x_{0}} \ge \frac{1}{\varrho_{1}}$. Otrzymujemy stąd następującą uwagę:
+
+::: {.caution title="" ref=""}
+Wszystkie niezerowe pierwiastki wielomianu $w(x)$ leżą na zewnątrz koła o promieniu
+
+$$
+\frac{1}{\varrho_{1}} = \frac{1}{1+\frac{\displaystyle \max _{0<k\le n}\left| a_{k} \right|}{\left| a_{0} \right|}}
+$$
+:::
+
+::: {.example title="" ref=""}
+Znajdź przedziały w których znajdują się rzeczywiste miejsca zerowe wielomianu:
+
+$$
+    w(x) = x^{4} - 4x^{3} + 7x^{2} - 5x - 2
+$$
+
+Dla wielomianu $w(x)$ mamy:
+
+$$
+    \varrho = 1 + \frac{\displaystyle \max _{0\le k < n}\left| a_{k} \right|}{\left| a_{n} \right|} = 1 + \frac{7}{1} = 8
+$$
+
+$$
+    \frac{1}{\varrho} = \frac{1}{1+\frac{\displaystyle \max _{0<k\le n} \left| a_{k} \right|}{\displaystyle \left| a_{0} \right|}} = \frac{1}{1+\frac{7}{2}} = \frac{1}{\frac{9}{2}} = \frac{2}{9}
+$$
+
+Zatem dla każdego miejsca zerowego $x_{0}$ zachodzi nierówność:
+
+$$
+    \frac{2}{9} \le \left| x_{0} \right| \le 8
+$$
+
+Czyli pierwiastki rzeczywiste znajdują się w zbiorze
+
+$$
+    A = \left[ -8; -\frac{2}{9} \right] \cup \left[ \frac{2}{9}; 8 \right]
+$$
+:::
+
+### Schemat Hornera
+
+Zastosowania Schematu Hornera:
+
+
+#### Wyznaczanie wartości wielomianu
+
+\
+
+Zauważmy, że obliczając wartość Wielomianu
+
+$$
+    w(x_{0}) = a_{n} x_{0}^{n} + a_{n-1}x^{n-1}_{0} + \ldots + a_{1}x + a_{0}
+$$
+
+w podanej we wzorze kolejności wymaga to $n$ dodawań i $n+( n-1 )+\ldots+1 = \frac{n(n+1)}{2}$ mnożeń.
+
+Znacznie efektywniejsze jest obliczanie wartości tego wielomianu w kolejności
+zgodnej z poniższym wzorem Hornera
+
+$$
+    w(x_{0}) = ((\ldots ((a_{n}x_{0}+a_{n-1})x_{0}+a_{n-2})x_{0}\ldots + a_{2}) x_{0} + a_{0}
+$$
+
+W pierwszym kroku wyznaczania wartości wielomianu za pomocą algorytmu Hornera
+do sumy reprezentującej wartość wielomianu bierzemy współczynnik $a_{n}$, a
+następie w każdym kolejnym kroku przemnażamy dotychczasową sumę przez wartość
+$x_{0}$ oraz dodajemy kolejny współczynnik wielomianu $a_{i}$. Takie
+wyznaczanie wartości wielomianu wymaga jedynie $n$ dodawań i $n$ mnożeń.
+
+#### Dzielenie wielomianów przez czynnik liniowy
+
+\
+
+Wielomian $w(x)$ możemy zapisać w postaci:
+
+$$
+    w(x) = (x-x_{0})q(x) + r(x_{0})
+$$
+
+gdzie:
+
+ - $q(x)$ jest ilorazem
+ - $r(x_{0})$ jest resztą z dzielenia tego wielomianu przez czynnik $x-x_{0}$
+
+Wstawiając $x = x_{0}$ otrzymujemy:
+
+$$
+    w(x_{0}) = r(x_{0})
+$$
+
+Stopień wielomianu $q(x)$ jest o 1 mniejszy od stopnia wielomianu $w(x)$, zatem może on być przedstawiony w postaci:
+
+$$
+    q(x) = b_{n-1}x^{n-1} + b_{n-2}x^{n-2} + \ldots + b_{1}x + b_{0}
+$$
+
+Wstawiając $q(x)$ do równania i uwzględniając że $r(x_{0}) = w(x_{0})$ jest wartością wielomianu w punkcie $x_{0}$ mamy:
+
+$$
+\begin{aligned}
+    a_{n} x^{n} + a_{n-1}x^{n-1} + \ldots + a_{1} x + a_{0} &= (x-x_{0})(b_{n-1}x^{n-1} + b_{n-2}x^{n-2} + \ldots + b_{1}x + b_{0}) + w(x_{0})\\
+    &= b_{n-1}x^{n} + (b_{n-2} - b_{n-1} x_{0})x^{n-1} + \ldots + (b_{0} - b_{1} x_{0}) x - b_{0}x_{0} + w(x_{0})
+\end{aligned}
+$$
+
+Porównując współczynniki przy tych samych potęgach po obu stronach równania otrzymujemy:
+
+$$
+    \begin{cases}
+    b_{n-1} = a_{n}\\
+    b_{n-2} = a_{n-1} + b_{1} x_{0}\\
+    \ldots \\ 
+    b_{0} = a_{1} + b_{1}x_{0} \\
+    w(x_{0}) = a_{0} + b_{0}x_{0}
+    \end{cases}
+$$
+
+Zauważmy, że wykonywane są tutaj identyczne działania jak w przypadku wyznaczania wartości wielomianu $w(x)$ w punkcie $x_{0}$, a wartości sumy uzyskiwane w kolejnych krokach są wartościami kolejnych współczynników ilorazu $q(x)$. Ostatnia uzyskana wartość (wartość wielomianu w punkcie $x_{0}$) jest jednocześnie resztą z dzielenia wielomianu $w(x)$ przez czynnik $x-x_{0}$
