@@ -1328,14 +1328,29 @@ funkcję
 $$
   \begin{aligned}
   \hat{Y}_t = \hat{\alpha} &+
-  \underbrace{\hat{\alpha}_1 \cos (\frac{2\pi}{\omega}t)}_{C_1i} +
-  \underbrace{\hat{\beta}_1 \sin (\frac{2\pi}{\omega}t)}_{S_1i} \\&+
-  \hat{\alpha}_2 \cos (\frac{2\pi}{\omega}t) +
-  \hat{\beta}_2 \sin (\frac{2\pi}{\omega}t) + \\&+
+  \hat{\alpha}_1 \underbrace{\cos (\frac{2\pi}{\omega}t)}_{C_1i} +
+  \hat{\beta}_1  \underbrace{\sin (\frac{2\pi}{\omega}t)}_{S_1i} \\&+
+  \hat{\alpha}_2 \cos (2 \cdot \frac{2\pi}{\omega}t) +
+  \hat{\beta}_2 \sin (2 \cdot \frac{2\pi}{\omega}t) + \\&+
   \ldots \\&+
-  \hat{\alpha}_p \cos (\frac{2\pi}{\omega}t) +
-  \hat{\beta}_p \sin (\frac{2\pi}{\omega}t)
+  \hat{\alpha}_p \cos (p \cdot \frac{2\pi}{\omega}t) +
+  \hat{\beta}_p  \sin (p \cdot \frac{2\pi}{\omega}t)
   \end{aligned}
+$$
+
+$$
+  C_k = \begin{bmatrix}
+    \cos (k \cdot \frac{2\pi}{\omega} \cdot 1)\\
+    \cos (k \cdot \frac{2\pi}{\omega} \cdot 2)\\
+    \vdots \\
+    \cos (k \cdot \frac{2\pi}{\omega} \cdot p)\\
+  \end{bmatrix} \qquad
+  S_k = \begin{bmatrix}
+    \sin (k \cdot \frac{2\pi}{\omega} \cdot 1)\\
+    \sin (k \cdot \frac{2\pi}{\omega} \cdot 2)\\
+    \vdots \\
+    \sin (k \cdot \frac{2\pi}{\omega} \cdot p)\\
+  \end{bmatrix}
 $$
 
 Przypadek $\omega$ parzystej
@@ -1364,7 +1379,8 @@ $$
 
 $$
   \hat{\alpha}_k = \frac{2}{\omega} \sum_{i = 1}^{\omega} (C_{ki} Y_i) \quad
-  \hat{\beta}_k = \frac{2}{\omega} \sum_{i = 1}^{\omega} (S_{ki} Y_i)
+  \hat{\beta}_k = \frac{2}{\omega} \sum_{i = 1}^{\omega} (S_{ki} Y_i) \qquad
+\text{dla } k \le \frac{w - 1}{2}
 $$
 
 $$
