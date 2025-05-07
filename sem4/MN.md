@@ -2480,7 +2480,7 @@ Szczególnym rodzajem funkcji nieliniowych są wielomiany
 **Wielomianem** nazywamy funkcję:
 
 $$
-    W(x) = a_{n}x^{n} + a_{n-1}x^{n-1} + \ldots + a_{1}x + a_{0}
+    w(x) = a_{n}x^{n} + a_{n-1}x^{n-1} + \ldots + a_{1}x + a_{0}
 $$
 
 gdzie 
@@ -2497,7 +2497,7 @@ W określeniu liczby i przedziłów w których znajdują się miejsca zerowe wie
 Wielomianu $w(x)$ stopnia $n$, ma $n$ pierwiastków zespolonych i może być przedstawiony w postaci:
 
 $$
-w(x) = a_{n}(x-x_{1})(x-x_{2})\ldots(x-x_{n})
+w(x) = a_{n}(x-z_{1})(x-z_{2})\ldots(x-z_{n})
 $$
 
 gdzie $z_{i}$ są jego pierwiastkami zespolonymi.
@@ -2583,7 +2583,7 @@ Zastosowania Schematu Hornera:
 
 \
 
-Zauważmy, że obliczając wartość Wielomianu
+Zauważmy, że obliczając wartość wielomianu
 
 $$
     w(x_{0}) = a_{n} x_{0}^{n} + a_{n-1}x^{n-1}_{0} + \ldots + a_{1}x + a_{0}
