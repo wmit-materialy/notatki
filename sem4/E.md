@@ -2539,3 +2539,186 @@ Ponieważ $\operatorname{DW}' < d_L$, odrzucamy hipotezę zerową na korzyść
 hipotezy alternatywnej o ujemnej autokorelacji.
 
 :::
+
+---
+
+# Wykład (2025-05-07)
+
+## Heteroscedastyczność
+
+Kolejnym odstępstwem od założeń klasycznej metody najmniejszych kwadratów jest
+rezygnacja z postulatu aby wariancje składnika losowego były stałe w czasie.
+Przyjmuje się zatem, że
+
+$$
+  \operatorname{cov} (\varepsilon) = V, \quad \text{gdzie } V \ne I
+$$
+
+W szczególnym przypadku, gdy macierz $V$ jest diagonalna, mamy do czynienia z
+brakiem autokorelacji, ale jeśli elementy na przekątnej macierzy $V$ są różne od
+siebie, to mamy do czynienia ze zjawiskiem **heteroscedastyczności** (przy braku
+autokorelacji).
+
+### Test Goldfelda-Quandta
+
+W celu wykrycia tego zjawiska stosujemy test Goldfelda–Quandta. Procedura jest
+następująca:
+
+1) Obserwacje w liczbie $n$ dzielimy na dwie grupy:
+
+   - początkową o liczebności $n_1$
+   - końcową o liczebności $n_2$
+
+   W taki sposób, że $n_1 + n_2 = n$
+
+   Podział powyższy ma zwykle charakter arbitralny jednak przesłanki do wyboru
+   $n_1$ i $n_2$ powinny mieć przynajmniej podstawy intuicyjne
+
+2) Następnie niezależnie dla obu zbiorów obserwacji wyznaczamy oszacowania
+   wektorów parametrów klasyczną metodą najmniejszych kwadratów
+
+3) Następnie szacujemy wariancję w obu grupach według wzorów
+   $$
+     \begin{aligned}
+     S_1^2 = \frac{1}{n_1 - m - 1} \cdot \sum_{i \in A}  e_i^2\\
+     S_2^2 = \frac{1}{n_2 - m - 1} \cdot \sum_{i \in B}  e_i^2
+     \end{aligned}
+   $$
+
+   gdzie
+
+   - $m$ – liczba zmiennych objaśniających
+   - $A$ jest zbiorem indeksów odpowiadających pierwszej grupie obserwacji
+   - $B$ jest zbiorem indeksów odpowiadających drugiej grupie obserwacji
+4) Hipoteza zerowa ma postać
+   $$
+     H_0 : \sigma_1^2 = \sigma_2^2
+   $$
+
+   Statystyka testowa jest ilorazem wielkości $S_1^2$ i $S_2^2$.
+
+5) Testując hipotezę zerową $H_0$ przeciwko hipotezie alternatywnej
+   $$
+     H_1 : \sigma_1^2 > \sigma_2^2
+   $$
+
+   wartość statystyki testowej obliczamy ze wzoru
+   $$
+     F_e = \frac{S_1^2}{S_2^2}
+   $$
+
+   Hipotezę zerową odrzucamy jeśli dla zadanego poziomu istotności $\alpha$
+   $$
+     F_e > \underbrace{F_{\alpha}(n_1 - m - 1, n_2 - m - 1)
+     }_{\text{Kwantyl rzędu $1-\alpha$ rozkładu $F$}}
+   $$
+
+6) Jeśli hipoteza alternatywna ma postać
+   $$
+     H_1 : \sigma_1^2 < \sigma_2^2
+   $$
+
+   To wartość statystyki testowej obliczamy ze wzoru
+   $$
+     F_e = \frac{S_2^2}{S_1^2}
+   $$
+
+   Hipotezę odrzucimy, jeśli $F_e > F_{\alpha}(n_2 - m - 1, n_1 - m - 1)$
+
+::: {.example title="" ref=""}
+
+W tabeli przedstawimy dane dotyczące zmienności kursów akcji przedsiębiorstw
+przemysłowych w Stanach Zjednoczonych w ostatnich dwunastu latach (zmienna
+objaśniana $Y$) oraz dane dotyczące produkcji przemysłowej (zmienna objaśniająca
+$X$)
+
+Na poziomie istotności $\alpha = 0,05$ zastosuj procedurę testowania
+Goldfelda-Quandta:
+
+| Produkcja przemysłowa $X$ | Kursy akcji $Y$ | $e_i$   | $e_i^2$    |
+| :---:                     | :---:           | :---:   | :---:      |
+| 96                        | 77              | 14.131  | 199.685161 |
+| 100                       | 100             | -2.405  | 5.784025   |
+| 107                       | 123             | -14.093 | 198.612649 |
+| 86                        | 91              | -16.029 | 256.928841 |
+| 73                        | 57              | -3.037  | 9.223369   |
+| 58                        | 30              | -0.277  | 0.076729   |
+| 68                        | 43              | 2.883   | 8.311689   |
+| 72                        | 53              | -0.653  | 0.426409   |
+| 81                        | 59              | 7.891   | 62.267881  |
+| 94                        | 83              | 4.899   | 24.000201  |
+| 99                        | 85              | 10.979  | 120.538441 |
+| 77                        | 65              | -4.573  | 20.912329  |
+
+$$
+  \hat{y} = -64,005 + 1,616 x
+$$
+
+<!--
+```r
+x = c(96, 100, 107, 86, 73, 58, 68, 72, 81, 94, 99, 77)
+y = c(77, 100, 123, 91, 57, 30, 43, 53, 59, 83, 85, 65)
+y.hat = -64.005 + 1.616 * x
+e = y.hat - y
+e^2
+```
+-->
+
+Kwadraty reszt przyjmują szczególnie dużą wartość dla trzech spośród czterech
+pierwszych okresów. Dlatego też zdecydujmy się przyjąć $n_1 = 4$ oraz $n_2 = 8$
+
+Teraz szacujemy parametry modelu liniowego dla pierwszej grupy i dla drugiej:
+$$
+  \hat{y}_1 = -51,549 + 1,535 x \qquad
+  \hat{y}_2 = -45,564 + 1,35 x
+$$
+
+<!--
+```r
+y.hat1 = -51.549 + 1.535 * x[1:4]
+y.hat2 = -45.564 + 1.35 * x[5:12]
+e1 = y.hat1 - y[1:4]
+e2 = y.hat2 - y[5:12]
+```
+-->
+
+Grupa pierwsza:
+
+| Produkcja przemysłowa $X$ | Kursy akcji $Y$ | $e_i$   | $e_i^2$    |
+| :---:                     | :---:           | :---:   | :---:      |
+| 96                        | 77              | 18.811  | 353.853721 |
+| 100                       | 100             | 1.951   | 3.806401   |
+| 107                       | 123             | -10.304 | 106.172416 |
+| 86                        | 91              | -10.539 | 111.070521 |
+
+Grupa druga:
+
+| Produkcja przemysłowa $X$ | Kursy akcji $Y$ | $e_i$   | $e_i^2$    |
+| :---:                     | :---:           | :---:   | :---:      |
+| 73                        | 57              | -4.014  | 16.112196  |
+| 58                        | 30              | 2.736   | 7.485696   |
+| 68                        | 43              | 3.236   | 10.471696  |
+| 72                        | 53              | -1.364  | 1.860496   |
+| 81                        | 59              | 4.786   | 22.905796  |
+| 94                        | 83              | -1.664  | 2.768896   |
+| 99                        | 85              | 3.086   | 9.523396   |
+| 77                        | 65              | -6.614  | 43.744996  |
+
+Stawiamy hipotezę:
+$$
+  H_0 : \sigma_1^2 = \sigma_2^2 \qquad
+  H_1 : \sigma_1^2 > \sigma_2^2
+$$
+
+$$
+  F_e = \frac{S_1^2}{S_2^2} = \frac{287,4515}{19.14553} = 15.01403 \qquad
+  F_{\alpha} = 5.14
+$$
+
+Zatem $F_e > F_{\alpha}$.
+
+Hipotezę zerową o braku heteroscedastyczności należy odrzucić na rzecz hipotezy
+alternatywnej, że w początkowej grupie obserwacji wariancja jest większa niż w
+końcowej grupie obserwacji
+
+:::
