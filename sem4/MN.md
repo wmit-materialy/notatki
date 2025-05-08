@@ -1833,7 +1833,7 @@ kroku dokonujemy wyważanie wierszy albo kolumn.
 ::: {.example title="" ref=""}
 
 $$
-  A_{3\times 3}x = b \qquad
+  A_{3\times 3}\cdot x = b \qquad
   x = \begin{bmatrix}%3x1, ty: generic, tr: N
     x_1\\
     x_2\\
@@ -1897,6 +1897,54 @@ $$
 Uzyskujemy ciąg wektorów przybliżonych rozwiązań tym szybciej zbieżny do
 wektora dokładnego $x$ im dokładniej jest rozwiązany zarówno podstawowy układ
 równań $Ax^{(i)} = b$ jak i układy równań $Ae^{(i)} = r^{(i)}$.
+
+Przykładowa implementacja «poprawionej» metody Gaussa:
+
+```matlab
+function x = rozw_gauss_popraw(A, b, pop = 0)
+  [h, w] = size(A);
+  L = eye(h);
+  U = A;
+  for i = 1:h
+    L(i+1:h, i) = A(i+1:h, i) / A(i, i);
+    U(i+1:h, :) = A(i+1:h, :) - A(i, :) .* A(i+1:h, i) / A(i, i);
+  end
+  z = rozw_l(L, b);
+  x = rozw_u(U, z);
+  for i = 1:pop
+    r = b - A * x;
+    ee = rozw_l(L, r);
+    e = rozw_u(U, ee);
+    x = x + e;
+  end
+end
+```
+
+Przykładowa implementacja «poprawionej» metody Doolittle'a w Octave:
+
+```matlab
+function x = rozw_doolittle_popraw(A, b, pop=0)
+  [h, w] = size(A);
+  L = eye(h);
+  U = zeros(h);
+  for i = 1:h
+    U(i, i) = A(i, i) - L(i, 1:i-1) * U(1:i-1, i);
+    for j = i+1:h
+      U(i, j) = A(i, j) - L(i, 1:i-1) * U(1:i-1, j);
+      L(j, i) = (A(j, i) - L(j, 1:i-1) * U(1:i-1, i))/U(i, i);
+    end
+  end
+
+  z = rozw_l(L, b);
+  x = rozw_u(U, z);
+  for i = 1:pop
+    r = b - A * x;
+    ee = rozw_l(L, r);
+    e = rozw_u(U, ee);
+    x = x + e;
+  end
+end
+```
 
 ## Metody iteracyjne rozwiązywania układów równań liniowych
 
@@ -1971,6 +2019,19 @@ $$
   \end{aligned}
 $$
 
+Przykładowa implementacja w Octave:
+
+```matlab
+function x = iter_rozw_rich(A, b, x0, k = 10)
+  [h, w] = size(A)
+  x = x0;
+  for i = 1:k
+    r = b - A * x
+    x = x + r;
+  end
+end
+```
+
 ### Metoda Jacobiego
 
 Macierz $Q$ jest w niej macierzą przekątniową, a elementy na jej głównej
@@ -2039,6 +2100,25 @@ $Ax = b$, bez względu na sposób doboru pierwszego przybliżenia rozwiązania
 $x^{(0)}$.
 
 :::
+
+Przykładowa implementacja w Octave:
+
+```matlab
+function x = iter_rozw_gauss_seidel(A, b, x0, k=10)
+  [h, w] = size(A);
+  x = x0;
+  for i = 1:k
+    for j = 1:h
+      % Zamiast odejmować dwie sumy, odejmujemy jedną i dodajemy
+      % składnik A(j, j) * x(j), którego nie powinniśmy byli odejmować
+      %
+      %                  Suma       składnik kompensujący
+      %              vvvvvvvvvvvv   vvvvvvvvvvvvvv
+      x(j) = (b(j) - A(j,1:h) * x + A(j, j) * x(j)) / A(j, j);
+    end
+  end
+end
+```
 
 W metodach iteracyjnych można poprawić ich zbieżność poprzez zastosowanie
 dodatkowych technik polegających na ustalaniu wartości nowego przybliżenia
@@ -2483,7 +2563,7 @@ $$
     w(x) = a_{n}x^{n} + a_{n-1}x^{n-1} + \ldots + a_{1}x + a_{0}
 $$
 
-gdzie 
+gdzie
 
  - $a_{n} \ne 0$
  - $a_{i}$ są liczbami rzeczywistymi (lub zespolonymi) nazywanymi współczynnikami wielomianu
@@ -2646,7 +2726,7 @@ $$
     \begin{cases}
     b_{n-1} = a_{n}\\
     b_{n-2} = a_{n-1} + b_{1} x_{0}\\
-    \ldots \\ 
+    \ldots \\
     b_{0} = a_{1} + b_{1}x_{0} \\
     w(x_{0}) = a_{0} + b_{0}x_{0}
     \end{cases}
