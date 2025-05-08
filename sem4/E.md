@@ -1353,34 +1353,35 @@ $$
   \end{bmatrix}
 $$
 
-Przypadek $\omega$ parzystej
+#### Przypadek $\omega$ parzystej
 
 $$
-  \hat{\alpha} = \overline{y}, Y = [y_1, y_2, \ldots, y_{\omega}]^T
-$$
-
-$$
-  \hat{\alpha}_k = \frac{2}{\omega} \sum_{i = 1}^{\omega} (C_{ki} Y_i) \quad
-  \hat{\beta}_k = \frac{2}{\omega} \sum_{i = 1}^{\omega} (S_{ki} Y_i) \quad
-  \text{dla $k < \frac{\omega}{2}$}
+  \hat{\alpha} = \overline{y} \qquad
+  Y = [y_1, y_2, \ldots, y_{\omega}]^T
 $$
 
 $$
-  \hat{\alpha}_k = \frac{1}{\omega} \sum_{i = 1}^{\omega} (C_{ki} Y_i) \quad
-  \hat{\beta}_k = 0 \quad
-  \text{dla $k = \frac{\omega}{2}$}
+  \begin{array}{*3{>{\displaystyle}c}l}
+  \hat{\alpha}_k = \frac{2}{\omega} \sum_{i = 1}^{\omega} (C_{ki} Y_i)
+  &\hat{\beta}_k = \frac{2}{\omega} \sum_{i = 1}^{\omega} (S_{ki} Y_i)
+  &\text{dla } k < \frac{\omega}{2}\\
+  \hat{\alpha}_k = \frac{1}{\omega} \sum_{i = 1}^{\omega} (C_{ki} Y_i)
+  &\hat{\beta}_k = 0
+  &\text{dla } k = \frac{\omega}{2}
+  \end{array}
 $$
 
-Przypadek $\omega$ nieparzystej
+#### Przypadek $\omega$ nieparzystej
 
 $$
-\hat{\alpha} = \overline{y} \qquad Y = [y_1, y_2, \ldots, y_{\omega}]^T
+  \hat{\alpha} = \overline{y} \qquad
+  Y = [y_1, y_2, \ldots, y_{\omega}]^T
 $$
 
 $$
   \hat{\alpha}_k = \frac{2}{\omega} \sum_{i = 1}^{\omega} (C_{ki} Y_i) \quad
   \hat{\beta}_k = \frac{2}{\omega} \sum_{i = 1}^{\omega} (S_{ki} Y_i) \qquad
-\text{dla } k \le \frac{w - 1}{2}
+  \text{dla } k \le \frac{\omega - 1}{2}
 $$
 
 $$
