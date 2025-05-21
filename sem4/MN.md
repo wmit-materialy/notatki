@@ -276,9 +276,9 @@ $$
 $$
 
 Zadanie dobrze uwarunkowane
-: – Jeśli niewielkie względne zaburzenia danych powodują duże względne zaburzenia
-wyników, to zadanie nazywamy źle uwarunkowanym. W przeciwnym razie zadanie jest
-dobrze uwarunkowane
+: – Jeśli niewielkie względne zaburzenia danych powodują duże względne
+  zaburzenia wyników, to zadanie nazywamy źle uwarunkowanym. W przeciwnym
+  razie zadanie jest dobrze uwarunkowane
 
 ::: {.example title="" ref="wskuwar"}
 
@@ -408,7 +408,8 @@ $$
 
 Jak widać dla $\frac{q_0}{p_0^2} \approx 1$ współczynnik rośnie w sposób
 nieograniczony i zadanie jest [bardzo]{.smallcaps} źle uwarunkowane.
-Jeśli $\frac{q_0}{p_0^2} \ll 1$, to zadanie jest [bardzo]{.smallcaps} dobrze uwarunkowane
+Jeśli $\frac{q_0}{p_0^2} \ll 1$, to zadanie jest [bardzo]{.smallcaps} dobrze
+uwarunkowane
 
 :::
 
@@ -1159,15 +1160,15 @@ end
 Kolejna metoda przekształcenia macierzy układu równań $A$ to metoda eliminacji
 Gaussa. Podobnie jak poprzednia metoda sprowadza ona macierz $A$ do postaci
 iloczynu macierzy dolnie trójkątnej i górnie trójkątnej. W podstawowej wersji
-metoda ta polega na wyznaczeniu ciągu macierzy $A^{(i)}$, takich że $A^{(1)} = A$
-poprzez przekształcenia macierzy będącej poprzednim elementem tego ciągu.
-$k$-ty krok tego przekształcenia polega na wykonywaniu działań na wierszach
-macierzy które prowadzą do wyzerowania wszystkich elementów w kolumnie $k$,
-znajdującej się pod elementem na głównej przekątnej macierzy $A^{(k)}$.
+metoda ta polega na wyznaczeniu ciągu macierzy $A^{(i)}$, takich że
+$A^{(1)} = A$ poprzez przekształcenia macierzy będącej poprzednim elementem tego
+ciągu. $k$-ty krok tego przekształcenia polega na wykonywaniu działań na
+wierszach macierzy które prowadzą do wyzerowania wszystkich elementów w kolumnie
+$k$, znajdującej się pod elementem na głównej przekątnej macierzy $A^{(k)}$.
 Przekształcenia te mogą być interpretowane jako odejmowanie od siebie równań
-układu przemnożonych przez pewne stałe zwane mnożnikami.
-Uzyskujemy w ten sposób macierz górnie trójkątną $U = A^{(n)}$, podczas gdy
-macierz dolnie trójkątna $L$ zostaje utworzona z tych mnożników.
+układu przemnożonych przez pewne stałe zwane mnożnikami. Uzyskujemy w ten sposób
+macierz górnie trójkątną $U = A^{(n)}$, podczas gdy macierz dolnie trójkątna $L$
+zostaje utworzona z tych mnożników.
 
 Elementy macierzy $A^{(k + 1)}$ powstają z elementów macierzy $A^{(k)}$ zgodnie
 z poniższym wzorem rekurencyjnym.
@@ -2493,6 +2494,7 @@ iteracyjnie:
    $$
 
 ---
+
 2025-05-06
 
 ### Metoda siecznych
@@ -2614,10 +2616,13 @@ $$
     \left| x_{0} \right| \le \varrho_{1} = 1+\frac{\displaystyle \max_{0<k\le n} \left| a_{k} \right|}{\left| a_{0} \right|}
 $$
 
-Ponieważ $\frac{1}{x_{0}}$ jest pierwiastkiem wielomianu $w(x)$, a $\left| x_{0} \right|\le \varrho_{1}$, to $\frac{1}{x_{0}} \ge \frac{1}{\varrho_{1}}$. Otrzymujemy stąd następującą uwagę:
+Ponieważ $\frac{1}{x_{0}}$ jest pierwiastkiem wielomianu $w(x)$, a $\left| x_{0}
+\right|\le \varrho_{1}$, to $\frac{1}{x_{0}} \ge \frac{1}{\varrho_{1}}$.
+Otrzymujemy stąd następującą uwagę:
 
 ::: {.caution title="" ref=""}
-Wszystkie niezerowe pierwiastki wielomianu $w(x)$ leżą na zewnątrz koła o promieniu
+Wszystkie niezerowe pierwiastki wielomianu $w(x)$ leżą na zewnątrz koła o
+promieniu
 
 $$
 \frac{1}{\varrho_{1}} = \frac{1}{1+\frac{\displaystyle \max _{0<k\le n}\left| a_{k} \right|}{\left| a_{0} \right|}}
@@ -2661,15 +2666,14 @@ Zastosowania Schematu Hornera:
 
 #### Wyznaczanie wartości wielomianu
 
-\
-
 Zauważmy, że obliczając wartość wielomianu
 
 $$
     w(x_{0}) = a_{n} x_{0}^{n} + a_{n-1}x^{n-1}_{0} + \ldots + a_{1}x + a_{0}
 $$
 
-w podanej we wzorze kolejności wymaga to $n$ dodawań i $n+( n-1 )+\ldots+1 = \frac{n(n+1)}{2}$ mnożeń.
+w podanej we wzorze kolejności wymaga to $n$ dodawań i $n+( n-1 )+\ldots+1 =
+\frac{n(n+1)}{2}$ mnożeń.
 
 Znacznie efektywniejsze jest obliczanie wartości tego wielomianu w kolejności
 zgodnej z poniższym wzorem Hornera
@@ -2685,8 +2689,6 @@ $x_{0}$ oraz dodajemy kolejny współczynnik wielomianu $a_{i}$. Takie
 wyznaczanie wartości wielomianu wymaga jedynie $n$ dodawań i $n$ mnożeń.
 
 #### Dzielenie wielomianów przez czynnik liniowy
-
-\
 
 Wielomian $w(x)$ możemy zapisać w postaci:
 
@@ -2705,13 +2707,15 @@ $$
     w(x_{0}) = r(x_{0})
 $$
 
-Stopień wielomianu $q(x)$ jest o 1 mniejszy od stopnia wielomianu $w(x)$, zatem może on być przedstawiony w postaci:
+Stopień wielomianu $q(x)$ jest o 1 mniejszy od stopnia wielomianu $w(x)$, zatem
+może on być przedstawiony w postaci:
 
 $$
     q(x) = b_{n-1}x^{n-1} + b_{n-2}x^{n-2} + \ldots + b_{1}x + b_{0}
 $$
 
-Wstawiając $q(x)$ do równania i uwzględniając że $r(x_{0}) = w(x_{0})$ jest wartością wielomianu w punkcie $x_{0}$ mamy:
+Wstawiając $q(x)$ do równania i uwzględniając że $r(x_{0}) = w(x_{0})$ jest
+wartością wielomianu w punkcie $x_{0}$ mamy:
 
 $$
 \begin{aligned}
@@ -2720,7 +2724,8 @@ $$
 \end{aligned}
 $$
 
-Porównując współczynniki przy tych samych potęgach po obu stronach równania otrzymujemy:
+Porównując współczynniki przy tych samych potęgach po obu stronach równania
+otrzymujemy:
 
 $$
     \begin{cases}
@@ -2732,7 +2737,11 @@ $$
     \end{cases}
 $$
 
-Zauważmy, że wykonywane są tutaj identyczne działania jak w przypadku wyznaczania wartości wielomianu $w(x)$ w punkcie $x_{0}$, a wartości sumy uzyskiwane w kolejnych krokach są wartościami kolejnych współczynników ilorazu $q(x)$. Ostatnia uzyskana wartość (wartość wielomianu w punkcie $x_{0}$) jest jednocześnie resztą z dzielenia wielomianu $w(x)$ przez czynnik $x-x_{0}$
+Zauważmy, że wykonywane są tutaj identyczne działania jak w przypadku
+wyznaczania wartości wielomianu $w(x)$ w punkcie $x_{0}$, a wartości sumy
+uzyskiwane w kolejnych krokach są wartościami kolejnych współczynników ilorazu
+$q(x)$. Ostatnia uzyskana wartość (wartość wielomianu w punkcie $x_{0}$) jest
+jednocześnie resztą z dzielenia wielomianu $w(x)$ przez czynnik $x-x_{0}$
 
 ---
 
