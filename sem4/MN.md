@@ -2733,3 +2733,245 @@ $$
 $$
 
 Zauważmy, że wykonywane są tutaj identyczne działania jak w przypadku wyznaczania wartości wielomianu $w(x)$ w punkcie $x_{0}$, a wartości sumy uzyskiwane w kolejnych krokach są wartościami kolejnych współczynników ilorazu $q(x)$. Ostatnia uzyskana wartość (wartość wielomianu w punkcie $x_{0}$) jest jednocześnie resztą z dzielenia wielomianu $w(x)$ przez czynnik $x-x_{0}$
+
+---
+
+2025-05-20
+
+### Zastosowanie – Deflacja wielomianu
+
+Jeśli $x_0$ jest pierwiastkiem wielomianu $w(x)$, to jego reszta z dzielenia
+przez czynnik $x - x_0$ jest równa zero i czynnik $(x - x_0)$ można wyłączyć z
+wielomianu $w(x)$
+
+$$
+  w(x) = (x - x_0) q(x)
+$$
+
+W kolejnych krokach z uzyskiwanych ilorazów $q(x)$ można wyłączać kolejne
+pierwiastki wielomianu, czyli dokonywać jego deflację.
+
+### Zastosowanie – rozwinięcie Taylora – wyznaczanie pochodnych wielomianu
+
+Dla dowolnego $x_0$ (nie koniecznie pierwiastka wielomianu $w(x)$) możemy
+$n$-krotnie (gdzie $n$ to stopień wielomianu) wykonywać dzielenie kolejnych
+ilorazów przez czynnik $(x - x_0)$. Prowadzi to do przedstawienia wielomianu
+$w(x)$ w postaci
+
+$$
+  w(x) = a_nx^n + a_{n-1}x^{n-1} + \ldots + a_1x + a_0 =
+  c_n(x - x_0)^{n} + c_{n-1}(x - x_0)^{n-1} + \ldots + c_1(x - x_0) + c_0
+$$
+
+gdzie współczynniki $c_i$ są kolejnymi resztami z dzielenia przez czynnik
+$(x - x_0)$
+
+Taka postać wielomianu $w(x)$ jest po prostu rozwinięciem tego wielomianu w
+szereg Taylora. Jako że rozwinięcie wielomianu w szereg Taylora do wyrazu
+$n$-tego (numerując od zera) jest dokładne (reszta rozwinięcia jest równa zeru).
+Takie rozwinięcie może posłużyć do wyznaczania pochodnych wielomianu $w(x)$ w
+punkcie $x_0$. Dla rozwinięcia $w(x)$ w szereg Taylora mamy:
+
+$$
+  w(x) = w(x_0) + \frac{w'(x_0)}{1!} (x - x_0) +
+  \frac{w''(x_0)}{2!} (x - x_0)^2 + \ldots +
+  \frac{w^{(n-1)}(x_0)}{(n-1)!} (x - x_0)^{n-1} +
+  \frac{w^{(n)}(x_0)}{n!} (x - x_0)^n
+$$
+
+Porównując współczynniki tego rozwinięcia ze współczynnikami $c_i$ mamy
+
+$$
+  \begin{cases}
+    w^{(n)}(x_0) = c_n\cdot n!\\
+    w^{(n - 1)}(x_0) = c_{n-1}\cdot (n-1)!\\
+    \vdots\\
+    w'(x_0) = c_1\\
+    w(x_0) = c_0\\
+  \end{cases}
+$$
+
+Wyznaczone wartości $w(x_0)$ i $w'(x_0)$ mogą posłużyć do wykonania kroku metody
+Newtona w celu wyznaczenia miejsca zerowego wielomianu $w(x)$
+
+::: {.example title="" ref=""}
+
+Stosując schemat Hornera oblicz $w(3)$ dla
+
+$$
+  w(x) = x^4 - 4x^3 + 7x^2 - 5x - 2
+$$
+
+$$
+  \begin{array}{r|r r r r r}
+    & 1 & -4 & 7  & -5 & -2\\
+  3 &   & 3  & -3 & 12 & 21\\ \hline
+    & 1 & -1 & 4  & 7  & {\color{red}19}
+  \end{array}
+$$
+
+$$
+  w(3) = 19
+$$
+
+:::
+
+::: {.example title="" ref=""}
+
+Wykonaj deflację wielomianu z poprzedniego przykładu dla jego pierwiastka
+$x_0 = 2$
+
+$$
+  \begin{array}{r|r r r r r}
+      & 1 & -4 & 7  & -5 & -2 \\
+    2 &   & 2  & -4 & 6  & 2  \\ \hline
+      & 1 & -2 & 3  & 1  & 0
+  \end{array}
+$$
+
+Zatem
+
+$$
+  w(x) = (x-2)(x^3 - 2x^2 + 3x + 1)
+$$
+
+:::
+
+::: {.example title="" ref=""}
+
+Znajdź rozwinięcie w szereg Taylora wielomianu z poprzednich przykładów w
+punkcie $x_0 = 3$. Wyznacz $w''(3)$
+
+$$
+  \begin{array}{r|r r r r r}
+     & 1                 & -4                & 7                  & -5                 & -2 \\
+   3 &                   & 3                 & -3                 & 12                 & 21 \\ \hline
+     & 1                 & -1                & 4                  & 7                  & \underset{c_0}{19} \\
+   3 &                   & 3                 & 6                  & 30                 & \\ \hline
+     & 1                 & 2                 & 10                 & \underset{c_1}{37} & \\
+   3 &                   & 3                 & 15                 &                    & \\ \hline
+     & 1                 & 5                 & \underset{c_2}{25} &                    & \\
+   3 &                   & 3                 &                    &                    & \\ \hline
+     & 1                 & \underset{c_3}{8} &                    &                    & \\
+     & \underset{c_4}{1} &                   &                    &                    &
+  \end{array}
+$$
+
+:::
+
+## Metoda Bairstowa
+
+Metoda Bairstowa służy do wyłączania z wielomianu o współczynnikach
+rzeczywistych czynnika kwadratowego nierozkładalnego.
+
+Dzieląc wielomian
+
+$$
+  w(x) = a_nx^n + a_{n-1}x^{n-1} + \ldots + a_1x + a_0
+$$
+
+przez trójmian kwadratowy $x^2 - ux - v$ uzyskamy resztę (wielomian 1 stopnia)
+postaci $r(x) = b_1 (x - u) + b_0$, mamy zatem
+
+$$
+  \sum_{k = 0}^{n} a_kx^k = (x^2 - ux - v)
+  \left( \sum_{k = 2}^{n} b_kx^{k-2} \right) + b_1(x - u) + b_0
+$$
+
+gdzie przyjmujemy $b_{n+1} = b_{n+2} = 0$ i porównując po obu stronach
+współczynniki wielomianów otrzymujemy wzór rekurencyjny
+
+$$
+  a_i = -vb_{i+2} - ub_{i+1} + b_i \qquad
+  \text{czyli} \qquad
+  b_k = a_k + ub_{k+1} + vb_{k+2}
+$$
+
+Aby dokonać teraz deflacji wielomianu $w(x)$ trójmianem kwadratowym
+nierozkładalnym wystarczy znaleźć taki trójmian kwadratowy (współczynniki $u$ i
+$v$), że $b_1(u, v) = b_0(u, v) = 0$. Można to zrobić stosując metodę Newtona
+dla układów równań. Potrzebujemy jednak wówczas wartości pochodnych funkcji
+$b_1(u, v)$ i $b_0(u, v)$. Wyznaczyć je można ze wzoru rekurencyjnego uzyskanego
+i różniczkowane równanie rekurencyjne względem $u$ i względem $r$. Jeśli
+oznaczymy sobie $c_k = \frac{\partial b_k}{\partial u}$ i
+$d_k = \frac{\partial b_{k-1}}{\partial v}$, to biorąc pochodną po $u$ mamy:
+
+$$
+  c_k = b_{k+1} + c_{k+1} \cdot u + v c_{k+2} =
+  b_{k+1} +
+  u \frac{\partial b_{k+1}}{\partial u} +
+  v \frac{\partial b_{k+2}}{\partial u}
+$$
+
+a biorąc pochodną po $v$
+
+$$
+  \frac{\partial b_k}{\partial v} =
+  d_k =
+  u \frac{\partial b_k}{\partial v} +
+  b_{k+1} +
+  v \frac{\partial b_{k+1}}{\partial v} =
+  b_{k+1} + ud_{k+1} + v d_{k+2}
+$$
+
+Ponieważ wzory te są identyczne i $c_{n+1} = c_n = d_{n+1} = d_n = 0$, wartości
+tych pochodnych także są identyczne (można je wyznaczać tylko raz)
+
+Dla danego przybliżenia $(u, v)$, kolejne przybliżenie będzie miało postać
+$(u + \delta u, v + \delta v)$. Stosując metodę Newtona do
+$b_0(u + \delta u, v + \delta v) = 0$ mamy:
+
+$$
+  b_0(u, v) + \frac{\partial b_0}{\partial u} \delta u +
+  \frac{\partial b_0}{\partial v} \delta v = 0
+$$
+
+$$
+  b_1(u, v) + \frac{\partial b_1}{\partial u} \delta u +
+  \frac{\partial b_1}{\partial v} \delta v = 0
+$$
+
+Ponieważ $\displaystyle \frac{\partial b_0}{\partial u} = c_0$,
+$\displaystyle \frac{\partial b_1}{\partial v} = c_1$, zatem ten układ równań
+można zapisać jako:
+
+$$
+  \begin{bmatrix}
+    c_0 & c_1\\
+    c_1 & c_2\\
+  \end{bmatrix} \begin{bmatrix}
+    \delta u\\
+    \delta v\\
+  \end{bmatrix} = \begin{bmatrix}
+    - b_0(u, v)\\
+    - b_1(u, v)\\
+  \end{bmatrix}
+$$
+
+I rozwiązując ten układ równań liniowych mamy: $J = c_0c_2 - c_1^2$
+
+$$
+  \delta u = \frac{c_1 b_1 - c_2 b_0}{J} \quad \text{i} \quad
+  \delta v = \frac{c_1 b_0 - c_0 b_1}{J}
+$$
+
+Zatem nowym przybliżeniem współczynniku trójmianu jest $u + \delta u$,
+$v + \delta v$ i w kolejnych krokach wyznaczamy kolejne przybliżenia, aż do
+uzyskania satysfakcjonującej dokładności współczynników.
+
+## Metoda Laguerre'a
+
+Metoda Laguerre'a jest metodą iteracyjną służącą do wyznaczenia pierwiastków
+wielomianów. W metodzie tej dla $i$-tego przybliżenia pierwiastka $x^{(i)}$
+wyznaczamy wartości liczbowe $A, B, C$ na podstawie których wyznaczamy kolejne
+przybliżenia pierwiastka. Wartości te wyrażają się wzorami:
+
+$$
+  A = -\frac{w'(x^{(i)})}{w(x^{(i)})} \qquad
+  B = A^2 - \frac{w''(x^{(i)})}{w(x^{(i)})} \qquad
+  C = \frac{1}{n} \left( A \pm \sqrt{(n-1)(nB - A^2)} \right)
+$$
+
+gdzie $n$ jest stopniem wielomianu, a znak przy wyznaczaniu wartości $C$
+powinien być tak dobrany, aby $|C|$ była jak największa. Kolejne przybliżenia
+pierwiastka jest równe $x^{(i+1)} = x^{(i)} + \frac{1}{C}$
