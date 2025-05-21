@@ -2906,8 +2906,6 @@ pewną wielkość.
    wielkość $C$ ustaloną z góry. Ma zastosowanie, gdy występuje liniowa
    tendencja rozwojowa i wahania przypadkowe
 
-3. dr Makarewicz prześlę w .docx lub .pdf
-
-4. dr Makarewicz prześlę w .docx lub .pdf
-
-5. omówimy na labach
+<!-- 3. dr Makarewicz prześle w .docx lub .pdf -->
+<!-- 4. dr Makarewicz prześle w .docx lub .pdf -->
+<!-- 5. omówimy na labach -->
