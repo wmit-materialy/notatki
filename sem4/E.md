@@ -2722,3 +2722,189 @@ alternatywnej, że w początkowej grupie obserwacji wariancja jest większa niż
 końcowej grupie obserwacji
 
 :::
+
+---
+
+# Wykład (2025-05-21)
+
+::: {.caution title="" ref=""}
+Co będzie na kartkówce
+
+1) Metoda usuwania zmiennych (4 szt możliwe) (trzeba opisać)
+2) Postać zredukowana, strukturalna oraz klasyfikacja zmiennych (zadanie
+   teoretyczne)
+3) Weryfikacja modelu (może być zadanie rachunkowe do zrobienia lub opis pewnej
+   procedury)
+
+   Chodzi o $R^2, \Phi^2$, istotność parametrów strukturalnych (na 3 sposoby),
+   badanie autokorelacji składnika losowego (2 procedury), heteroscedastyczności
+4) Pośrednia metoda najmniejszych kwadratów (forma opisowa)
+
+   Czyli: procedura / twierdzenie, np. o identyfikowalności równań
+5) Mierniki błędów prognoz ex post
+
+3 zadania na zaliczeniu i 3 zadania na kolosie
+
+:::
+
+## Normalność rozkładu składnika losowego
+
+W testach przedstawionych wcześniej konieczne jest spełnienie założenia o
+normalności rozkładu składnika losowego. Nie jest to założenie występujące w
+klasycznym standardowym modelu liniowym. Założenie to jest szczególnie ważne w
+razie stosowania testów opartych na rozkładzie $F$ ze względu na stosunkowo
+niską odporność statystyki $F$ na niespełnienia założenia o normalności rozkładu
+składnika losowego.
+
+Wyróżniamy 2 rodzaje testów:
+
+- dla małej próby $n \le 30$
+- dla dużej próby
+
+dla małej próby stosujemy test Hellwiga. Jest to test zgodności za pomocą
+którego można zweryfikować hipotezę o dowolnym rozkładzie. Test ten opiera się
+bowiem na własności:
+
+Jeżeli zmienna losowa $X$ ma rozkład $F$ to zmienna losowa $F_X$ (dystrybuanta
+rozkładu normalnego) ma rozkład jednostajny. Dla znanej próby
+$x_1, x_2, \ldots, x_n$ z rozkładu $F$ stwierdzimy, że wielkości $F(x_1),
+F(x_2), \ldots, F(x_n)$ możemy traktować jako realizację zmiennej losowej o
+rozkładzie jednostajnym na odcinku $[0; 1]$. Hipoteza testowana ma w tym
+przypadku postać
+
+$$
+  H_0 : \text{reszty mają rozkład normalny} \qquad \text{przeciwko} \qquad
+  H_1 : \text{reszty mają inny rozkład}
+$$
+
+Procedura w teście Hellwiga jest następująca:
+
+1. Dla danego ciągu reszt $e_1, e_2, \ldots, e_n$ szacujemy odchylenie
+   standardowe według wzoru
+   $$
+     s = \sqrt{\frac{1}{n} \sum_{i = 1}^{n} e_i^2}
+   $$
+2. Przeprowadzamy standaryzację reszt obliczając wielkości
+
+   $$
+     e_t' = \frac{e_t}{s}
+   $$
+
+3. Po uporządkowaniu reszt od najmniejszej do największej obliczamy wartości
+   dystrybuanty rozkładu normalnego dla otrzymanych reszt
+
+4. Odcinek $[0; 1]$ dzielimy na $n$ równych części
+
+   $$
+     \left[0; \frac{1}{n}\right) \cup \left[\frac{1}{n}; \frac{2}{n}\right) \cup
+     \ldots \cup
+     \left[\frac{n-1}{n}; 1\right]
+   $$
+
+   Każdą z powstałych części nazywamy celą. Mamy zatem $n$ cel. Następnie
+   obliczamy liczbę cel w których nie ma żadnej z wartości dystrybuant z punktu
+   (3). Liczbę tę oznaczamy literą $K$
+
+5. Z tablic testu Hellwiga dla zadanego poziomu istotności $\alpha$ odczytujemy
+   wartości krytyczne $K_1, K_2$
+
+   Jeżeli $K < K_1$ lub $K > K_2$, to hipotezę zerową należy odrzucić
+
+   Jeżeli $K_1 \le K \le K_2$, to stwierdzamy brak podstaw do odrzucenia hipotezy zerowej
+
+::: {.example title="" ref=""}
+
+Załóżmy, że analizując pewien model liniowy otrzymaliśmy następujące reszty
+
+```
+0.257,  0.336, -1.05, -1.983, 0.565,
+-0.227, 1.489, 1.873, -1.494, 0.234
+```
+
+Zweryfikować hipotezę o normalności rozkładu na poziomie istotności
+$\alpha = 0.05$
+
+$$
+  H_0 : \text{reszty mają rozkład normalny} \qquad \text{przeciwko} \qquad
+  H_1 : \text{reszty mają inny rozkład}
+$$
+
+```r
+e = c(0.257, 0.336, -1.05, -1.983, 0.565,
+      -0.227, 1.489, 1.873, -1.494, 0.234)
+s = sd(e) * sqrt((length(e) - 1) / length(e))
+e.prime = e / s
+e.prime = sort(e.prime)
+sort(pnorm(e.prime))
+```
+
+$$
+  s \approx 1.166042
+$$
+
+| $e$    | $e'$   | $e'$ rosnąco | $F(e')$ rosnąco |
+| ------ | ------ | ------       | -------         |
+| 0.257  | 0.220  | -1.701       | 0.0445          |
+| 0.336  | 0.288  | -1.281       | 0.1001          |
+| -1.05  | -0.900 | -0.900       | 0.1839          |
+| -1.983 | -1.701 | -0.195       | 0.4228          |
+| 0.565  | 0.485  | 0.201        | 0.5795          |
+| -0.227 | -0.195 | 0.220        | 0.5872          |
+| 1.489  | 1.277  | 0.288        | 0.6134          |
+| 1.873  | 1.606  | 0.485        | 0.6860          |
+| -1.494 | -1.281 | 1.277        | 0.8992          |
+| 0.234  | 0.201  | 1.606        | 0.9459          |
+
+$$
+  \begin{aligned}
+  [0; 0,1) &\cup
+  [0,1; 0,2) \cup
+  {\color{red} [0,2; 0,3)} \cup
+  {\color{red} [0,3; 0,4)} \cup
+  [0,4; 0,5) \cup
+  [0,5; 0,6) \\&\cup
+  [0,6; 0,7) \cup
+  {\color{red} [0,7; 0,8)} \cup
+  [0,8; 0,9) \cup
+  [0,9; 1]
+  \end{aligned}
+$$
+
+$$
+  K = 3
+$$
+
+Z testu Hellwiga $K_1 = 1, K_2 = 5$
+
+Ponieważ $1 < 3 < 5$ na poziomie istotności $\alpha = 0.05$ stwierdzamy brak
+podstaw do odrzucenia hipotezy zerowej
+
+:::
+
+## Prognozowanie na podstawie szeregów czasowych
+
+### Metody naiwne w prognozowaniu
+
+Najprostszymi metodami wykorzystywanymi do wyznaczania prognoz są metody naiwne.
+Ze względu na prostotę są one najczęściej wykorzystywanymi metodami w praktyce.
+Obliczenie prognozy polega na skorygowaniu wartości z poprzedniego okresu o
+pewną wielkość.
+
+#### Przykłady
+
+1. $y_t^* = y_{t-1}$
+
+   Prognoza równa jest wartości z okresu poprzedniego. Ma ona zastosowanie gdy
+   występuje stały poziom zjawiska w czasie i wahanie przypadkowe
+
+2. $y_t^* = y_{t-1} + C$
+
+   Prognoza równa jest wartości z okresu poprzedniego powiększone o pewną stałą
+   wielkość $C$ ustaloną z góry. Ma zastosowanie, gdy występuje liniowa
+   tendencja rozwojowa i wahania przypadkowe
+
+3. dr Makarewicz prześlę w .docx lub .pdf
+
+4. dr Makarewicz prześlę w .docx lub .pdf
+
+5. omówimy na labach
