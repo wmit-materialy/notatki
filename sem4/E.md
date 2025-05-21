@@ -1252,7 +1252,7 @@ $$
 Wariancja odchyleń losowych szacuje się na podstawie wzoru
 
 $$
-  s_e^2 = \frac{\sum_{i = 1}^{N} (Y_i - \hat{Y}_i)}{N - k - 1}, \quad
+  s_e^2 = \frac{\sum_{i = 1}^{N} (Y_i - \hat{Y}_i)^2}{N - k - 1}, \quad
   \text{gdzie $k$ to liczba zmiennych objaśniających}
 $$
 
@@ -1989,8 +1989,11 @@ równania są identyfikowalne.
 $i$-te równanie wchodzące w skład modelu o $m$ równaniach współzależnych jest
 **identyfikowalne** wtw, gdy macierz $A_i$ jest rzędu $m - 1$.
 
-gdzie $A_i$ oznacza macierz parametrów znajdujących się przy zmiennych które są
-w modelu a nie występują w $i$-tym równaniu.
+gdzie
+
+- $A_i$ – macierz parametrów znajdujących się przy zmiennych które są
+  w modelu a nie występują w $i$-tym równaniu.
+- $m$ – liczba równań
 
 ---
 
