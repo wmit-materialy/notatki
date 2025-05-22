@@ -9,11 +9,13 @@ toc-own-page: true
 
 ---
 
-# Wykład (2025-02-26)
+2025-02-26
+
+# Liniowy model ekonometryczny
 
 ## Zmienne objaśniające w liniowym modelu ekonometrycznym
 
-Zmienne objaśniające w liniowym modelu ekonometrycznym po- winny być:
+Zmienne objaśniające w liniowym modelu ekonometrycznym powinny być:
 
 - silnie skorelowane ze zmienną objaśnianą,
 - słabo skorelowane między sobą,
@@ -138,7 +140,9 @@ Jeśli w hipotezie alternatywnej określony jest znak współczynnika korelacji,
 czyli $H_1 : r_{xy} < 0$ lub $H_1 : r_{xy > 0}$, to w teście korzystamy z obszaru
 lewostronnego lub prawostronnego.
 
-## Dobór zmiennych (metoda analizy współczynników korelacji)
+## Dobór zmiennych
+
+### Metoda analizy współczynników korelacji
 
 W metodzie ustala się wartość krytyczną współczynnika korelacji. Określa ona
 poziom istotności współczynnika korelacji. Wartość na może być zadana przez
@@ -184,7 +188,7 @@ Procedura doboru zmiennych objaśniających jest następująca.
    są to bowiem zmienne zbyt silnie skorelowane ze zmienną objaśniającą $X_h$, a
    więc powielające dostarczone przez nią informacje.
 
-## Dobór zmiennych (metoda pojemności informacji / metoda Hellwiga)
+### Metoda pojemności informacji / metoda Hellwiga
 
 Zakładamy, że nośnikami informacji są wszystkie potencjalne zmienne
 objaśniające. Gdy występuje $m$ potencjalnych zmiennych objaśniających, istnieje
@@ -271,7 +275,7 @@ $$
 
 ---
 
-# Wykład (2025-03-05)
+2025-03-05
 
 ::: {.example title="" ref=""}
 
@@ -316,7 +320,7 @@ zmiennej quasi-stałe dla $W_j^* = 0,2$
 
 :::
 
-## Dobór zmiennych (metoda grafowa)
+### Metoda grafowa
 
 Idea tej metody, podobnie jak w metodzie pojemności informacji, opiera się na
 wyborze takich zmiennych objaśniających do modelu, które są silnie skorelowane
@@ -381,7 +385,7 @@ Ponieważ $t_{\alpha} > t$ to nie mamy podstaw do odrzucenia hipotezy zerowej
 
 :::
 
-## Dobór zmiennych (współczynnik korelacji wielorakiej)
+### Współczynnik korelacji wielorakiej
 
 Oznaczmy przez $r_j$ współczynnik korelacji między zmienną objaśnianą $Y$ a
 zmienną objaśniającą $X_j$ oraz współczynnik korelacji między zmiennymi
@@ -666,7 +670,7 @@ $$
 
 ---
 
-# Wyklad (2025-03-12)
+2025-03-12
 
 ## Efekt katalizy w liniowym modelu ekonometrycznym
 
@@ -917,7 +921,7 @@ Zatem wybieramy zmienne $X_4, X_6, X_7$
 
 :::
 
-# Wykład (2025-03-19)
+2025-03-19
 
 ## Metoda Najmniejszych Kwadratów
 
@@ -1247,7 +1251,7 @@ $$
 
 ---
 
-# Wykład (2025-03-26)
+2025-03-26
 
 Wariancja odchyleń losowych szacuje się na podstawie wzoru
 
@@ -1535,7 +1539,7 @@ b) Modele wielorównaniowe. Np. ...
 
 ---
 
-# Wykład (2025-04-02)
+2025-04-02
 
 ## Modele wielorównaniowe
 
@@ -1810,7 +1814,7 @@ d) $$
 
 ---
 
-# Wykład (2025-04-09)
+2025-04-09
 
 ## Klasyfikacja modeli wielorównaniowych
 
@@ -2143,7 +2147,7 @@ wchodzących w skład modelu o równaniach współzależnych.
      BP^{T} = -\Gamma
    $$
 
-# Wykład (2025-04-16)
+2025-04-16
 
 ## Weryfikacja modeli
 
@@ -2434,7 +2438,7 @@ Wnioskujemy, że mamy brak podstaw do odrzucenia hipotezy zerowej
 
 ---
 
-# Wykład (2025-04-30)
+2025-04-30
 
 ## Badanie autokorelacji składnika losowego
 
@@ -2545,7 +2549,7 @@ hipotezy alternatywnej o ujemnej autokorelacji.
 
 ---
 
-# Wykład (2025-05-07)
+2025-05-07
 
 ## Heteroscedastyczność
 
@@ -2728,7 +2732,7 @@ końcowej grupie obserwacji
 
 ---
 
-# Wykład (2025-05-21)
+2025-05-21
 
 ::: {.caution title="" ref=""}
 Co będzie na kartkówce
@@ -2768,12 +2772,12 @@ dla małej próby stosujemy test Hellwiga. Jest to test zgodności za pomocą
 którego można zweryfikować hipotezę o dowolnym rozkładzie. Test ten opiera się
 bowiem na własności:
 
-Jeżeli zmienna losowa $X$ ma rozkład $F$ to zmienna losowa $F_X$ (dystrybuanta
-rozkładu normalnego) ma rozkład jednostajny. Dla znanej próby
-$x_1, x_2, \ldots, x_n$ z rozkładu $F$ stwierdzimy, że wielkości $F(x_1),
-F(x_2), \ldots, F(x_n)$ możemy traktować jako realizację zmiennej losowej o
-rozkładzie jednostajnym na odcinku $[0; 1]$. Hipoteza testowana ma w tym
-przypadku postać
+Jeżeli zmienna losowa $X$ ma rozkład $F$ to zmienna losowa $F(X)$ (tu $F$ –
+dystrybuanta rozkładu $N(0, 1)$) ma rozkład jednostajny. Dla znanej próby
+$x_1, x_2, \ldots, x_n$ z rozkładu $F$ stwierdzimy, że wielkości
+$F(x_1), F(x_2), \ldots, F(x_n)$ możemy traktować jako realizację zmiennej
+losowej o rozkładzie jednostajnym na odcinku $[0; 1]$. Hipoteza testowana ma w
+tym przypadku postać
 
 $$
   H_0 : \text{reszty mają rozkład normalny} \qquad \text{przeciwko} \qquad
@@ -2884,16 +2888,16 @@ podstaw do odrzucenia hipotezy zerowej
 
 :::
 
-## Prognozowanie na podstawie szeregów czasowych
+# Prognozowanie na podstawie szeregów czasowych
 
-### Metody naiwne w prognozowaniu
+## Metody naiwne w prognozowaniu
 
 Najprostszymi metodami wykorzystywanymi do wyznaczania prognoz są metody naiwne.
 Ze względu na prostotę są one najczęściej wykorzystywanymi metodami w praktyce.
 Obliczenie prognozy polega na skorygowaniu wartości z poprzedniego okresu o
 pewną wielkość.
 
-#### Przykłady
+### Przykłady
 
 1. $y_t^* = y_{t-1}$
 
@@ -2925,7 +2929,7 @@ pewną wielkość.
    prognoz *ex post*. Do prognoz wybiera się schemat i parametry dla których
    błędy są najmniejsze.
 
-### Prognostyczny model średniej ruchomej prostej i ważonej
+## Prognostyczny model średniej ruchomej prostej i ważonej
 
 Model ten stosuje się w przypadku gdy w badanym okresie występuje stały poziom
 wartości zmiennej prognozowanej zakłócany jedynie odchyleniami przypadkowymi.
@@ -2969,7 +2973,7 @@ szczególności wielkość średniego kwadratowego błędu prognozy *ex post*
 średniego względnego błędu prognoz *ex post*. Do modelu wybiera się tą stałą dla
 której błędy są najmniejsze.
 
-### Mierniki błędów prognoz ex post
+## Mierniki błędów prognoz ex post
 
 Bezwzględny błąd prognozy *ex post*:
 $$
