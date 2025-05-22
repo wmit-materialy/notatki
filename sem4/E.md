@@ -2819,10 +2819,9 @@ Procedura w teście Hellwiga jest następująca:
 
 Załóżmy, że analizując pewien model liniowy otrzymaliśmy następujące reszty
 
-```
-0.257,  0.336, -1.05, -1.983, 0.565,
--0.227, 1.489, 1.873, -1.494, 0.234
-```
+|       |       |       |        |       |        |       |       |        |       |
+| -     | -     | -     | -      | -     | -      | -     | -     | -      | -     |
+| 0.257 | 0.336 | -1.05 | -1.983 | 0.565 | -0.227 | 1.489 | 1.873 | -1.494 | 0.234 |
 
 Zweryfikować hipotezę o normalności rozkładu na poziomie istotności
 $\alpha = 0.05$
@@ -2832,14 +2831,15 @@ $$
   H_1 : \text{reszty mają inny rozkład}
 $$
 
+<!--
 ```r
-e = c(0.257, 0.336, -1.05, -1.983, 0.565,
-      -0.227, 1.489, 1.873, -1.494, 0.234)
+e = c(0.257, 0.336, -1.05, -1.983, 0.565, -0.227, 1.489, 1.873, -1.494, 0.234)
 s = sd(e) * sqrt((length(e) - 1) / length(e))
 e.prime = e / s
 e.prime = sort(e.prime)
 sort(pnorm(e.prime))
 ```
+-->
 
 $$
   s \approx 1.166042
@@ -2860,12 +2860,12 @@ $$
 
 $$
   \begin{aligned}
-  [0; 0,1) &\cup
+  &[0; 0,1) \cup
   [0,1; 0,2) \cup
   {\color{red} [0,2; 0,3)} \cup
   {\color{red} [0,3; 0,4)} \cup
-  [0,4; 0,5) \cup
-  [0,5; 0,6) \\&\cup
+  [0,4; 0,5) \cup\\
+  &[0,5; 0,6) \cup
   [0,6; 0,7) \cup
   {\color{red} [0,7; 0,8)} \cup
   [0,8; 0,9) \cup
