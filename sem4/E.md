@@ -1332,8 +1332,8 @@ funkcję
 $$
   \begin{aligned}
   \hat{Y}_t = \hat{\alpha} &+
-  \hat{\alpha}_1 \underbrace{\cos (\frac{2\pi}{\omega}t)}_{C_1i} +
-  \hat{\beta}_1  \underbrace{\sin (\frac{2\pi}{\omega}t)}_{S_1i} \\&+
+  \hat{\alpha}_1 \underbrace{\cos (\frac{2\pi}{\omega}t)}_{C_{t1}} +
+  \hat{\beta}_1  \underbrace{\sin (\frac{2\pi}{\omega}t)}_{S_{t1}} \\&+
   \hat{\alpha}_2 \cos (2 \cdot \frac{2\pi}{\omega}t) +
   \hat{\beta}_2 \sin (2 \cdot \frac{2\pi}{\omega}t) + \\&+
   \ldots \\&+
@@ -1347,14 +1347,14 @@ $$
     \cos (k \cdot \frac{2\pi}{\omega} \cdot 1)\\
     \cos (k \cdot \frac{2\pi}{\omega} \cdot 2)\\
     \vdots \\
-    \cos (k \cdot \frac{2\pi}{\omega} \cdot p)\\
-  \end{bmatrix} \qquad
+    \cos (k \cdot \frac{2\pi}{\omega} \cdot \omega)\\
+  \end{bmatrix}_{\omega \times 1} \qquad
   S_k = \begin{bmatrix}
     \sin (k \cdot \frac{2\pi}{\omega} \cdot 1)\\
     \sin (k \cdot \frac{2\pi}{\omega} \cdot 2)\\
     \vdots \\
-    \sin (k \cdot \frac{2\pi}{\omega} \cdot p)\\
-  \end{bmatrix}
+    \sin (k \cdot \frac{2\pi}{\omega} \cdot \omega)\\
+  \end{bmatrix}_{\omega \times 1}
 $$
 
 #### Przypadek $\omega$ parzystej
