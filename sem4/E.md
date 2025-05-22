@@ -2906,6 +2906,101 @@ pewną wielkość.
    wielkość $C$ ustaloną z góry. Ma zastosowanie, gdy występuje liniowa
    tendencja rozwojowa i wahania przypadkowe
 
-<!-- 3. dr Makarewicz prześle w .docx lub .pdf -->
-<!-- 4. dr Makarewicz prześle w .docx lub .pdf -->
-<!-- 5. omówimy na labach -->
+3. $y_t^* = y_{t-1} \cdot \sqrt[t-2]{\frac{y_{t-1}}{y_{t-2}} \cdot
+   \frac{y_{t-2}}{y_{t-3}} \cdot K \cdot \frac{y_2}{y_1}} = y_{t-1} \cdot
+   \sqrt[t-2]{\frac{y_{t-1}}{y_1}}$
+
+   Prognoza równa jest wartości z okresu poprzedniego powiększona o średni
+   przyrost względny poziomu zjawiska z poprzednich okresów dla których
+   zgromadzono materiał empiryczny (średniookresowe tempo zmian poziomu
+   zjawiska). Ma zastosowanie gdy występuje nieliniowa tendencja rozwojowa i
+   wahania przypadkowe.
+
+4. $y_t^* = y_{t-r} \cdot (1+C)$
+
+   Prognoza równa jest wartości z tego samego podokresu poprzedniego cyklu
+   sezonowości powiększona o pewien ustalony z góry procent ($C$). Ma
+   zastosowanie gdy występuje nieliniowa tendencja rozwojowa, wahania sezonowe i
+   wahania przypadkowe. Kryterium wyboru spośród metod stanowi wielkość błędów
+   prognoz *ex post*. Do prognoz wybiera się schemat i parametry dla których
+   błędy są najmniejsze.
+
+### Prognostyczny model średniej ruchomej prostej i ważonej
+
+Model ten stosuje się w przypadku gdy w badanym okresie występuje stały poziom
+wartości zmiennej prognozowanej zakłócany jedynie odchyleniami przypadkowymi.
+Wykorzystanie modelu średniej ruchomej polega na wyznaczeniu prognozy jako
+średniej arytmetycznej zwykłej bądź ważonej z k ostatnich wartości zmiennej.
+
+W przypadku gdy będziemy obliczali średnie arytmetyczne zwykłe będziemy mieli do
+czynienia z modelem średniej ruchomej prostej, z którego prognozy wyznacza się
+na podstawie następującego wzoru:
+
+$$
+  y_t^* = \frac{1}{k} \sum_{i = t-k}^{t-1} y_i
+$$
+
+gdzie
+
+- $k$ – stała wygładzania, liczba wyrazów średniej ruchomej, która określana
+  jest przez prognostę
+
+W przypadku modelu średniej ruchomej ważonej prognozy wyznacza się jako średnie
+ważone, a wagi ustala się tak by była realizowana zasada postarzania informacji
+(nowsze tendencje silnej oddziaływają na prognozowane zjawisko).
+
+$$
+  y_t^* = \sum_{i = t-k}^{t-1} y_i w_{i-1+k+1}
+$$
+
+gdzie
+
+- $w$ – waga wartości zmiennej prognozowanej w danym momencie lub okresie.
+
+  Wagi muszą spełniać następujące zależności zgodnie z zasadą postarzania
+  informacji:
+  $$
+    0 < w_1 < w_2 < \ldots < w_k \le 1 \qquad \sum_{i = 1}^{k} w_i = 1
+  $$
+
+Kryterium wyboru stałej wygładzania stanowią błędy prognoz *ex post*, a w
+szczególności wielkość średniego kwadratowego błędu prognozy *ex post*
+(odchylenia standardowego prognoz) lub współczynnika zmienności prognoz oraz
+średniego względnego błędu prognoz *ex post*. Do modelu wybiera się tą stałą dla
+której błędy są najmniejsze.
+
+### Mierniki błędów prognoz ex post
+
+Bezwzględny błąd prognozy *ex post*:
+$$
+  q_t = y_t - y_T^*
+$$
+
+Względny błąd prognozy *ex post*:
+$$
+  q_t' = \frac{y_t - y_T^*}{y_t}
+$$
+
+Średni kwadratowy błąd prognozy ex post oraz odchylenie standardowe prognoz
+oblicza się według poniższych wzorów:
+
+$$
+  s_P^2 = \frac{1}{n-k} \sum_{t = k+1}^{n} (y_t - y_t^*)^2 \qquad
+  s_P = \sqrt{s_P^2}
+$$
+
+W przypadku porównywania $s_P$ obliczonego dla różnej liczby okresów (różne $k$)
+należy go odnieść do średniego poziomu zjawiska w przedziale empirycznej
+weryfikacji prognoz obliczając współczynnik zmienności prognoz:
+
+$$
+  V_P = \frac{s_p}{\overline{y}} \cdot 100\%
+$$
+
+Średni względny błąd prognozy *ex post* oblicza się następująco:
+$$
+  \overline{q} = \frac{1}{n-k} \sum_{t = k+1}^{n}
+                 \frac{|y_t - y_t^*|}{y_t} \cdot 100\%
+$$
+
+Do modelu wybiera się tą stałą, dla której błędy są najmniejsze.
