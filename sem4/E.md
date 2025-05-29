@@ -2977,12 +2977,12 @@ której błędy są najmniejsze.
 
 Bezwzględny błąd prognozy *ex post*:
 $$
-  q_t = y_t - y_T^*
+  q_t = y_t - y_t^*
 $$
 
 Względny błąd prognozy *ex post*:
 $$
-  q_t' = \frac{y_t - y_T^*}{y_t}
+  q_t' = \left| \frac{y_t - y_t^*}{y_t} \right|
 $$
 
 Średni kwadratowy błąd prognozy ex post oraz odchylenie standardowe prognoz
