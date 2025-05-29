@@ -3008,3 +3008,183 @@ $$
 $$
 
 Do modelu wybiera się tą stałą, dla której błędy są najmniejsze.
+
+---
+
+2025-05-28
+
+## Analiza szeregów czasowych dynamicznych
+
+Wszystko co się dzieje w społeczeństwie i w gospodarce odbywa się w czasie.
+Wyrazem tego jest zmienność zjawisk społeczno-gospodarczych. Zjawiska zmieniają
+się w czasie, różnych jego jednostkach, przyjmują najczęściej różny poziom. Ciąg
+obserwacji badanego zjawiska w kolejnych jednostkach czasu w wyróżnionym
+przedziale czasowym nosi nazwę **szeregu czasowego** (jest to szereg dynamiczny
+i chronologiczny)
+
+Szeregi dynamiczne dzieli się na
+
+- szeregi czasowe momentów,
+- szeregi czasowe okresów.
+
+W szeregach czasowych momentów absolutne wielkości wyrażające poziom danego
+zjawiska obrazują stany w danym momencie, np. szereg czasowy przedstawiające
+liczbę ludności w Polsce pierwszego stycznia każdego roku.
+
+W szeregach czasowych okresów poszczególne wielkości absolutne wyrażają poziom
+danego zjawiska w pewnych okresach np. miesięcznych, kwartalnych, rocznych.
+Szeregiem czasowym okresów jest np. szereg przedstawiający miesięczne zużycie
+energii elektrycznej w Lublinie w danym roku.
+
+Oznaczając ogólnie kolejne jednostki czasu $t$ numerami $1, 2, \ldots, n$, gdzie
+$n$ oznacza łączną liczbę okresów lub momentów, zaobserwowane zaś wartości
+zjawiska przedstawiając jako $y_t$, szereg czasowy możemy zapisać następująco
+
+| $t$       | $y_t$    |
+| --------- | -------- |
+| 1         | $y_1$    |
+| 2         | $y_2$    |
+| $\vdots$  | $\vdots$ |
+| n         | $y_n$    |
+
+Jednym z ważniejszych zadań analizy szeregów czasowych jest określenie
+prawidłowości zmian poziomu zjawiska badanego w czasie. Poznanie podstawowych
+prawidłowości rozwoju zjawisk ekonomicznych odbywa się poprzez wyodrębnienie
+tendencji rozwojowej. Zazwyczaj tendencja jest rezultatem działań zespołu
+przyczyn wpływających w sposób ciągły na zjawisko badane w długim okresie. W
+celu wykrycia ogólnej tendencji zmian zjawiska ekonomicznego w skończonym
+przedziale czasu należy wyrównać szereg czasowy. Konieczność taka jest
+spowodowana tym, że oprócz czynników głównych oddziałujących na kształtowanie
+się wartości szeregu czasowego, wpływa na nie także duża liczba czynników
+przypadkowych. Czynniki główne wyznaczają konkretną postać składnika
+systematycznego (inaczej trendu), z kolei czynniki przypadkowe powodują
+odchylenia zaobserwowanych wartości szeregu czasowego od wielkości wyznaczonych
+przez trend
+
+### Funkcje trendu
+
+Funkcje trendu są matematycznymi funkcjami zmiennej czasowej. Szereg czasowy
+składa się wtedy z dwóch elementów, to jest funkcji trendu $f(t)$ oraz odchyleń
+losowych:
+
+$$
+  y = f(t) + \varepsilon
+$$
+
+gdzie
+
+- $y$ – zjawisko badane w czasie,
+- $f$ – określona postać analityczna funkcji zmiennej czasowej $t$.
+- $\varepsilon$ – odchylenie losowe.
+
+Po oszacowaniu otrzymuje się równanie trendu $\hat{y} = f(t)$, gdzie $\hat{y}$ –
+wartości trendu zmiennej $y$
+
+### Najczęściej spotykane postaci analityczne funkcji trendu
+
+1. Trend liniowy
+
+   $$
+     \hat{y} = a_0 + a_1t
+   $$
+
+   W trendzie liniowym parametr $a_0$ jest interpretowany jako wyrównany poziom
+   zjawiska $y$ w okresie zerowym, z kolei $a_1$ oznacza przeciętny przyrost
+   zjawiska $y$ w przedziale czasu od $1$ do $n$
+
+   Parametry trendu liniowego szacuje się za pomocą klasycznej metody
+   najmniejszych kwadratów.
+
+   $$
+     a_1 = \frac{\sum_{t = 1}^{n} (y_t - \overline{y})(t - \overline{t})}
+                {\sum_{t = 1}^{n} (t-\overline{t})^2} \qquad
+     a_0 = \overline{y} - a_1 t
+   $$
+
+   Jeśli $t = 1, 2, \ldots, n$, to
+
+   $$
+     a_1 = \frac{12 \sum_{t = 1}^{n} (t - \hat{t})y_t}{n(n^2-1)}
+   $$
+
+2. Trend nieliniowy
+
+   a) Trend wykładniczy
+      $$
+        \hat{y} = a_0 a_1^t
+      $$
+
+   b) Trend logarytmiczny
+      $$
+        \hat{y} = a_0 + a_1 \ln t
+      $$
+
+   c) Trend potęgowy
+      $$
+        \hat{y} = a_0 \cdot t^{a_1}
+      $$
+
+   d) Trend logistyczny
+      $$
+        \hat{y} = \frac{a_0}{1 + a_1 e^{-t}}
+      $$
+
+   e) Trend hiperboliczny
+      $$
+        \hat{y} = a_0 + \frac{a_1}{t}
+      $$
+
+::: {.example title="" ref=""}
+
+Sprzedaż pewnego wyrobu w ciągu 10 kolejnych miesięcy jest dana tabelą.
+Oszacować i zinterpretować parametry wykładniczej funkcji trendu.
+
+| Miesiąc | Sprzedaż |
+| ---     | ---      |
+| 1       | 0.5      |
+| 2       | 1        |
+| 3       | 2        |
+| 4       | 5        |
+| 5       | 7        |
+| 6       | 15       |
+| 7       | 33       |
+| 8       | 62       |
+| 9       | 120      |
+| 10      | 250      |
+
+$$
+  \begin{aligned}
+  &y = a_0 a_1^t \quad \Big| \ln ()\\
+  &\ln y = \ln a_0 + t \cdot \ln a_1\\
+  &y^* = \ln y \quad a_0^* = \ln a_0 \quad a_1^* = \ln a_1\\
+  &y = e^{y^*} \quad a_0 = e^{a_0^*} \quad a_1 = e^{a_1^*}
+  \end{aligned}
+$$
+
+<!--
+```r
+y = c(0.5, 1, 2, 5, 7, 15, 33, 62, 120, 250)
+y.star = log(y)
+t = c(1:10)
+t.bar = mean(t)
+a1.star = 12 * sum((t - t.bar) * y.star)/(length(y) * (length(y)^2 - 1))
+a0.star = mean(y.star) - a1.star * t.bar
+a1 = exp(a1.star)
+a0 = exp(a0.star)
+a1.star; a0.star
+a1; a0
+y.star.hat = a1.star * t + a0.star
+exp(y.star.hat)
+```
+-->
+
+$$
+  \hat{y} = 0.260 - (1.984)^t
+$$
+
+Interpretując oszacowane parametry możemy powiedzieć, że w miesiącu
+poprzedzającym badania sprzedaż tego wyrobu wyniosła około 260 sztuk, a sprzedaż
+w ciągu 10 badanych miesięcy przeciętnie wzrasta z miesiąca na miesiąc prawie
+dwukrotnie
+
+:::
