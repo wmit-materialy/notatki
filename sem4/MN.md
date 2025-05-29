@@ -2144,6 +2144,8 @@ rozwiązania poprzez wykorzystanie także poprzednich rozwiązań:
                (1 - \varrho_k)x^{(k-2)}
    $$
 
+### Metody gradientowe
+
 Nieco inną grupą metod iteracyjnych są metody gradientowe. W metodach tych
 kolejne przybliżenie rozwiązania wyraża się wzorem
 
