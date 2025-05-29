@@ -2986,3 +2986,301 @@ $$
 gdzie $n$ jest stopniem wielomianu, a znak przy wyznaczaniu wartości $C$
 powinien być tak dobrany, aby $|C|$ była jak największa. Kolejne przybliżenia
 pierwiastka jest równe $x^{(i+1)} = x^{(i)} + \frac{1}{C}$
+
+---
+
+2025-05-27
+
+::: {.caution title="" ref=""}
+
+Terminy egzaminów są dostępne (czy będą dostępne) na stronie doktora
+
+:::
+
+# Interpolacja
+
+Interpolacja
+: przybliżenie nieznanej funkcji na podstawie przyjmowanych przez nią wartości w
+  zadanych punktach jej dziedziny za pomocą funkcji mającej w tych punktach te
+  same wartości co nieznana funkcja nazywamy **interpolacją**.
+
+Funkcja interpolowana, interpolująca
+: Nieznaną funkcję nazywamy funkcją **interpolowaną**, a funkcja która ją
+  przybliża funkcją **interpolującą**
+
+Węzły interpolacji
+: Punkty dziedziny funkcji interpolowanej w których jej wartości są znane nazywamy
+  **węzłami interpolacji**
+
+![Przykład funkcji interpolujących](/home/kibi/Studia/notatki/assets/funkcja-interpolujaca.png){width=50%}
+
+## Interpolacja wielomianowa
+
+W interpolacji wielomianowej funkcją interpolującą jest wielomian możliwie
+najniższego stopnia. W interpolacji wielomianowej dla danych $n+1$ punktów
+$x_0, x_1, \ldots, x_n$, w których interpolowana funkcja przyjmuje odpowiednio
+wartości $y_0, y_1, \ldots, y_n$, szukamy takiego wielomianu $w(x)$ stopnia $n$,
+że
+
+$$
+  w(x_i) = y_i \qquad \text{dla} \quad 0 \le i \le n
+$$
+
+::: {.theorem title="" ref=""}
+
+Jeżeli $f : \mathbb{R}\to \mathbb{R}$, a $x_0, x_1, \ldots, x_n$ są parami
+różnymi liczbami rzeczywistymi, to istnieje dokładnie jeden wielomian stopnia co
+najwyżej $n$ spełniający warunek
+
+$$
+  w(x_i) = y_i \qquad \text{dla} \quad 0 \le i \le n
+$$
+
+:::
+
+Zauważmy, że jeśli $f(x_0) = y_0$, to wielomian $w_0(x) = y_0$ interpoluje tę
+funkcję. Jeżeli chcemy, aby wielomian ten interpolował także funkcję $f$ w
+punkcie $x_1$ w którym $f(x_1) = y_1$, wystarczy dodać do niego składnik
+zerujący się w $x_0$ (aby nie zmieniał wartości w punkcie $x_0$) i modyfikujący
+wartość wielomianu $w_0(x)$ w punkcie $x_1$, zatem
+
+$$
+  w(x_1) = w_0(x) + c_1(x - x_0) = y_0 + c_1(x - x_0)
+$$
+
+gdzie $\displaystyle c_1 = \frac{y_1 - y_0}{x_1 - x_0}$
+
+Postępując analogicznie otrzymujemy
+$$
+  w_2(x) = w_1(x) + c_2 (x - x_0)(x - x_1)
+$$
+
+gdzie
+$\displaystyle c_2 = \frac{y_2 - w_1(x_2)}{(x_2 - x_0)(x_2 - x_1)}$
+
+Wzór interpolacyjny Newtona
+: Ogólny wzór na wielomian interpolujący ma zatem postać
+  $$
+    w_k(x) = \sum_{i = 0}^{k} c_i \prod_{j = 0}^{i - 1} (x-x_j) =
+    \sum_{i = 0}^{k} c_i q_i(x)
+  $$
+  Jest to tzw. **wzór interpolacyjny Newtona**.
+
+Ponieważ wyznaczanie współczynników $c_i$ z tego wzoru jest kosztowne i może
+powodować duże błędy zaokrągleń, dlatego wygodniejsze jest wyznaczanie tych
+współczynników za pomocą tzw. wzoru różnicowego.
+
+Wprowadźmy następujące oznaczenie ilorazów różnicowych rzędu pierwszego
+
+$$
+  f[x_i] = f(x_i) \qquad \text{ilorazów róznicowy rzędu pierwszego}
+$$
+
+Ilorazy różnicowe rzędu $k+1$ definiujemy za pomocą poniższego wzoru
+rekurencyjnego
+
+$$
+  f[x_0, x_1, \ldots, x_k] =
+  \frac{f[x_1, x_2, \ldots, x_k] - f[x_0, x_1, \ldots, x_{k-1}]}{x_k - x_0}
+$$
+
+Przy tak zdefiniowanych ilorazach różnicowych, możemy za ich pomocą zdefiniować
+wartości współczynników $c_i$ ze wzoru interpolacyjnego Newtona za pomocą
+zależności
+
+$$
+  c_i = f[x_0, x_1, \ldots, x_i]
+$$
+
+Zatem wzór interpolacyjny Newtona przybiera postać
+
+$$
+  w(x) = \sum_{k = 0}^{n} f[x_0, x_1, \ldots, x_k] \cdot
+                          \prod_{j = 0}^{k-1} (x - x_j)
+$$
+
+Ilorazy różnicowe najwygodniej jest wyznaczać w postaci tabeli
+
+|       |          |               |                    |                         |
+| -     | -        | -             | -                  | -                       |
+| $x_0$ | $f[x_0]$ | $f[x_0, x_1]$ | $f[x_0, x_1, x_2]$ | $f[x_0, x_1, x_2, x_3]$ |
+| $x_1$ | $f[x_1]$ | $f[x_1, x_2]$ | $f[x_1, x_2, x_3]$ |                         |
+| $x_2$ | $f[x_2]$ | $f[x_2, x_3]$ |                    |                         |
+| $x_3$ | $f[x_3]$ |               |                    |                         |
+
+Wtedy wyrazy znajdujące się w pierwszym wierszu stanowią kolejne współczynniki
+$c_i$
+
+::: {.example title="" ref=""}
+Wyznacz postać wielomianu interpolacyjnego Newtona dla punktów
+
+| x  | y    |
+| -  | -    |
+| 5  | 1    |
+| -7 | -23  |
+| -6 | -54  |
+| 0  | -954 |
+
+|    |      |      |     |   |
+| -  | -    | -    | -   | - |
+| 5  | 1    | 2    | 3   | 4 |
+| -7 | -23  | -31  | -17 |   |
+| -6 | -54  | -150 |     |   |
+| 0  | -954 |      |     |   |
+
+$$
+  f[x_0, x_1] = \frac{f[x_0] - f[x_1]}{x_1 - x_0} = \frac{-23 - 1}{-7 - 5} = 2
+$$
+
+$$
+  f[x_1, x_2] = \frac{f[x_2] - f[x_1]}{x_2 - x_1} =
+  \frac{-54 + 23}{-6 + 7} = -31
+$$
+
+$$
+  f[x_2, x_3] = \frac{-954 + 54}{0 + 6} = -150
+$$
+
+$$
+  f[x_0, x_1, x_2] = \frac{f[x_1, x_2] - f[x_0, x_1]}{x_2 - x_0} =
+  \frac{-31 - 2}{-6 - 5} = 3
+$$
+
+$$
+  f[x_1, x_2, x_3] = \frac{-150 + 31}{0 + 7} = -17
+$$
+
+$$
+  f[x_0, x_1, x_2, x_3] =
+  \frac{f[x_1, x_2, x_3] - f[x_0, x_1, x_2]}{x_3 - x_0} =
+  \frac{17 - 3}{0 - 5} = 4
+$$
+
+Wielomian interpolacyjny ma postać
+
+$$
+  w(x) = 1 + 2 \cdot (x - 5) + 3 \cdot (x-5)(x+7) + 4 \cdot (x-5)(x+7)(x+6)
+$$
+
+:::
+
+Z algorytmicznego punktu widzenia wygodniej jest wyznaczać ilorazy różnicowe
+“od dołu” nadpisując poprzednie wartości. Dzięki temu do wyznaczenia
+współczynników $c_i$ wystarczy jedynie $(n+1)$-elementowy wektor.
+
+Postać Newtona nie jest jedyną postacią w jakiej wielomian interpolacyjny może
+być wyrażony. Oczywiście na mocy jednoznaczności wielomianu interpolacyjnego
+wszystkie inne postaci wielomianu interpolacyjnego dotyczą tego samego
+wielomianu, różnią się jedynie sposobem jego zapisu.
+
+Wielomian interpolacyjny w postaci Lagrange'a wyrażamy jako następującą sumę
+$$
+  w(x) = \sum_{k = 0}^{n} y_k l_k(x)
+$$
+
+gdzie
+
+- $y_k$ jest rzędną w naszych węzłach
+- $l_k(x)$ są wielomianami które przyjmują wartość $1$ dla $x = x_k$ i $0$ dla
+  $x = x_i$, gdzie $i \ne k$
+
+Dzięki temu po wstawieniu do wzoru 4.1.2 <!-- (це хто?) --> w miejscu $x$ punktu
+$x_i$ uzyskamy wartość $y_i$ (jedynym niewyzerowanym składnikiem sumy będzie
+$y_i l_i(x_i) = y_i$). Aby wielomiany $l_i(x)$ zerowały się dla $x_j$, gdzie
+$j \ne i$, muszą mieć postać:
+$$
+  l_i(x) = c (x - x_0) (x - x_1) \cdots
+           (x - x_{i-1}) (x - x_{i+1}) \cdots (x - x_n)
+$$
+zaś stała $c$ jest tak dobrana aby $l_i(x_i) = 1$, czyli ostatecznie
+$$
+  l_i(x_i) = \prod_{\substack{j = 0\\ j\ne i}}^{n} \frac{x - x_j}{x_i - x_j}
+  \qquad (0 \le i \le n)
+$$
+a
+$$
+  w(x) = \sum_{k = 0}^{n} y_k \prod_{\substack{j = 0\\ j\ne i}}^{n}
+  \frac{x - x_j}{x_i - x_j}
+$$
+
+::: {.example title="" ref=""}
+
+Dla punktów z poprzedniego przykładu
+
+| x  | y    |
+| -  | -    |
+| 5  | 1    |
+| -7 | -23  |
+| -6 | -54  |
+| 0  | -954 |
+
+wyznacz postać wielomianu interpolacyjnego Lagrange'a
+
+Mamy:
+
+$$
+  l_0(x) = \frac{(x+7) (x+6) x}{(5 + 7) (5 + 6) 5} =
+  \frac{1}{660} (x + 7)(x + 6x)
+$$
+
+$$
+  l_1(x) = \frac{(x - 5)(x+6)x}{(-7 - 5) (-7+6)(-7)} =
+  -\frac{1}{84} (x-5)(x+6)x
+$$
+
+$$
+  l_2(x) = \frac{(x - 5)(x+7)x}{(-6 -5) (-6 + 7) (-6)} =
+  -\frac{1}{66} (x-5)(x+7)x
+$$
+
+$$
+  l_3(x) = \frac{(x-5)(x+7)(x+6)}{(0 - 5)(0 - 7)(0+6)} =
+  -\frac{1}{210} (x-5)(x+7)(x+6)
+$$
+
+i wielomian interpolacyjny  ma postać
+
+$$
+  w(x) =
+  l_0(x) - 23 l_1(x) - 54 l_2(x) -954 l_3(x)
+$$
+
+:::
+
+Wielomian interpolacyjny można również przedstawić w postaci:
+
+$$
+  w(x) = a_n x^n + a_{n-1}x^{n-1} + \ldots + a_1 x + a_0
+$$
+
+Zadanie interpolacyjne polega wówczas na wyznaczeniu współczynników
+$a_n, a_{n-1}, \ldots, a_1, a_0$
+
+Dokonuje się tego rozwiązując układ równań liniowych takiej postaci:
+
+$$
+  \begin{bmatrix}
+    1      & x_0    & x_0^2  & \cdots & x_0^n\\
+    1      & x_1    & x_1^2  & \cdots & x_1^n\\
+    1      & x_2    & x_2^2  & \cdots & x_2^n\\
+    \vdots & \vdots & \vdots & \ddots & \vdots\\
+    1      & x_n    & x_n^2  & \cdots & x_n^n\\
+  \end{bmatrix} \cdot
+  \begin{bmatrix} a_0\\ a_1\\ a_2\\ \vdots\\ a_n\\ \end{bmatrix} =
+  \begin{bmatrix} y_0\\ y_1\\ y_2\\ \vdots\\ y_n\\ \end{bmatrix}
+$$
+
+Błąd interpolacji można oszacować za pomocą poniższego twierdzenia
+
+::: {.theorem title="" ref=""}
+
+Jeśli $f \in C^{n+1} [a; b]$, a wielomian $w(x)$ stopnia co najwyżej $n$
+interpoluje wartości funkcji $f$ w $n+1$ różnych punktach:
+$x_0, x_1, \ldots, x_n$ przedziału $[a; b]$, to dla dowolnego $x \in [a; b]$
+istnieje punkt $\xi_x \in (a; b)$ taki, że
+$$
+  f(x) - w(x) = \frac{1}{(n+1)!} \cdot f^{(n+1)} (\xi_x) \cdot
+  \prod_{i = 0}^{n} (x - x_i)
+$$
+
+:::
