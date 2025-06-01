@@ -2520,7 +2520,7 @@ W zależności od wyboru postaci przybliżenia pochodnej uzyskujemy różne meto
 $$
 \begin{aligned}
      x_{n+1} &= x_{n} - \frac{f(x_{n})}{f'(x_{n})} \\
-     &= x_{n} - \frac{f(x_{n}) \cdot n}{f(x_{n} +h) - f(x_{n})}\\
+     &= x_{n} - \frac{f(x_{n}) \cdot h}{f(x_{n} +h) - f(x_{n})}\\
      &= x_{n} - \frac{\left[ f(x_{n}) \right]^{2}}{f(x_{n}+f(x_{n}))- f(x_{n})}
 \end{aligned}
 $$
