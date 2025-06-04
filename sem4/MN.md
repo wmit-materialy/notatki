@@ -3284,3 +3284,237 @@ $$
 $$
 
 :::
+
+---
+
+2025-06-03
+
+### Wielomiany Czebyszewa
+
+Jeśli mamy możliwość wyboru węzłów interpolacji, to można je dobrać w taki
+sposób, aby zminimalizować błąd interpolacji. Służą do tego miejsca zerowe
+wielomianów Czebyszewa.
+
+Wielomianami Czebyszewa
+: nazywamy wielomiany zdefiniowane za pomocą poniższego wzoru rekurencyjnego:
+  $$
+    \begin{cases}
+      T_0(x) = 1\\
+      T_1(x) = x\\
+      T_n(x) = 2x T_{n-1}(x) - T_{n-2}(x) \quad (n\ge 2)
+    \end{cases}
+  $$
+
+::: {.theorem title="" ref=""}
+Jeśli $f \in C^{n+1}[-1; 1]$, a wielomian $w(x)$ stopnia co najwyżej $n$
+interpoluje wartości funkcji $f$ w $n+1$ punktach, które są miejscami zerowymi
+wielomianu Czebyszewa $T_{n+1}(x)$ postaci
+$x_i = \frac{(2i + 1) \pi}{2n + 2}$ ($0 \le i\le n$), to dla dowolnego
+$x \in [-1; 1]$ mamy
+
+$$
+  \left| f(x) - w(x) \right| \le \frac{1}{2^n (n+1)!} \cdot \max_{y \in [-1, 1]}
+  \left| f^{(n+1)}(y) \right|
+$$
+:::
+
+### Interpolacja Hermite'a
+
+Zadanie interpolacyjne można uogólnić na sytuację w której żądamy aby nie tylko
+wartości funkcji interpolowanej i wielomianu interpolującego w węzłach
+interpolacji były równe, ale także, aby równe były wartości pochodnych w tych
+węzłach, aż do pewnego rzędu. Wymagamy zatem aby wielomian interpolujący
+spełniał warunki $w^{(j)}(x_i) = c_{ij} \quad (0\le j \le k_i-1, 0 \le i \le m)$
+
+gdzie $c_{ij}$ jest wartością $j$-tej pochodnej funkcji interpolowanej $f$ w
+punkcie $x_i$. Liczbę takich warunków oznaczamy przez $n+1 = k_0+k_1+\ldots+k_m$
+
+::: {.theorem title="" ref=""}
+Istnieje dokładnie jeden wielomian $w(x)$ stopnia co najwyżej $n$ spełniający
+powyższe warunki interpolacji Hermite'a.
+:::
+
+Rozwiązanie tego problemu można uzyskać stosując wzór Newtona i uogólniając
+pojęcie ilorazów różnicowych.
+
+Uporządkujmy węzły niemalejąco biorąc każdy węzeł $x_i$ $k_i$-krotnie (tyle
+razy, ile mamy warunków na pochodne i wartość funkcji w węźle $x_i$).
+Ilorazy różnicowe $f[x_0, x_1, \ldots, x_n]$ definiujemy teraz za pomocą wzoru
+
+$$
+  f[\underbrace{x_i, x_i, \ldots, x_i}_{n+1}] = \frac{1}{n!}f^{(n)}(x_i)
+$$
+
+jeśli $x_0 = x_n$ i za pomocą wzoru
+
+$$
+  f[x_0, x_1, \ldots, x_n] =
+  \frac{f[x_1, x_2, \ldots, x_n] - f[x_0, x_1, \ldots, x_{n-1}]}{x_n - x_0}
+  \quad \text{jeśli } x_0 \ne x_n
+$$
+
+Wzór interpolacyjny Newtona ma taką samą postać, jak w klasycznym wzorze
+Newtona, ale uwzględnia dodatkowo krotność węzłów (wyrażenia $(x-x_i)$ mogą
+występować w wyższych niż 1 potęgach)
+
+::: {.example title="" ref=""}
+Znajdź wielomian interpolacyjny $w(x)$ spełniający warunki:
+
+$$
+  w(1) = 2 \quad w'(1) = 3 \quad w(2) = 6 \quad w'(2) = 7 \quad w''(2) = 8
+$$
+
+Tabelę ilorazów różnicowych ma wówczas postać:
+
+|       |          |               |                    |                         |                              |
+| -     | --       | ---           | ----               | -----                   | ------                       |
+| $x_0$ | $f[x_0]$ | $f[x_0, x_0]$ | $f[x_0, x_0, x_1]$ | $f[x_0, x_0, x_1, x_1]$ | $f[x_0, x_0, x_1, x_1, x_1]$ |
+| $x_0$ | $f[x_0]$ | $f[x_0, x_1]$ | $f[x_0, x_1, x_1]$ | $f[x_0, x_1, x_1, x_1]$ |                              |
+| $x_1$ | $f[x_1]$ | $f[x_1, x_1]$ | $f[x_1, x_1, x_1]$ |                         |                              |
+| $x_1$ | $f[x_1]$ | $f[x_1, x_1]$ |                    |                         |                              |
+| $x_1$ | $f[x_1]$ |               |                    |                         |                              |
+
+Tabela ilorazów różnicowych ma wówczas postać:
+
+$$
+  \begin{aligned}
+  f[x_0, x_0] = f'(x_0) = w'(1) = 3 \qquad
+  f[x_0, x_1] = \frac{f[x_1] - f[x_0]}{x_1 - x_0} = \frac{6-2}{2-1} = 4 \\
+  f[x_1, x_1] = w'(2) = 7 \qquad
+  f[x_0, x_0, x_1] = \frac{f[x_0, x_1] - f[x_0, x_0]}{x_1 - x_0} =
+  \frac{4-3}{2-1} = 1 \\
+  f[x_0, x_1, x_1] = \frac{f[x_1, x_1] - f[x_0, x_1]}{x_1 - x_0} =
+  \frac{7-4}{2-1} = 3\\
+  f[x_1, x_1, x_1] = \frac{1}{2!} f''(2) = \frac{8}{2} = 4\\
+  f[x_0, x_0, x_1, x_1] = \frac{f[x_0, x_1, x_1] - f[x_0, x_0, x_1]}{x_1 - x_0} =
+  \frac{3 - 1}{2-1} = 2\\
+  f[x_0, x_1, x_1, x_1] = \frac{f[x_1, x_1, x_1] - f[x_0, x_1, x_1]}{x_1 - x_0} =
+  \frac{4-3}{2-1} = 1 \\
+  f[x_0, x_0, x_1, x_1, x_1] =
+  \frac{f[x_0, x_1, x_1, x_1] - f[x_0, x_0, x_1, x_1]]}{x_1-x_0} =
+  \frac{1-2}{2-1} = 1
+  \end{aligned}
+$$
+
+|     |     |     |     |     |     |
+| --- | --- | --- | --- | --- | --- |
+| 1   | 2   | 3   | 1   | 2   | -1  |
+| 1   | 2   | 4   | 3   | 1   |     |
+| 2   | 6   | 7   | 4   |     |     |
+| 2   | 6   | 7   |     |     |     |
+| 2   | 6   |     |     |     |     |
+
+I ostatecznie
+
+$$
+  w(x) = 2 + 3(x-1) + (x-1)^2 + 2(x-1)^2(x-2) - (x-1)^2(x-2)^2
+$$
+
+:::
+
+## Interpolacja funkcjami sklejanymi
+
+Zdefiniujmy pojęcie funkcji sklejanej stopnia $k$
+
+Funkcja sklejana stopnia $k$
+: dla $n+1$ węzłów $t_0, t_1, \ldots, t_n$ takich, że $t_0 < t_1 < \ldots < t_n$
+  danej liczby całkowitej $k$ funkcją sklejaną stopnia $k$ nazywamy taką funkcję
+  $s$, która:
+
+    - W każdym z przedziałów $[t_i; t_{i+1})$ dla $(0 \le i \le n-1)$ jest
+      wielomianem stopnia co najwyżej $k$
+    - Ma ciągłą $k-1$ pochodną w przedziale $[t_0; t_n]$
+
+
+Szczególnie często w praktyce znajdują zastosowanie funkcje sklejane trzeciego
+stopnia (sześcienne). Są to zatem funkcje które między węzłami są wielomianami
+co najwyżej trzeciego stopnia mające wszędzie ciągłą drugą pochodną. Aby
+jednoznacznie określić taką funkcję musimy wyznaczyć wielomiany $S_i$ stopnia 3
+w każdym z przedziałów $[t_i; t_{i+1}]$. Każda z takich funkcji posiada 4
+współczynniki, zatem należy wyznaczyć $4n$ współczynników. Warunki ciągłości
+funkcji $S$ w węzłach wewnętrznych
+
+$$
+  S_{i-1}(t_i) = y_i = S_i(t_i)
+$$
+
+w połączeniu z warunkami na wartość funkcji $S$ w węzłach brzegowych
+
+$$
+  S_0(t_0) = y_0 \qquad S_{n-1}(t_n) = y_n
+$$
+
+dają łącznie $2n$ równań wiążących współczynniki wielomianów $S_i$.
+
+Ponadto mamy $n-1$ warunków na ciągłość pierwszej pochodnej i tyle samo warunków
+na ciągłość drugiej pochodnej w węzłach wewnętrznych
+
+$$
+  \begin{aligned}
+  &S_{i-1}'(t_i) = S_i'(t_i) \qquad 1\le i\le n-1 \\
+  &S_{i-1}''(t_i) = S_i''(t_i) \qquad 1\le i\le n-1
+  \end{aligned}
+$$
+
+Mamy zatem $4n-2$ równań z $4n$ niewiadomymi. Najczęściej przyjmuje się
+dodatkowo, że $S''(t_0) = 0$ oraz $S''(t_n) = 0$ – otrzymujemy wówczas tzw.
+naturalną funkcję sklejaną.
+
+Wprowadźmy oznaczenie $S''(t_i) = z_i$ oraz $h_i = t_{i+1} - t_i$. Ponieważ
+funkcje $S_i$ są wielomianami trzeciego stopnia, zatem ich drugie pochodne są
+funkcjami liniowymi, na końcach przedziału $[t_i, t_{i+1}]$ przyjmujące
+odpowiednio wartości $z_i$ i $z_{i+1}$ zatem pochodne te mają postać:
+
+$$
+  S_i''(x) = \frac{z_i}{h_i}(t_{i+1}-x) + \frac{2i + 1}{h_i} (x - t_i)
+$$
+
+Całkując dwukrotnie tę równość otrzymujemy
+
+$$
+  S_i(x) = \frac{z_i}{6h_i} (t_{i+1} - x)^3 + \frac{z_i + 1}{6h_i} (x-t_i)^3 +
+  C(x-t_i) + D(t_{i+1} - x)
+$$
+
+Wstawiając do tego równania $x = t_i$ i pamiętając, że $S_i(t_i) = y_i$,
+wyznaczamy $D = (\frac{y_i}{h_i} - \frac{z_ih_i}{6})$ i podobnie wstawiając
+$x = h_{i+1}$ do równania powyższego i pamiętając, że $S_i(t_{i+1}) = y_{i+1}$
+wyznaczamy $C = (\frac{y_{i+1}}{h_i} - \frac{z_{i+1}h_i}{6})$, czyli ostatecznie
+
+$$
+  S_i(x) = \frac{z_i}{6h_i}(t_{i+1} - x)^3 + \frac{z_{i+1}}{6h_i}(x - h_i)^3 +
+  (\frac{y_{i+1}}{h_i} - \frac{z_{i+1}h_i}{6})(x-t_i) +
+  (\frac{y_i}{h_i} - \frac{z_ih_i}{6}) (t_{i+1} - x)
+$$
+
+W celu wyznaczenia wartości $z_i$, korzystamy z warunków na ciągłość pierwszej
+pochodnej w węzłach wewnętrznych. Mamy
+
+$$
+  S_i'(x) = \frac{z_i}{2h_i}(t_{i+1} - x)^2 + \frac{z_{i+1}}{2h_i}(x-t_i)^2 +
+  (\frac{y_{i+1}}{h_i} - \frac{z_{i+1}}{6}) - (\frac{y_i}{h_i} - \frac{z_ih_i}{6})
+$$
+
+Czyli
+
+$$
+  S_i'(t_i) = -\frac{h_iz_i}{3} - \frac{h_iz_{i+1}}{6} - \frac{y_i}{h_i} +
+  \frac{y_{i+1}}{h_i}
+$$
+
+i
+
+$$
+  S_{i-1}'(t_i) = \frac{h_{i-1} z_{i-1}}{6} + \frac{h_{i-1}z_i}{3} -
+  \frac{y_{i-1}}{h_{i-1}} + \frac{y_i}{h_{i-1}}
+$$
+
+Przyrównując do siebie prawe strony tych równości (jest to warunek ciągłości
+pierwszej pochodnej w punkcie $t_i$) uzyskujemy równania
+
+$$
+  h_{i-1}z_{i-1} + 2(h_{i-1} + h_i)z_i + h_iz_{i+1} =
+  \frac{6}{h_i} (y_{i+1} - y_i) - \frac{6}{h_{i-1}} (y_i - y_{i-1})
+$$
+
+dla $1 \le i \le n-1$ z dodatkowymi warunkami $z_0 = z_n = 0$
