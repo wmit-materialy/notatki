@@ -3188,3 +3188,158 @@ w ciągu 10 badanych miesięcy przeciętnie wzrasta z miesiąca na miesiąc praw
 dwukrotnie
 
 :::
+
+---
+
+2025-06-04
+
+## Adaptacyjne metody wyodrębniania tendencji rozwojowej
+
+Klasyczne funkcje trendu ukazują ogólną tendencję rozwojową badanego zjawiska w
+całym przedziale czasu od $1$ do $n$. Można je więc stosować wtedy, gdy taką
+tendencję da się zaobserwować. Jednakże czasami tendencja rozwojowa w miarę
+upływu czasu podlega zmianie. Do opisu zmienności tendencji rozwojowej zjawiska
+służą adaptacyjne modele trendu, jak np. trend pełzający czy średnia ruchoma.
+
+Metody adaptacyjne stosujemy gdy nie można zaobserwować wyraźnej tendencji w
+rozwoju zjawiska, gdy badacz nie może się zdecydować na typ krzywej mającej
+reprezentować trend oraz gdy tendencja w miarę upływu czasu ulega dynamicznym i
+nieregularnym zmianom.
+
+Punktem wyjścia metody trendu pełzającego jest szereg czasowy
+$y_1, y_2, \ldots, y_n$ zmiennej $Y$ w badanym przedziale czasowym. Następnie
+wybiera się z góry liczbę naturalną $k$ zwaną długością segmentu taką, że
+$k < n$.
+
+W metodzie trendu pełzającego rozpatruje się $k$-elementowe ciągi kolejnych
+obserwacji czyli podszeregi czasowe (segmenty)
+
+$$
+  \begin{aligned}
+  &y_1, y_2, \ldots, y_k\\
+  &y_2, y_3, \ldots, y_{k+1}\\
+  &\vdots \\
+  &y_t, y_{t+1}, \ldots, y_{t + k - 1}\\
+  &\vdots \\
+  &y_{t-k+1}, y_{t-k+2}, \ldots, y_n\\
+  \end{aligned}
+$$
+
+Ciągów tych jest $n-k+1$.
+
+Do wyznaczenia trendu pełzającego na podstawie $k$ kolejnych obserwacji za
+pomocą klasycznej metody najmniejszych kwadratów szacuje się parametry liniowych
+trendów odcinkowych
+
+$$
+  \begin{aligned}
+  &\hat{y}^1 = \hat{a}_0^1 + \hat{a}_1^1t                   & t = 1, 2, \ldots, k\\
+  &\hat{y}^2 = \hat{a}_0^2 + \hat{a}_1^2t                   & t = 2, 3, \ldots, k-1\\
+  &\vdots                                                   & \\
+  &\hat{y}^l = \hat{a}_0^l + \hat{a}_1^lt                   & t = l, +1, \ldots, l+k-1\\
+  &\vdots                                                   & \\
+  &\hat{y}^{n-k+1} = \hat{a}_0^{n-k+1} + \hat{a}_1^{n-k+1}t & t = n-k+1, n-k+2, \ldots, n
+  \end{aligned}
+$$
+
+### Wzory na oceny parametrów
+
+Wzory na oceny parametrów trendów odcinkowych przedstawiają się następująco:
+
+$$
+  a_1^l = \sum_{t = l}^{l+k-1} \frac{(y_t - \overline{y}_l)(t - \overline{t}_l)}
+  {\sum_{t = l}^{l+k-1} (t-\overline{t}_l)^2}
+$$
+
+gdzie
+
+- $\displaystyle \overline{y}_l = \frac{1}{k} \sum_{t = l}^{l+k-1} y_t$
+- $\displaystyle \overline{t}_l = \frac{1}{k}\sum_{t = l}^{l+k-1} t$
+- $\displaystyle l = 1, 2, \ldots, n-k+1$
+
+Dla każdego równania trendu odcinkowego oblicza się teoretyczne wartości
+zmiennej $Y$
+
+$$
+  \hat{y}^l = a_0^l + a_1^l, \qquad
+  l = 1, 2, \ldots, n-k+1, \quad
+  t = l, t+1, \ldots, t + k - 1
+$$
+
+Każdej jednostce czasu $t$ odpowiada $u$ wartości teoretycznych
+
+$$
+  u = \begin{cases}
+  t,         &\text{dla } t = 1, 2, \ldots, k-1\\
+  k,         &\text{dla } t = k, k+1, \ldots, n-k+1\\
+  n - t - 1, &\text{dla } t = n-k+2, n-k+3, \ldots, n
+  \end{cases}
+$$
+
+Następnie wyznacza się ciąg $n$ średnich arytmetycznych teoretycznych wartości
+zmiennej $Y$ przyporządkowanych kolejnym jednostkom czasu
+
+$$
+  \overline{y}_t = \frac{1}{u} \sum_{l = 1}^{n-k+1} \hat{y}^l, \qquad
+  t = 1, 2, \ldots, n
+$$
+
+Taki ciąg $\overline{y}_t$ to szereg czasowy wygładzony za pomocą trendu
+pełzającego
+
+### Interpretacje
+
+Wygładzony szereg czasowy można interpretować jako takie wielkości badanej
+zmiennej, które byłyby osiągnięte gdyby na to zjawisko nie oddziaływały czynniki
+przypadkowe zakłócające zmienność badanego zjawiska w czasie.
+
+::: {.example title="" ref=""}
+
+Zaobserwowano przeciętne ceny targowiskowe pewnego dobra w kolejnych kwartałach
+w latach 2010-2018. Należy wyznaczyć trend pełzający prezentowanego zjawiska
+
+| Rok  | Kwartał 1 | Kwartał 2 | Kwartał 3 | Kwartał 4 |
+| ---  | ---       | ---       | ---       | ---       |
+| 2010 | 12        | 15,6      | 10        | 12,3      |
+| 2011 | 17,4      | 20        | 10,4      | 14,1      |
+| 2012 | 15        | 22,8      | 9,4       | 6,2       |
+| 2013 | ...       | ...       | ...       | ...       |
+| 2014 | ...       | ...       | ...       | ...       |
+| 2015 | ...       | ...       | ...       | ...       |
+| 2016 | ...       | ...       | ...       | ...       |
+| 2017 | ...       | ...       | ...       | ...       |
+| 2018 | 26.4      | 30        | 17.4      | 25.6      |
+
+Przyjmujemy $k = 4$ bo są 4 kwartały
+
+| Przedział czasu | Równanie segmentu           |
+| ---             | ---                         |
+| $1 - 4$         | $\hat{y}^1 = 13,65 - 0,47t$ |
+| $2 - 5$         | $\hat{y}^2 = 11,13 + 0,77t$ |
+| $3 - 6$         | $\hat{y}^3 = -0,87 + 3,51t$ |
+| $4 - 7$         | $\hat{y}^4 = 16,73 - 0,31t$ |
+| $5 - 8$         | $\hat{y}^5 = 28,15 - 1,9 t$ |
+| ...             | ...                         |
+
+$$
+  \hat{y}^l = a_0^l + a_1^l t
+$$
+
+Wartości wygładzone
+
+| Rok  | Kwartał 1 | Kwartał 2 | Kwartał 3 | Kwartał 4 |
+| ---  | ---       | ---       | ---       | ---       |
+| 2010 | 13,18     | 12,69     | ...       | ...       |
+| 2011 | ...       | ...       | ...       | ...       |
+| ...  | ...       | ...       | ...       | ...       |
+
+:::
+
+::: {.caution title="Kartkówka" ref=""}
+
+(Odpowiedź na pytanie “Ile potrwa kartkówka?”)
+
+3 krótkie pytania ewentualnie krótkie zadanie i tyle, mamy mieć swoje kartki,
+trwa 45 minut
+
+:::
