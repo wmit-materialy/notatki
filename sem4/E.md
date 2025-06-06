@@ -2156,7 +2156,7 @@ Jedną z podstawowych miar jakości dopasowania modelu do danych empirycznych je
 
 $$
   R^2 = \frac{\sum_{i = 1}^{N} (\hat{y}_i - \overline{y})^2}
-             {\sum_{i = 1}^{N} (y_i - \overline{y})^2)}
+             {\sum_{i = 1}^{N} (y_i - \overline{y})^2}
 $$
 
 Miarą uzupełniającą miarę $R^2$ jest **współczynnik zbieżności** $\varphi^2$.
@@ -2203,13 +2203,13 @@ użytecznego do budowy testu dotyczącego istotności parametrów.
 W tym przypadku hipoteza zerowa ma postać
 
 $$
-  H_0 : \alpha_1 = \alpha_2 = \ldots = \alpha_n = 0
+  H_0 : \alpha_1 = \alpha_2 = \ldots = \alpha_m = 0
 $$
 
 przeciwko hipotezie alternatywnej
 
 $$
-  H_1 = |\alpha_1| + |\alpha_2| + \ldots + |\alpha_n| \ne 0
+  H_1 = |\alpha_1| + |\alpha_2| + \ldots + |\alpha_m| \ne 0
 $$
 
 W razie braku podstaw do odrzucenia hipotezy zerowej należy uznać, że wszystkie
@@ -2273,7 +2273,7 @@ Hipotezę zerową w tym przypadku odrzucamy na korzyść hipotezy alternatywnej
 Test istotności na podstawie rozkładu t-Studenta dzięki któremu możliwe jest
 testowanie istotności poszczególnych parametrów (a nie tylko ich wektora)
 
-W modelu $Y = \alpha_1 + \alpha_1 X_1 + \alpha_2 X_2 + \ldots + \alpha_n X_n +
+W modelu $Y = \alpha_1 + \alpha_1 X_1 + \alpha_2 X_2 + \ldots + \alpha_m X_m +
 \varepsilon$ możliwe jest dla każdego $i = 1, 2, \ldots, m$ testowanie hipotezy
 
 $$
@@ -2286,7 +2286,7 @@ Przy prawdziwości hipotezy $H_0$ (i dodatkowym założeniu o normalności wekto
 składników losowych) statystyka
 
 $$
-  t = \frac{a_i}{S(a_i)}
+  t_i = \frac{a_i}{S(a_i)}
 $$
 
 ma rozkład t-Studenta o $n - m - 1$ stopniach swobody
@@ -2295,7 +2295,7 @@ Procedura testowania jest następująca:
 
 1) Na podstawie próby obliczamy wartość empiryczną $t_i$ statystyki t-Studenta
 2) Dla zadanego poziomu istotności $\alpha$ odnajdujemy wartości krytyczne $t^*$
-3) Jeżeli $|t_i| < t^*$, to hipotezę $H_0$ odrzucamy.
+3) Jeżeli $|t_i| > t^*$, to hipotezę $H_0$ odrzucamy.
 
    W przeciwnym razie stwierdzamy brak podstaw do odrzucenia hipotezy zerowej
 
@@ -2513,7 +2513,7 @@ hipotezy alternatywnej o dodatniej autokorelacji.
 W przypadku, gdy hipoteza alternatywna jest postaci
 
 $$
-  H_1 : \varrho < 0 \qquad H_0 : \varrho = 0
+  H_0 : \varrho = 0 \qquad H_1 : \varrho < 0
 $$
 
 stosujemy procedurę analogiczną jak przy dodatniej autokorelacji.
