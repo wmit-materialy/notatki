@@ -730,11 +730,11 @@ $x_1$
 Przykładowa implementacja w Octave:
 
 ```matlab
-function x = rozw_l(A, b)
+function x = rozw_u(A, b)
   x = [];
   [h, w] = size(A);
-  for i = 1:w
-    x(i) = (b(i) - sum(A(i, 1:i-1) .* x(1:i-1))) / A(i, i);
+  for i = w:-1:1
+    x(i) = (b(i) - sum(A(i, i+1:w) .* x(i+1:w))) / A(i, i);
   end
   x = x';
 end
@@ -780,11 +780,11 @@ kolejnych krokach przechodzimy następnych współrzędnych aż do wyznaczenia
 Przykładowa implementacja w Octave:
 
 ```matlab
-function x = rozw_u(A, b)
+function x = rozw_l(A, b)
   x = [];
   [h, w] = size(A);
-  for i = w:-1:1
-    x(i) = (b(i) - sum(A(i, i+1:w) .* x(i+1:w))) / A(i, i);
+  for i = 1:w
+    x(i) = (b(i) - sum(A(i, 1:i-1) .* x(1:i-1))) / A(i, i);
   end
   x = x';
 end
