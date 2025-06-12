@@ -207,8 +207,8 @@ gdzie
 - $j$ – numer zmiennej w rozpatrywanej kombinacji
 - $r_j$ – współczynnik korelacji potencjalnej zmiennej objaśniającej o numerze
   $j$ ze zmienną objaśnianą (element wektora $R_0$)
-- $r_{lj}$ i współczynnik korelacji między $i$-tą i $l$-tą potencjalną zmienną
-  objaśniającą (element macierz korelacji $R$)
+- $r_{ij}$ współczynnik korelacji między $i$-tą i $j$-tą potencjalną zmienną
+  objaśniającą (element macierzy korelacji $R$)
 
 Wskaźnik $\pmb{h_{kj}}$
 : jest miernikiem wielkości informacji wnoszonej przez zmienną $X_j$ o zmiennej
