@@ -100,7 +100,7 @@ $$
   m = \sum_{i = 1}^{\infty} e_{-i} \cdot 2^{-i}
 $$
 
-gdzie $e_{-1} = 1$ a dla $i > 1$  $e_{-i} \in \{0, 1\}$. Jeśli $x \ne 0$, to
+gdzie $e_{-1} = 1$ a $e_{-i} \in \{0, 1\}$ dla $i > 1$. Jeśli $x \ne 0$, to
 takie przedstawienie jest jednoznaczne
 
 :::
@@ -1193,7 +1193,7 @@ wykorzystanych w tworzeniu ciągu macierzy $A^{(k)}$ i wyrażają się następuj
 wzorem
 
 $$
-  L_{ik} = \begin{cases}
+  l_{ik} = \begin{cases}
     \frac{a_{ik}^{(k)}}{a_{kk}(k)}, & i \ge k + 1\\
     1, &i = k\\
     0, & i \le k - 1
@@ -1538,7 +1538,7 @@ kolejności zostały wybrane główne wierszy podczas eliminacji Gaussa.
       gdzie $k$ jest numerem kroku(albo indeksem eliminowanej kolumny)
 
    (ii) Aktualizacji wektora permutacji $p_k \leftrightarrow p_j$
-   (iii) Wyznaczeniu mnożnika $\frac{a_{p_i k}}{a_{p_k k}}$ do eliminacji
+   (iii) Wyznaczeniu mnożnika $\displaystyle \frac{a_{p_i k}}{a_{p_k k}}$ do eliminacji
          $p_i$-go wiersza, $i = k+1, k+2, \ldots, n$
    (iv) Eliminacji $p_i$-tego wiersza $i = k+1, k+2, \ldots, n$ wraz z
         odpowiadającym mu wyrazem wolnym $b_{p_i}$
@@ -1705,7 +1705,7 @@ Gaussa ze skalowanym wyborem wierszy głównych. Aby wyznaczyć współczynniki
 $\displaystyle\frac{|a_{p_j k}|}{p_j}$ dla każdego spośród $n$ wierszy, niezbędne do wyboru
 wierszy głównych, należy wykonać $n$ dzieleń.
 
-W pierwszym korku eliminacji do każdego wiersza należy wyznaczyć mnożnik
+W pierwszym kroku eliminacji do każdego wiersza należy wyznaczyć mnożnik
 $\displaystyle\frac{a_{p_i k}}{a_{p_k k}}$ co wymaga jednego dzielenia, oraz
 $n-1$ mnożeń i tyle samo odejmowań. Eliminacja jednego wiersza w pierwszym kroku
 wymaga $2 (n - 1) + 1 = 2n - 1$ działań. Przemnażając to przez liczbę wierszy i
@@ -1980,8 +1980,8 @@ można traktować jako wzór rekurencyjny służący do wyznaczania kolejnych
 przybliżeń rozwiązania $x$, zapisując je w postaci
 
 $$
-  \star \quad Qx^{(k)} = (Q - A) x^{(k-1)} + b
-$$
+  Qx^{(k)} = (Q - A) x^{(k-1)} + b
+$$ {#eq:przyblibQ}
 
 Jeśli ciąg $x^{(k)}$ jest zbieżny do $x$, to spełnia on powyższe równanie o czym
 łatwo się przekonać przechodząc w nim do granicy przy $k \to \infty$.
@@ -1991,7 +1991,7 @@ dana metoda była wygodna w zastosowaniach macierz $Q$ powinna być dobrana w ta
 sposób, aby wyznaczanie kolejnych wartości $x^{(k)}$ było łatwe (aby łatwo było
 wyznaczyć macierz $Q^{-1}$) oraz aby wyznaczony w ten sposób ciąg rozwiązań
 $x^{(k))}$ był możliwie szybko zbieżny do rozwiązania dokładnego. Mnożąc
-lewostronnie równanie $\star$ otrzymujemy:
+lewostronnie równanie (-@eq:przyblibQ) otrzymujemy:
 $$
   \begin{aligned}
   &Q^{-1} Q x^{(k)} = Q^{-1}(Q - A) x^{(k-1)} + Q^{-1}b\\
@@ -2156,7 +2156,7 @@ Nieco inną grupą metod iteracyjnych są metody gradientowe. W metodach tych
 kolejne przybliżenie rozwiązania wyraża się wzorem
 
 $$
-  x^{(k)} = x^{(k-1)} + t^{k-1} v^{(k)}
+  x^{(k)} = x^{(k-1)} + t_{k-1} v^{(k)}
 $$
 
 gdzie
@@ -2164,7 +2164,8 @@ gdzie
 - ciąg $v^{(k)}$ jest pewnym ciągiem wektorów kierunkowych
 - $t_k$ są pewnymi liczbami rzeczywistymi
 
-::: {.example title="" ref=""}
+#### Metoda najszybszego spadku
+
 Przykładem metody gradientowej jest metoda najszybszego spadku. W metodzie rolę
 ciągu wektorów $v^{(k)}$ pełni ciąg wektorów rezydualnych a współczynniki $t_k$
 wyznaczone są ze wzoru
@@ -2186,8 +2187,6 @@ $$
 
 Metody gradientowe można stosować jedynie do macierzy rzeczywistych
 symetrycznych i dodatnio określonych
-
-:::
 
 ::: {.example title="" ref=""}
 Wykonaj po 2 kroki iteracyjnych metod Jacobiego i Gaussa-Seidela dla układu
@@ -3003,7 +3002,7 @@ Terminy egzaminów są dostępne (czy będą dostępne) na stronie doktora
 
 :::
 
-# Interpolacja
+# Wykład. Interpolacja
 
 Interpolacja
 : przybliżenie nieznanej funkcji na podstawie przyjmowanych przez nią wartości w
@@ -3018,7 +3017,7 @@ Węzły interpolacji
 : Punkty dziedziny funkcji interpolowanej w których jej wartości są znane nazywamy
   **węzłami interpolacji**
 
-![Przykład funkcji interpolujących](/home/kibi/Studia/notatki/assets/funkcja-interpolujaca.png){width=50%}
+![Przykład funkcji interpolujących](assets/funkcja-interpolujaca.png){width=50%}
 
 ## Interpolacja wielomianowa
 
@@ -3315,8 +3314,8 @@ Wielomianami Czebyszewa
 Jeśli $f \in C^{n+1}[-1; 1]$, a wielomian $w(x)$ stopnia co najwyżej $n$
 interpoluje wartości funkcji $f$ w $n+1$ punktach, które są miejscami zerowymi
 wielomianu Czebyszewa $T_{n+1}(x)$ postaci
-$x_i = \frac{(2i + 1) \pi}{2n + 2}$ ($0 \le i\le n$), to dla dowolnego
-$x \in [-1; 1]$ mamy
+$\displaystyle x_i = \cos \left( \frac{(2i + 1) \pi}{2n + 2} \right)$
+($0 \le i\le n$), to dla dowolnego $x \in [-1; 1]$ mamy
 
 $$
   \left| f(x) - w(x) \right| \le \frac{1}{2^n (n+1)!} \cdot \max_{y \in [-1, 1]}
@@ -3491,7 +3490,7 @@ $$
   S_i(x) = \frac{z_i}{6h_i}(t_{i+1} - x)^3 + \frac{z_{i+1}}{6h_i}(x - h_i)^3 +
   (\frac{y_{i+1}}{h_i} - \frac{z_{i+1}h_i}{6})(x-t_i) +
   (\frac{y_i}{h_i} - \frac{z_ih_i}{6}) (t_{i+1} - x)
-$$
+$$ {#eq:sklej}
 
 W celu wyznaczenia wartości $z_i$, korzystamy z warunków na ciągłość pierwszej
 pochodnej w węzłach wewnętrznych. Mamy
