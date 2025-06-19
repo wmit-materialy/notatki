@@ -2,6 +2,7 @@ include-in-header:
   - ${.}/header.latex
 filters:
   - ${.}/theorem-filter.lua
+  - pandoc-crossref
 resource-path:
   - ${.}/../
 number-sections: true

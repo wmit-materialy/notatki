@@ -3,6 +3,12 @@ title: "Archiwum: Notatki z Metod Numerycznych"
 lang: pl
 toc: true
 toc-own-page: true
+
+### Pandoc-crossref options
+autoEqnLabels: true
+eqnPrefix:
+  - równanie
+  - równania
 ---
 
 - wyk: Tomasz Krajka konsultacje mechaniczny 733(lub 701) wtorek 18:30-20:00
@@ -3518,3 +3524,574 @@ $$
 $$
 
 dla $1 \le i \le n-1$ z dodatkowymi warunkami $z_0 = z_n = 0$
+
+---
+
+2025-06-10
+
+Oznaczając $u_i = 2(h_{i-1} + h_i)$, $b_i = \frac{6}{h_i} (y_{i+1} - y_i)$,
+$v_i = b_i - b_{i-1}$, otrzymujemy
+[trójprzękątniowy](https://en.wikipedia.org/wiki/Tridiagonal_matrix) układ
+równań liniowych postaci:
+
+$$
+  \begin{bmatrix}
+    u_1    & h_1    & 0      & 0      & 0      & \cdots  & 0\\
+    h_1    & u_2    & h_2    & 0      & 0      & \cdots  & 0\\
+    0      & h_2    & u_3    & h_3    & 0      & \cdots  & 0\\
+    \vdots & \vdots & \ddots & \ddots & \ddots & \ddots  & \vdots\\
+    0      & 0      & 0      & \cdots & 0      & h_{n-2} & u_{n-1}\\
+  \end{bmatrix}
+  \begin{bmatrix} z_1\\ z_2\\ z_3\\ \vdots\\ z_{n-1}\\ \end{bmatrix} =
+  \begin{bmatrix} v_1\\ v_2\\ v_3\\ \vdots\\ v_{n-1}\\ \end{bmatrix}
+$$
+
+z którego możemy wyznaczyć wartości $z_i$. W ten sposób wszystkie parametry
+funkcji $S_i(x)$ we wzorach (-@eq:sklej) zostały wyznaczone i można z tych
+wzorów korzystać do wyznaczania wartości funkcji sklejanej. W tym celu należy
+najpierw wyznaczyć przedział $[t_i, t_{i+1})$ w którym znajduje się wartość
+argumentu $x$. Wzór (-@eq:sklej) można zastąpić jego lepszą z punktu widzenia
+arytmetyki zmiennopozycyjnej wersją:
+
+$$
+  f_i(x) = y_i + (x - t_i)\{C_i + (x-t_i) [B_i + (x - t_i)A_i]\}
+$$
+
+gdzie
+
+- $\displaystyle A_i = \frac{z_{i+1} - z_i}{6}$
+- $\displaystyle B_i = \frac{z_i}{2}$
+- $\displaystyle C_i = -\frac{h_i}{6}(z_{i+1} + 2 z_i) +
+   \frac{1}{h_i}(y_{i+1} - y_i)$
+
+Pojęcie naturalnej funkcji sklejanej można uogólnić na funkcję sklejaną
+dowolnego nieparzystego stopnia $2m+1$. Taka funkcja jest wielomianem stopnia co
+najwyżej $2m+1$ w przedziałach $[t_i; t_{i+1})$, w węzłach wewnętrznych mającą
+ciągłe wszystkie pochodne, aż do pochodnej rzędu $2m$ włącznie
+
+Zdefiniujmy
+
+$$
+  x_f^n = \begin{cases}
+    x^n, &x \ge 0\\
+    0, &x<0
+  \end{cases}
+$$
+
+Ogólna postać funkcji sklejanej stopnia $2m+1$ może być wyrażona za pomocą
+wzoru:
+
+$$
+  S(x) = \sum_{i = 0}^{m} a_ix^i + \sum_{j = 0}^{n} b_j(x - t_j)^{2m+1}
+$$
+
+gdzie współczynniki $b_j$ można wyznaczyć z układu równań liniowych.
+
+$$
+  \sum_{j = 0}^{n} b_jt_j^i = 0, \quad \text{dla } 0 \le i \le m
+$$
+
+Aby wyznaczyć wartości współczynników $a_i$, we wzorze na $S(x)$ w miejsce $x$
+należy wstawić wartości pierwszych współrzędnych węzłów $t_i$ (czyli odcięte
+tych węzłów) pamiętając, że $S(t_i) = y_i$. Uzyskujemy w ten sposób $m + n + 2$
+niewiadomymi (współczynniki $a_i$ i $b_i$), zatem wzór na $S(x)$ może być
+wyznaczony jednoznacznie. Można pokazać, że istnieje dokładnie jedna funkcja
+sklejana $2m + 1$ dla danego układu $n+1$ węzłów $(t_i, y_i)$
+
+## Interpolacja trygonometryczna
+
+Interpolacja wielomianowa nie daje zadowalających efektów w zastosowaniach do
+interpolacji funkcji okresowych. Do tego celu stosuje się interpolację
+trygonometryczną. Dla ustalenia uwagi w interpolacji trygonometrycznej przyjmuje
+się, że okresem podstawowym funkcji interpolowanej jest $2\pi$. Jeżeli tak nie
+jest, a interpolowana funkcja $g(y)$ ma okres podstawowy równy $t$, to dokonując
+zamiany zmiennej zgodnie ze wzorem $y = \frac{2\pi x}{t}$ otrzymujemy funkcję:
+$$
+  f(x) = g(\frac{tx}{2\pi})
+$$
+której okres jest równy $2\pi$.
+
+Każdą funkcję o okresie $2\pi$ można zapisać w postaci
+$\frac{1}{2}a_0 + \sum_{k = 1}^{\infty} (a_k \cos kx + b_k \sin kx)$, gdzie
+współczynniki $a_k$ i $b_k$ wyrażają się za pomocą wzorów
+
+$$
+  a_k = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \cos kt \;d t \quad
+  b_k = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \sin kt \;d t
+$$
+
+Jest to tzw. rozwinięcie funkcji okresowej w szereg Fouriera.
+
+Analiza Fouriera przyjmuje o wiele wygodniejszą postać, jeśli uwzględni się w
+niej liczby zespolone w postaci wykładniczej, którą z postacią trygonometryczną
+wiąże wzór Eulera (jeśli rozważamy funkcję rzeczywistą to istotna będzie jedynie
+część rzeczywista transformaty Fouriera).
+$$
+  e^{i\phi} = \cos \phi + i\sin \phi
+$$
+
+Istotą interpolacji trygonometrycznej jest znalezienie współczynników $c_j$ tzw.
+wielomianu wykładniczego stopnia $n$ postaci
+
+$$
+  P_n(x) = \sum_{j = 0}^{n} c_j e^{ijx} = \sum_{j = 0}^{n} c_j (e^{ix})^{j}
+$$
+
+który w węzłach interpolacji przyjmuje te same wartości co interpolowana funkcja
+$f$.
+
+Można pokazać, że istnieje dokładnie jeden wielomian wykładniczy stopnia co
+najwyżej $n$ interpolujący funkcję w $n+1$ węzłach.
+
+W zastosowaniach praktycznych rzadko pojawia się potrzeba wyznaczenia wielomianu
+interpolacyjnego wykładniczego w dowolnie dobranych węzłach.
+Najczęściej stosuje się tę metodę do równoległych węzłów interpolacji postaci
+$x_k = \frac{2k\pi}{n+1}$ i do takich węzłów się ograniczymy.
+
+Współczynniki $c_j$ wykładniczego wielomianu interpolacyjnego wyrażają się
+wzorem
+$$
+  c_j = \frac{1}{n+1}\sum_{k = 0}^{n} f(x_k) e^{-ijx_k} =
+  \frac{1}{n+1} \sum_{k = 0}^{n} f(x_k) (e^{\frac{-2\pi ij}{n+1}})^k
+$$ {#eq:wspwielint}
+
+Wielomian interpolacyjny $P_n(x)$ można także przedstawić w postaci
+trygonometrycznej:
+$$
+  P_n(x) = \frac{1}{2} a_0 + \sum_{j = 1}^{n} (a_j\cos jx + b_j \sin jx) +
+  \frac{\delta}{2} a_{m+1} \cos (m+1)x
+$$
+
+gdzie
+
+$$
+  \begin{cases}
+    \delta = 0, m = \frac{n}{2}, &\text{dla $n$ parzystych}\\
+    \delta = 1, m = \frac{n-1}{2}, &\text{dla $n$ nieparzystych}
+  \end{cases}
+\quad \text{oraz} \quad
+  \begin{aligned}
+    a_j = \frac{2}{n+1} \sum_{k = 0}^{n} f(x_k) \cos jx_k\\
+    b_j = \frac{2}{n+1} \sum_{k = 0}^{n} f(x_k) \sin jx_k
+  \end{aligned}
+$$
+
+### Szybka transformata Fouriera (FFT)
+
+Wyznaczanie współczynników wykładniczego wielomianu interpolacyjnego $c_j$ ze
+wzoru (-@eq:wspwielint) wymaga $n$ wymagań i $n$ mnożeń na każdy współczynnik.
+Zatem złożoność obliczeniowa wyznaczania wszystkich współczynników jest rzędu
+$O(n^2)$. Złożoność tę można jednak zmniejszyć do rzędu $O(n \log n)$ stosując
+algorytm szybkiej transformaty Fouriera (**FFT** – **F**ast **F**ourier
+**T**ransform). Szczególnie wygodną formę przyjmuje algorytm FFT dla liczby
+węzłów będącej potęgą dwójki. Istotę algorytmu jest podział w każdym kroku
+węzłów na parzyste i nieparzyste i tworzenie osobno wykładniczych wielomianów
+interpolacyjnych dla obu tych grup węzłów. Współczynniki wykładniczego
+wielomianu interpolacyjnego łączącego obie te grupy węzłów wyrażają się łatwo za
+pomocą współczynników wielomianów interpolujących każdą z tych grup z osobna.
+
+Kresem tych podziałów na grupy parzystych i nieparzystych węzłów jest otrzymanie
+pojedynczego węzła, który jest oczywiście interpolowany przez wartość funkcji w
+tym węźle, czyli jest postaci:
+$$
+  P_0(x) = c_0(e^{ix})^0 = c_0 = f(x_0)
+$$
+
+gdzie $x_{(0)}$ jest tym pojedynczym węzłem interpolacji
+
+![rysunek](assets/wielinpfo.png){width=70%}
+
+
+
+Zależność rekurencyjną pomiędzy współczynnikami tych wielomianów
+interpolacyjnych określa poniższe twierdzenie
+
+::: {.theorem title="" ref=""}
+Niech $p(x), q(x)$ będą wykładniczymi wielomianami interpolacyjnymi
+interpolującymi odpowiednio parzyste i nieparzyste węzły postaci
+
+$$
+  p(x) = \sum_{j = 0}^{n-1} \alpha_j (e^{ix})^j \qquad
+  q(x) = \sum_{j = 0}^{n-1} \beta_j (e^{ix})^j \qquad
+$$
+
+Wówczas wielomian wykładniczy interpolujący wszystkie te węzły ma postać:
+
+$$
+  P(x) = \sum_{j = 0}^{2n-1} \gamma_j (e^{ix})^j \quad
+$$
+
+gdzie
+
+$$
+  \begin{aligned}
+  \text{dla } 0 \le j \le n-1 \quad \gamma_j =
+  \frac{1}{2}\alpha_j + \frac{1}{2}e^{-\frac{\pi ij}{n}} \beta_j\\
+  \gamma_{n+j} = \frac{1}{2} \gamma_j - \frac{1}{2} e^{- \frac{\pi ij}{n}} \beta_j
+  \end{aligned}
+$$
+
+:::
+
+::: {.example title="" ref=""}
+
+Wyznaczyć postać wielomianu interpolacyjnego dla funkcji $f$ interpolującą ją w
+dwóch punktach ($n = 1$)
+
+Mamy
+- $x_0 = \frac{2\cdot 0\cdot \pi}{2} = 0$,
+- $x_1 = \frac{2\cdot 1\cdot \pi}{2} = \pi$
+
+Wielomian $p(x) = f(x_0) = f(0) = \alpha_0$ interpoluje zatem funkcję $f$ w
+węźle $x_0$, a wielomian $q(x) = f(x_1) = f(\pi) = \beta_0$ interpoluje funkcję
+$f$ w węźle $x_1$.
+
+Na podstawie tych dwóch wielomianów możemy skonstruować wielomian $P$
+interpolujący funkcję $f$ w obu tych węzłach. Mamy:o
+
+$$
+  \gamma_0 = \frac{1}{2} \alpha_0 + \frac{1}{2} e^{-\frac{\pi i 0}{n}} \beta_0 =
+  \frac{1}{2} (f(0) + f(\pi))
+$$
+
+$$
+  \gamma_1 = \gamma_{1+0} = \frac{1}{2} \alpha_0 -
+  \frac{1}{2} e^{-\frac{\pi i 1}{n}} \beta_0 =
+  \frac{1}{2} \alpha_0 - \frac{1}{2} \beta_0 =
+  \frac{1}{2} (f(0) - f(\pi))
+$$
+
+A wielomian interpolacyjny ma zatem postać
+
+$$
+  P(x) = \frac{1}{2} (f(0) + f(\pi)) + \frac{1}{2} (f(0) - f(\pi)) e^{ix}
+$$
+
+:::
+
+---
+
+2025-06-17
+
+## Aproksymacja średniokwadratowa
+
+Niech $p(x) \ge 0$ będzie funkcją wagową taką, że
+$$
+  \int_{a}^{b} p(x) \;d x < \inf.
+$$
+Możemy wówczas zdefiniować iloczyn skalarny funkcji $f$ i $g$ za pomocą wzoru
+
+$$
+  (f, g) = \int_{a}^{b} p(x) f(x) g(x) \;d x
+$$
+
+Oraz normę funkcji $f$ jako $\left\Vert f \right\Vert = \sqrt{(f, f)}$
+
+Zadaniem aproksymacji jest znalezienie takiej funkcji $h^* \in U$, (gdzie $U$
+jest pewnym podzbiorem funkcji wśród których poszukujemy aproksymacji funkcji
+$f$), że
+$\left\Vert f - h^* \right\Vert = \min_{h \in U} \left\Vert f - h \right\Vert$.
+
+Funkcję $h^*$ nazywamy elementem optymalnym (najlepszym przybliżeniem) dla
+funkcji $f$ względem zbioru $U$. Dla danej funkcji $f$ istnieje dokładnie jeden
+element optymalny.
+
+Wielkość $\varepsilon_U(f) = \left\Vert f - h^* \right\Vert$ nazywamy błędem
+aproksymacji.
+
+Niech ciąg $f_i$ będzie bazą funkcji z $U$. Wtedy element optymalny $h^* \in U$
+dla funkcji $f$ można zapisać w postaci
+$$
+  h^* = \sum_{i = 0}^{n} \alpha_i f_i
+$$
+
+Współczynniki $\alpha_i$ elementu optymalnego znajdujemy rozwiązując układ
+równań liniowych postaci:
+$$
+  \sum_{i = 0}^{n} \alpha_i (f_i, f_j) = (f, f_j) \quad
+  \text{dla } j = 0, 1, \ldots, n
+$$
+
+Macierz $A$ tego układu równań jest symetryczna bo $(f_i, f_j) = (f_j, f_i)$
+
+::: {.example title="" ref=""}
+
+Znajdź element optymalny dla $f(x) = |x|$ w przedziale $[-1, 1]$ dla $U$ –
+wielomianów co najwyżej $3$-go stopnia z bazą
+$f_0(x) = 1, f_1(x) = x, f_2(x) = x^2$ i $p(x) \equiv 1$.
+
+Mamy wtedy
+$$
+  (f_i, f_j) =
+  \int_{-1}^{1} x^{i+j} \;d x =
+  \frac{x^{i + j + 1}}{i + j + 1} \Big|_{-1}^1 =
+  \begin{cases}
+    0, &i + j \text{ nieparzyste}\\
+    \frac{2}{i+j+1}, &i + j \text{ parzyste}\\
+  \end{cases}
+$$
+
+$$
+  (f, f_i) =
+  \int_{-1}^{1} |x| x^i \;d x =
+  \begin{cases}
+    0, &i \text{ nieparzyste}\\
+    \frac{2}{i+2}, &i \text{ parzyste}\\
+  \end{cases}
+$$
+
+Układ równań do wyznaczenia $\alpha_i$ ma postać
+
+$$
+  \begin{cases}
+    \alpha_0 (f_0, f_0) + \alpha_1 (f_1, f_0) + \alpha_2(f_2, f_0) = (f, f_0)\\
+    \alpha_0 (f_0, f_1) + \alpha_1 (f_1, f_1) + \alpha_2(f_2, f_1) = (f, f_1)\\
+    \alpha_0 (f_0, f_2) + \alpha_1 (f_1, f_2) + \alpha_2(f_2, f_2) = (f, f_2)\\
+  \end{cases}
+$$
+
+$$
+  \begin{cases}
+    2\alpha_0 + \frac{2}{3} \alpha_2 = 1\\
+    \frac{2}{3}\alpha_1 = 0\\
+    \frac{2}{3} \alpha_0 + \frac{2}{5} \alpha_2 = \frac{1}{2}
+  \end{cases}
+$$
+
+Rozwiązując ten układ równań otrzymujemy
+$\alpha_0 = \frac{3}{16}, \alpha_1 = 0, \alpha_2 = \frac{15}{16}$
+
+czyli elementem optymalnym dla $f(x) = |x|$ jest
+$h^*(x) = \frac{3}{16} + \frac{15}{16} x^2$
+
+:::
+
+## Metoda najmniejszych kwadratów
+
+Zdarza się, iż nie dysponujemy postacią aproksymowanej funkcji $f$, a jedynie
+jej wartościami w pewnych punktach $x_i$.
+
+Poszukujemy wówczas funkcji  $f \in U$, gdzie
+$f(x) = \sum_{j = 0}^{n} \alpha_j f_j(x)$ takiej, że
+$\displaystyle\varphi(\alpha_0, \alpha_1, \ldots, \alpha_n) =
+\sum_{i = 0}^{m} (f(x_i) - y_i)^2$
+osiąga minimum.
+
+Stosujemy wówczas metodę najmniejszych kwadratów w której postępujemy
+analogicznie jak w zwykłej aproksymacji, czyli znajdujemy współczynniki
+$\alpha_i$ z układu równań liniowych
+$$
+  \sum_{j = 0}^{n} \alpha_j (f_j, f_i) = (y, f_i) \quad \text{dla } i = 0, 1, \ldots, n
+$$
+przy czym iloczyny skalarne są zdefiniowane jako:
+$$
+  (f_i, f_j) = \sum_{k = 0}^{m} f_i(x_k) f_j(x_k)
+$$
+$$
+  (y, f_i) = \sum_{k = 0}^{m} y_k f_i(x_k)
+$$
+
+Metoda najmniejszych kwadratów ma dokładnie jedno rozwiązanie.
+
+::: {.example title="" ref=""}
+
+Znajdź funkcję liniową najlepiej dopasowaną do danych (w sensie metody
+najmniejszych kwadratów)
+
+$$
+  \begin{array}{c|c|c|c|c|c}
+    x_i & 1 & 3 & 4 & 6 & 7\\ \hline
+    y_i & -2,1 & -0,9 & -0,6 & 0,6 & 0,9
+  \end{array}
+$$
+
+Mamy $f_0(x) = 1$ i $f_1(x) = x$ i poszukujemy funkcji
+$f(x) = \alpha_0 + \alpha_1 x$, gdzie
+
+$$
+  \begin{cases}
+    \alpha_0 (f_0, f_0) + \alpha_1(f_1, f_0) = (y, f_0)\\
+    \alpha_0 (f_0, f_1) + \alpha_1(f_1, f_1) = (y, f_1)
+  \end{cases}
+$$
+
+| $x$    | $y$        | $f_0(x_i)$   | $f_1(x_i)$   | $f_1(x_i) f_1(x_i)$ | $y f_1(x_i)$ |
+| ---    | ---        | ---          | ---          | ---                 | ---          |
+| 1      | -2,1       | 1            | 1            | 1                   | -2,1         |
+| 3      | -0,9       | 1            | 3            | 3                   | -2,7         |
+| 4      | -0,6       | 1            | 4            | 16                  | -2,4         |
+| 6      | 0,6        | 1            | 6            | 36                  | 3,6          |
+| 7      | 0,9        | 1            | 7            | 49                  | 6,3          |
+| $\sum$ | -2,1       | 5            | 21           | 111                 | 2,7          |
+| =      | $(y, f_0)$ | $(f_0, f_0)$ | $(f_0, f_1)$ | $(f_1, f_1)$        | $(y, f_1)$   |
+
+Czyli układ równań ma postać
+
+$$
+  \begin{cases}
+    5\alpha_0 + 21 \alpha_1 = -2,1\\
+    21 \alpha_0 + 111 \alpha_1 = 2,7
+  \end{cases}
+$$
+
+Rozwiązaniem tego układu równań są $\alpha_0 = -2,542, \alpha_1 = 0,5053$
+
+Zatem elementem optymalnym jest funkcja
+
+$$
+  f(x) = -2,542 + 0,5053x
+$$
+
+:::
+
+# Wykład. Różniczkowanie i całkowanie numeryczne
+
+## Różniczkowanie numeryczne
+
+pomijamy
+
+## Całkowanie numeryczne
+
+W przypadku całkowania numerycznego postępujemy analogicznie jak w przypadku
+różniczkowania. Stosujemy najpierw interpolację Lagrange'a a następnie całkujemy
+otrzymany wielomian interpolacyjny. Dostajemy wówczas:
+$$
+  \int_{a}^{b} f(x) \;d x \approx \int_{a}^{b} w(x) \;d x =
+  \sum_{i = 0}^{n} \left( f(x_i) \cdot \int_{a}^{b} l_i(x) \;d x \right) =
+  \sum_{i = 0}^{n} A_i f(x_i)
+$$
+
+Wzory w których wartość całki przybliżamy poprzez sumę iloczynów wartości
+funkcji w węzłach pomnożone przez pewne współczynniki $A_i$ nazywamy
+kwadraturami. Jeśli współczynniki $A_i$ mają taką postać, jak we wzorze powyżej,
+to taką kwadraturę nazywamy kwadraturą Newtona-Cotesa. Wielkości błędów w
+kwadraturach Newtona-Cotesa wyrażają się wzorem $\displaystyle
+\frac{f^{(n+1)}(\xi)}{(n+1)!} \int_{a}^{b} \prod_{i = 0}^{n} (x - x_i) \;d x$.
+
+dla pewnego $\xi \in (a; b)$
+
+Biorąc we wzorze (5.2.5) $n = 1$ (czyli 2 węzły interpolacji) mamy:
+
+$$
+  A_0 = \int_{a}^{b} l_0(x) \;d x = \int_{a}^{b} \frac{x - b}{a - b} \;d A =
+  \frac{(x - b)^2}{2 (a-b)} \Big|_a^b = \frac{1}{2} (b-a)
+$$
+
+$$
+  A_1 = \int_{a}^{b} l_1(x) \;d x =
+  \int_{a}^{b} \frac{x-a}{b-a} \;d x =
+  \frac{(x-a)^2}{2(b-a)} \Big|_a^b =
+  \frac{1}{2} (b-a)
+$$
+
+$$
+  \frac{1}{2}(b-a)(fa) + \frac{1}{2}(b-a)f(b) = \frac{1}{2} (b-a) (f(a) + f(b))
+$$
+
+i otrzymujemy tzw. wzór trapezów
+$$
+  \int_{a}^{b} f(x) \;d x \approx \frac{1}{2} (b-a) (f(a) + f(b))
+$$
+
+Błędem tej kwadratury jest wartość $-\frac{1}{12}(b-a)^3 f''(\xi)$ dla pewnego
+$\xi \in (a; b)$
+
+Aby poprawić dokładność wzoru trapezów cały rozważany przedział $(a; b)$ można
+podzielić na podprzedziały punktami $x_i$, tak że
+$a = x_0 < x_1 < \ldots < x_{n-1} < x_n = b$ a następnie do każdego z tak
+tworzonych podprzedziałów zastosować wzór trapezów (i zsumować obliczone całki
+na każdym z podprzedziałów). Otrzymujemy wówczas tzw. złożony wzór trapezów
+
+$$
+  \int_{a}^{b} f(x) \;d x =
+  \sum_{i = 1}^{n} \int_{x_{i-1}}^{x_i} f(x) \;d x \approx
+  \frac{1}{2} \sum_{i = 1}^{n} (x_i - x_{i-1}) [f(x_{i-1}) + f(x_i)]
+$$
+
+Jeśli przyjmiemy, że punkty $x_i$ są równo rozłożone w przedziale $(a, b)$,
+czyli podprzedziały są jednakowej długości równej $h = \frac{b-a}{n}$, a
+$x_i = a + ih$, to otrzymujemy następującą postać złożonego wzoru trapezów.
+
+$$
+  \int_{a}^{b} f(x) \;d x \approx
+  \frac{1}{2} h[f(a) + 2 \sum_{i = 1}^{n-1} f(a + ih) + f(b)]
+$$
+
+I błąd będzie równy
+
+$$
+  -\frac{1}{12n^2} (b - a)^3 f''(\xi) \quad \text{dla } \xi \in (a, b)
+$$
+
+Biorąc we wzorze (5.2.5) $n = 2$ (czyli 3 równoodległe węzły interpolacji
+$x_0 = 0, x_1 = \frac{a+b}{2}, x_2 = b$), mamy
+
+$$
+  A_0 = \int_{a}^{b} l_0(x) \;d x = \frac{1}{6} (b-a)
+$$
+$$
+  A_1 = \int_{a}^{b} l_1(x) \;d x = \frac{4}{6} (b-a)
+$$
+$$
+  A_2 = \int_{a}^{b} l_2(x) \;d x = \frac{1}{6} (b-a)
+$$
+i otrzymujemy tzw. wzór Simpsona:
+$$
+  \int_{a}^{b} f(x) \;d x \approx
+  \frac{1}{6} (b-a)[f(a) + 4f(\frac{a+b}{2}) + f(b)]
+$$
+
+Błędem tej kwadratury jest wartość
+$-\frac{1}{2880} (b-a)^5 f^{(4)}(\xi) \quad \text{dla pewnego } \xi \in (a; b)$
+
+Podobnie jak poprzednio, aby poprawić dokładność wzoru Simpsona cały rozważamy
+przedział $(a; b)$ można podzielić na podprzedziały punktami $x_i$, a następnie
+do każdej z trójek punktów $x_i$ zastosować wzór Simpsona (i zsumować otrzymane
+całki). Otrzymujemy wówczas tzw. złożony wzór Simpsona. Jeśli przyjmiemy, że
+punkty $x_i$ są równo rozłożone w przedziale $(a, b)$, czyli podprzedziały są
+jednakowej długości $h = \frac{b-a}{2n}$, a $x_i = a + ih$, to otrzymamy
+następującą postać złożonego wzoru Simpsona:
+$$
+  \int_{a}^{b} f(x) \;d x \approx
+  \frac{1}{3} h\left[ f(x_0) + 4\sum_{i = 1}^{\infty} f(x_{2i-1}) +
+    2 \sum_{i = 1}^{n-1} f(x_{2i}) + f(x_{2n}) \right]
+$$
+
+i błąd $-\frac{1}{2880n^4} (b-a)^5 f^{(4)}(\xi)$ dla $\xi \in (a; b)$
+
+Współczynniki $A_i$ w kwadraturach Newtona-Cotesa nie muszą być wyznaczane
+poprzez całkowanie wielomianów $l_i(x)$. Można je także wyznaczyć rozwiązując
+następujący układ równań liniowych dla węzłów $x_i$ i
+$$
+  \int_{a}^{b} x^j \;d x = \sum_{i = 0}^{n} A_i x_i^j, \quad 0\le j\le n
+$$
+
+::: {.caution title="" ref=""}
+
+Egzamin na godzinę, 3 pytania. Zasadniczo pytania 3 typów:
+
+- O konkretną metodę (np. opisz metodę Richardsona)
+
+  1. Powinniśmy napisać do czego służy (służy do rozwiązania układów równań
+     liniowych)
+  2. Umiejscowienie metody wśród innych metod (należy do metod iteracyjnych,
+     można też napisać krótko na czym polegają iteracyjne)
+  3. Wzór metody
+  4. Podsumowanie (najwolniejsza)
+
+- Cała grupa metod:
+  1. Z czego powstała (geneza metod)
+  2. Wyszczególnienie metod
+  3. Wzory bez szczegółów
+  4. Uszeregować: szybkość, ...
+
+- Większe zagadnienia:
+
+  1. Reprezentacja liczb w komputerze:
+  2. system dwójkowy
+  3. bit znaku cecha mantysa
+  4. wiąże się z błędami reprezentacji, na czym one polegają
+
+Na pierwszym terminie nie będzie materiału z dzisiaj
+
+:::
