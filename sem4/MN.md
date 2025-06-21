@@ -2463,7 +2463,7 @@ eliminacji Gaussa. Macierz współczynników tego układu równań $A$ oraz wekt
 wyrazów wolnych $b$ mają postać
 
 $$
-  A = F'(x) = \begin{bmatrix}%4x4, ty: continued, tr: N
+  A = F'(X) = \begin{bmatrix}%4x4, ty: continued, tr: N
       \frac{\partial f_{1}}{\partial x_{1}}  & \frac{\partial f_{1}}{\partial x_{2}}  & \cdots & \frac{\partial f_{1}}{\partial x_{k}} \\
       \frac{\partial f_{2}}{\partial x_{1}}  & \frac{\partial f_{2}}{\partial x_{2}}  & \cdots & \frac{\partial f_{2}}{\partial x_{k}} \\
       \vdots                                 & \vdots                                 & \ddots & \vdots                                \\
@@ -2514,7 +2514,7 @@ przybliżoną wartość pochodnej otrzymujemy inne metody rozwiązywania równa�
 nieliniowych. Przypomnijmy, że dokładna wartość pochodnej wyraża się wzorem:
 
 $$
-    f'(x_{n}) = \lim_{h \to 0} \frac{f(x_{n}+h) - f(x_{n})}{h}
+  f'(x_{n}) = \lim_{h \to 0} \frac{f(x_{n}+h) - f(x_{n})}{h}
 $$
 
 W zależności od wyboru postaci przybliżenia pochodnej uzyskujemy różne metody:
@@ -2522,25 +2522,26 @@ W zależności od wyboru postaci przybliżenia pochodnej uzyskujemy różne meto
 1. Biorąc $h = f(x_{n})$ bez przechodzenia z $h$ do granicy otrzymujemy metodę
    Steffensena:
 
-$$
-\begin{aligned}
-     x_{n+1} &= x_{n} - \frac{f(x_{n})}{f'(x_{n})} \\
-     &= x_{n} - \frac{f(x_{n}) \cdot h}{f(x_{n} +h) - f(x_{n})}\\
-     &= x_{n} - \frac{\left[ f(x_{n}) \right]^{2}}{f(x_{n}+f(x_{n}))- f(x_{n})}
-\end{aligned}
-$$
+   $$
+   \begin{aligned}
+      x_{n+1} &= x_{n} - \frac{f(x_{n})}{f'(x_{n})} \\
+      &= x_{n} - \frac{f(x_{n}) \cdot h}{f(x_{n} +h) - f(x_{n})}\\
+      &= x_{n} - \frac{\left[ f(x_{n}) \right]^{2}}{f(x_{n}+f(x_{n}))- f(x_{n})}
+   \end{aligned}
+   $$
 
 2. Biorąc przybliżenie pochodnej ilorazami różnicowymi:
 
-$$
-    f'(x_{n}) \approx \frac{f(x_{n})-f(x_{n-1})}{x_{n}-x_{n-1}}
-$$
+   $$
+     f'(x_{n}) \approx \frac{f(x_{n})-f(x_{n-1})}{x_{n}-x_{n-1}}
+   $$
 
    otrzymujemy metodę siecznych:
 
-$$
-    x_{n+1} = x_{n} - \frac{f(x_{n})}{f'(x_{n})} = x_{n} - f(x_{n}) \cdot \frac{x_{n}-x_{n-1}}{f(x_{n})-f(x_{n-1})}
-$$
+   $$
+     x_{n+1} = x_{n} - \frac{f(x_{n})}{f'(x_{n})} = x_{n} - f(x_{n}) \cdot
+     \frac{x_{n}-x_{n-1}}{f(x_{n})-f(x_{n-1})}
+   $$
 
 W metodzie siecznych do wyznaczenia kolejnego przybliżenia konieczne jest
 pamiętanie 2 poprzednich przybliżeń. Graficznie metodę tę można zinterpretować
@@ -2549,7 +2550,7 @@ poprzednio wyznaczone punkty, a następnie wyznaczenie punktu przecięcia tej
 siecznej z osią $OX$, który stanowi nowe przybliżenie miejsca zerowego.
 
 Metoda siecznych jest wolniej zbieżna do dokładnej wartości miejsca zerowego
-niż metoda Newtona, ale szybciej niż metoda bisekcji., ale szybciej niż metoda bisekcji.
+niż metoda Newtona, ale szybciej niż metoda bisekcji.
 
 Jeżeli $r$ jest dokładną wartością miejsca zerowego, to:
 
@@ -2566,24 +2567,26 @@ gdzie:
 
 Szczególnym rodzajem funkcji nieliniowych są wielomiany
 
-**Wielomianem** nazywamy funkcję:
+Wielomianem
+: nazywamy funkcję:
+  $$
+      w(x) = a_{n}x^{n} + a_{n-1}x^{n-1} + \ldots + a_{1}x + a_{0}
+  $$
+  gdzie
 
-$$
-    w(x) = a_{n}x^{n} + a_{n-1}x^{n-1} + \ldots + a_{1}x + a_{0}
-$$
+   - $a_{n} \ne 0$
+   - $a_{i}$ są liczbami rzeczywistymi (lub zespolonymi) nazywanymi
+     współczynnikami wielomianu
 
-gdzie
+Liczbę naturalną $n$ będącą indeksem współczynnika przy najwyższej potędze $x$ w
+wielomianie $w(x)$, nazywamy stopniem tego wielomianu.
 
- - $a_{n} \ne 0$
- - $a_{i}$ są liczbami rzeczywistymi (lub zespolonymi) nazywanymi współczynnikami wielomianu
-
-Liczbę naturalną $n$ będącą indeksem współczynnika przy najwyższej potędze $x$
-w wielomianie $w(x)$, nazywamy stopniem tego wielomianu.
-
-W określeniu liczby i przedziłów w których znajdują się miejsca zerowe wielomianów przydatne są następujące twierdzenie:
+W określeniu liczby i przedziałów w których znajdują się miejsca zerowe
+wielomianów przydatne są następujące twierdzenie:
 
 ::: {.theorem title="Zasadnicze twierdzenie algebry" ref=""}
-Wielomianu $w(x)$ stopnia $n$, ma $n$ pierwiastków zespolonych i może być przedstawiony w postaci:
+Wielomian $w(x)$ stopnia $n$ ma $n$ pierwiastków zespolonych i może być
+przedstawiony w postaci:
 
 $$
 w(x) = a_{n}(x-z_{1})(x-z_{2})\ldots(x-z_{n})
@@ -2591,17 +2594,21 @@ $$
 
 gdzie $z_{i}$ są jego pierwiastkami zespolonymi.
 
-Wielomian o współczynnikach rzeczywistych może być przedstawiony w postaci iloczynu czynników liniowych postaci $(x - r_{i})$ odpowiadających jego pierwiastkom rzeczywistym $r_{i}$ oraz czynników kwadratowych nierozkładalnych $(x^{2}+ p_{i}x + q_{i})=(x-z_{i})(x-\overline{z}_{i})$ odpowiadających jego pierwiastkom zespolonym $z_{i}$ i $\overline{z}_{i}$ czyli
+Wielomian o współczynnikach rzeczywistych może być przedstawiony w postaci
+iloczynu czynników liniowych postaci $(x - r_{i})$ odpowiadających jego
+pierwiastkom rzeczywistym $r_{i}$ oraz czynników kwadratowych nierozkładalnych
+$(x^{2}+ p_{i}x + q_{i})=(x-z_{i})(x-\overline{z}_{i})$ odpowiadających jego
+pierwiastkom zespolonym $z_{i}$ i $\overline{z}_{i}$ czyli
 
 $$
-    w(x) = a_{n} (x-r_{1})(x-r_{2})\ldots(x-r_{k})(x^{2}+p_{1}x+q_{1})\ldots(x^{2}+p_{s}x+q_{s})
+  w(x) = a_{n} (x-r_{1})(x-r_{2})\ldots(x-r_{k})(x^{2}+p_{1}x+q_{1})\ldots(x^{2}+p_{s}x+q_{s})
 $$
 :::
 
 ::: {.theorem title="" ref=""}
 Wszystkie pierwiastki wielomianu $w(x)$ leżą w kole o promieniu
 $$
-    \varrho = 1 + \frac{\displaystyle \max_{0\le k\le n}\left| a_{k} \right|}{\left| a_{n} \right|}
+  \varrho = 1 + \frac{\displaystyle \max_{0\le k\le n}\left| a_{k} \right|}{\left| a_{n} \right|}
 $$
 :::
 
@@ -2609,18 +2616,21 @@ Oznaczmy przez $x_{0}$ dowolne miejsce zerowe wielomianu
 
 $$
 \begin{aligned}
-    s(x) &= x^{n}w\left( \frac{1}{x} \right)\\
-    &= x^{n} \left[ a_{n} \frac{1}{x^{n}}+a_{n-1} \frac{1}{x^{n-1}} + \ldots + a_{1} \frac{1}{x} + a_{0} \right]\\
-    &= a_{0}x^{n} + a_{1} x^{n-1} + \ldots a_{n-1} x + a_{n}
+  s(x) &= x^{n}w\left( \frac{1}{x} \right)\\
+  &= x^{n} \left[ a_{n} \frac{1}{x^{n}}+a_{n-1} \frac{1}{x^{n-1}} + \ldots + a_{1} \frac{1}{x} + a_{0} \right]\\
+  &= a_{0}x^{n} + a_{1} x^{n-1} + \ldots a_{n-1} x + a_{n}
 \end{aligned}
 $$
 
-Z definicji tej wynika, że jeśli $x_{0} \ne 0$, to $\frac{1}{x_{0}}$ jest miejscem zerowym wielomianu $w(x)$.
+Z definicji tej wynika, że jeśli $x_{0} \ne 0$, to $\frac{1}{x_{0}}$ jest
+miejscem zerowym wielomianu $w(x)$.
 
 Stosując powyższe twierdzenie do pierwiastków wielomianu $s(x)$ otrzymujemy, że:
 
 $$
-    \left| x_{0} \right| \le \varrho_{1} = 1+\frac{\displaystyle \max_{0<k\le n} \left| a_{k} \right|}{\left| a_{0} \right|}
+  \left| x_{0} \right| \le \varrho_{1} = 1+
+  \frac{\displaystyle \max_{0<k\le n} \left| a_{k} \right|}
+       {\left| a_{0} \right|}
 $$
 
 Ponieważ $\frac{1}{x_{0}}$ jest pierwiastkiem wielomianu $w(x)$, a $\left| x_{0}
@@ -2632,7 +2642,7 @@ Wszystkie niezerowe pierwiastki wielomianu $w(x)$ leżą na zewnątrz koła o
 promieniu
 
 $$
-\frac{1}{\varrho_{1}} = \frac{1}{1+\frac{\displaystyle \max _{0<k\le n}\left| a_{k} \right|}{\left| a_{0} \right|}}
+  \frac{1}{\varrho_{1}} = \frac{1}{1+\frac{\displaystyle \max_{0<k\le n}\left| a_{k} \right|}{\left| a_{0} \right|}}
 $$
 :::
 
@@ -2646,7 +2656,8 @@ $$
 Dla wielomianu $w(x)$ mamy:
 
 $$
-    \varrho = 1 + \frac{\displaystyle \max _{0\le k < n}\left| a_{k} \right|}{\left| a_{n} \right|} = 1 + \frac{7}{1} = 8
+    \varrho = 1 + \frac{\displaystyle \max _{0\le k < n}\left| a_{k} \right|}
+                       {\left| a_{n} \right|} = 1 + \frac{7}{1} = 8
 $$
 
 $$
@@ -2670,13 +2681,12 @@ $$
 
 Zastosowania Schematu Hornera:
 
-
 #### Wyznaczanie wartości wielomianu
 
 Zauważmy, że obliczając wartość wielomianu
 
 $$
-    w(x_{0}) = a_{n} x_{0}^{n} + a_{n-1}x^{n-1}_{0} + \ldots + a_{1}x + a_{0}
+  w(x_{0}) = a_{n} x_{0}^{n} + a_{n-1}x^{n-1}_{0} + \ldots + a_{1}x + a_{0}
 $$
 
 w podanej we wzorze kolejności wymaga to $n$ dodawań i $n+( n-1 )+\ldots+1 =
@@ -2686,7 +2696,7 @@ Znacznie efektywniejsze jest obliczanie wartości tego wielomianu w kolejności
 zgodnej z poniższym wzorem Hornera
 
 $$
-    w(x_{0}) = ((\ldots ((a_{n}x_{0}+a_{n-1})x_{0}+a_{n-2})x_{0}\ldots + a_{2}) x_{0} + a_{0}
+  w(x_{0}) = ((\ldots ((a_{n}x_{0}+a_{n-1})x_{0}+a_{n-2})x_{0}\ldots + a_{1}) x_{0} + a_{0}
 $$
 
 W pierwszym kroku wyznaczania wartości wielomianu za pomocą algorytmu Hornera
@@ -2726,8 +2736,9 @@ wartością wielomianu w punkcie $x_{0}$ mamy:
 
 $$
 \begin{aligned}
-    a_{n} x^{n} + a_{n-1}x^{n-1} + \ldots + a_{1} x + a_{0} &= (x-x_{0})(b_{n-1}x^{n-1} + b_{n-2}x^{n-2} + \ldots + b_{1}x + b_{0}) + w(x_{0})\\
-    &= b_{n-1}x^{n} + (b_{n-2} - b_{n-1} x_{0})x^{n-1} + \ldots + (b_{0} - b_{1} x_{0}) x - b_{0}x_{0} + w(x_{0})
+    a_{n} x^{n} + &a_{n-1}x^{n-1} + \ldots + a_{1} x + a_{0} \\&=
+    (x-x_{0})(b_{n-1}x^{n-1} + b_{n-2}x^{n-2} + \ldots + b_{1}x + b_{0}) + w(x_{0}) \\&=
+    b_{n-1}x^{n} + (b_{n-2} - b_{n-1} x_{0})x^{n-1} + \ldots + (b_{0} - b_{1} x_{0}) x - b_{0}x_{0} + w(x_{0})
 \end{aligned}
 $$
 
@@ -2738,7 +2749,7 @@ $$
     \begin{cases}
     b_{n-1} = a_{n}\\
     b_{n-2} = a_{n-1} + b_{1} x_{0}\\
-    \ldots \\
+    \vdots \\
     b_{0} = a_{1} + b_{1}x_{0} \\
     w(x_{0}) = a_{0} + b_{0}x_{0}
     \end{cases}
@@ -2775,8 +2786,11 @@ ilorazów przez czynnik $(x - x_0)$. Prowadzi to do przedstawienia wielomianu
 $w(x)$ w postaci
 
 $$
-  w(x) = a_nx^n + a_{n-1}x^{n-1} + \ldots + a_1x + a_0 =
+  \begin{aligned}
+  w(x) &=
+  a_nx^n + a_{n-1}x^{n-1} + \ldots + a_1x + a_0 \\&=
   c_n(x - x_0)^{n} + c_{n-1}(x - x_0)^{n-1} + \ldots + c_1(x - x_0) + c_0
+  \end{aligned}
 $$
 
 gdzie współczynniki $c_i$ są kolejnymi resztami z dzielenia przez czynnik
@@ -3181,7 +3195,7 @@ wielomianu, różnią się jedynie sposobem jego zapisu.
 Wielomian interpolacyjny w postaci Lagrange'a wyrażamy jako następującą sumę
 $$
   w(x) = \sum_{k = 0}^{n} y_k l_k(x)
-$$
+$$ {#eq:wielLagr}
 
 gdzie
 
@@ -3189,7 +3203,7 @@ gdzie
 - $l_k(x)$ są wielomianami które przyjmują wartość $1$ dla $x = x_k$ i $0$ dla
   $x = x_i$, gdzie $i \ne k$
 
-Dzięki temu po wstawieniu do wzoru 4.1.2 <!-- (це хто?) --> w miejscu $x$ punktu
+Dzięki temu po wstawieniu do wzoru (-@eq:wielLagr) w miejscu $x$ punktu
 $x_i$ uzyskamy wartość $y_i$ (jedynym niewyzerowanym składnikiem sumy będzie
 $y_i l_i(x_i) = y_i$). Aby wielomiany $l_i(x)$ zerowały się dla $x_j$, gdzie
 $j \ne i$, muszą mieć postać:
@@ -3396,7 +3410,7 @@ $$
   f[x_0, x_1, x_1, x_1] = \frac{f[x_1, x_1, x_1] - f[x_0, x_1, x_1]}{x_1 - x_0} =
   \frac{4-3}{2-1} = 1 \\
   f[x_0, x_0, x_1, x_1, x_1] =
-  \frac{f[x_0, x_1, x_1, x_1] - f[x_0, x_0, x_1, x_1]]}{x_1-x_0} =
+  \frac{f[x_0, x_1, x_1, x_1] - f[x_0, x_0, x_1, x_1]}{x_1-x_0} =
   \frac{1-2}{2-1} = 1
   \end{aligned}
 $$
@@ -3776,7 +3790,7 @@ $$
 
 Niech $p(x) \ge 0$ będzie funkcją wagową taką, że
 $$
-  \int_{a}^{b} p(x) \;d x < \inf.
+  \int_{a}^{b} p(x) \;d x < \infty.
 $$
 Możemy wówczas zdefiniować iloczyn skalarny funkcji $f$ i $g$ za pomocą wzoru
 
