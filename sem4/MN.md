@@ -2746,13 +2746,13 @@ Porównując współczynniki przy tych samych potęgach po obu stronach równani
 otrzymujemy:
 
 $$
-    \begin{cases}
+  \begin{cases}
     b_{n-1} = a_{n}\\
-    b_{n-2} = a_{n-1} + b_{1} x_{0}\\
+    b_{n-2} = a_{n-1} + b_{n-1} x_{0}\\
     \vdots \\
     b_{0} = a_{1} + b_{1}x_{0} \\
     w(x_{0}) = a_{0} + b_{0}x_{0}
-    \end{cases}
+  \end{cases}
 $$
 
 Zauważmy, że wykonywane są tutaj identyczne działania jak w przypadku
