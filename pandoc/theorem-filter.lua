@@ -26,13 +26,21 @@
 ---@type pandoc
 local pandoc = pandoc
 
+local supported_envs = {
+  theorem = true,
+  lemma = true,
+  example = true,
+  caution = true,
+  proof = true
+}
+
 ---@param elem Div
 ---@return BlockFilterResult
 local function Div(elem)
   -- Look for one of the target classes in the Div.
   local env = nil
   for _, cls in ipairs(elem.classes) do
-    if cls == "theorem" or cls == "lemma" or cls == "example" or cls == "caution" then
+    if supported_envs[cls] then
       env = cls
       break
     end

@@ -13,6 +13,11 @@
  skin first=enhanced, skin middle=enhanced, skin last=enhanced,
  colback=blue!5, colframe=blue!35!black, fonttitle=\bfseries}{lem}
 
+\newtcbtheorem[number within=section]{proof}{Dowód}%
+{enhanced, breakable,
+ skin first=enhanced, skin middle=enhanced, skin last=enhanced,
+ colback=brown!5, colframe=brown!35!black, fonttitle=\bfseries}{pr}
+
 \newtcbtheorem[number within=section]{example}{Przykład}%
 {enhanced, breakable,
  skin first=enhanced, skin middle=enhanced, skin last=enhanced,
