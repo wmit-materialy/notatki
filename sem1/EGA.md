@@ -1,53 +1,80 @@
-# EGA: Archiwum Elementy Geometrii Analitycznej #sem1/EGA
-
-- ćw: [m.sobczak-knec@pollub.pl]
-- wyk: [m.sobczak-knec@pollub.pl]
-
 ---
+title: "EGA: Notatki z przedmiotu Elementy Geometrii Analitycznej"
+date: 2023-10-25 – 2024-01-17
+toc: true
+toc-own-page: true
+titlepage: true
+lang: pl
+---
+
+# Przedmowa {-}
+
+To są notatki z przedmiotu Elementy Geometrii Analitycznej prowadzonego na
+kierunku IAD w 2023/2024 roku przez dr Magdalenę Sobczak-Kneć. Treści obejmują 6
+wykładów.
+
+Notatki znajdują się w **domenie publicznej** na warunkach licencji CC0 1.0
+Universal[^license-link]. Kod źródłowy można znaleźć w repozytorium na GitHub
+<https://github.com/wmit-materialy/notatki>
+
+[^license-link]: <https://creativecommons.org/publicdomain/zero/1.0/deed.pl>
+
+```{=latex}
+\newpage
+```
 
 2023-10-25
 
 # Iloczyn mieszany
 
-Def. Iloczynem mieszanym trójki wektorów $\vec{a}, \vec{v}, \vec{w}$ nazywamy
-**liczbę** określoną w następujący sposób
+Iloczyn mieszany
+: Iloczynem mieszanym trójki wektorów $\vec{a}, \vec{v}, \vec{w}$ nazywamy
+  **liczbę** określoną w następujący sposób
+  $$
+    \left(  \vec{u} \vec{v} \vec{w} \right) =
+    (\vec{u} \times \vec{v} ) \circ \vec{w}
+  $$
 
-$$
-\left(  \vec{u} \vec{v} \vec{w} \right) =
-(\vec{u} \times \vec{v} ) \circ \vec{w}
-$$
+: Dla wektorów w $\mathbb{R}^3 \quad
+  \begin{aligned}
+     &\vec{u} =[u_{1}, u_{2}, u_{3}],\\&
+     \vec{v} =[v_{1}, v_{2}, v_{3}],\\&
+     \vec{w} =[w_{1}, w_{2}, w_{3}]
+   \end{aligned}$ zachodzi równość
+  $$
+  (\vec{u} \vec{v} \vec{w}) =
+  \begin{vmatrix}
+    u_{1} & u_{2} & u_{3} \\
+    v_{1} & v_{2} & v_{3} \\
+    w_{1} & w_{2} & w_{3} \\
+  \end{vmatrix}
+  $$
 
-Jeżeli wektory
-$\vec{u} =[u_{1}, u_{2},u_{3}],
-\vec{v} =[v_{1}, v_{2},v_{3}],
-\vec{w} =[w_{1}, w_{2},w_{3}]$,
-to
+Własności iloczynu mieszanego wynikają bezpośrednio z własności iloczynów
+wektorowego i skalarnego
 
-$$
-(\vec{u} \vec{v} \vec{w}) =
-\begin{vmatrix}
-	u_{1} & u_{2} & u_{3} \\
-	v_{1} & v_{2} & v_{3} \\
-	w_{1} & w_{2} & w_{3} \\
-\end{vmatrix}
-$$
+::: {.caution title="" ref=""}
 
-Własności iloczynu mieszanego wynikają bezpośrednio z własności iloczynu
-opisującego
-
-Uwaga. Z definicji wynika, że długość iloczynu wektorowego wektorów $\vec{u}$ i
+Z definicji wynika, że długość iloczynu wektorowego wektorów $\vec{u}$ i
 $\vec{v}$ jest równa polu równoległoboku rozpiętego przez wektory $\vec{u}$,
-$\vec{v}$. z kolei liczba $\left| (\vec{u} \vec{v} \vec{w} ) \right|$ jest równa objętości
-równoległościanu rozpiętego na tych wektorach. Liczba ${1 \over 6} \left|
-(\vec{u} \vec{v} \vec{w} ) \right|$ jest równa objętości czworościanu rozpiętego
-przez wektory $\vec{u}, \vec{v}, \vec{w}$
+$\vec{v}$.
 
-## Twierdzenie
+Z kolei liczba $\left| (\vec{u} \vec{v} \vec{w} ) \right|$ jest równa objętości
+równoległościanu rozpiętego na tych wektorach.
+
+Liczba ${1 \over 6} \left| (\vec{u} \vec{v} \vec{w} ) \right|$ jest równa
+objętości czworościanu rozpiętego przez wektory $\vec{u}, \vec{v}, \vec{w}$
+
+:::
+
+::: {.theorem title="" ref=""}
 
 Wektory $\vec{u} ,\vec{v} ,\vec{w}$ są współpłaszczyznowe wtedy i tylko wtedy,
 gdy ich iloczyn $(\vec{u}\vec{v}\vec{w}) = 0$
 
-## Przykład
+:::
+
+::: {.example title="" ref=""}
 
 Dane są trzy wierzchołki czworościanu $A(4, 0, -2), B(6, -2, 2), C(4, -4, 6)$.
 Wyznacz czwarty wierzchołek $D$ wiedząc, że leży on na osi $oy$, a objętość
@@ -100,6 +127,8 @@ $$y = 14 \lor y = -16$$
 $$D_1(0, 14, 0)$$
 $$D_2(0, -16, 0)$$
 
+:::
+
 ---
 
 $$
@@ -121,48 +150,53 @@ $$h = {\left| (\vec{u} \vec{v} \vec{w} ) \right| \over \vec{u}\times\vec{v} }$$
 
 # Prosta i płaszczyzna w $\mathbb{R}^3$
 
-_Def._ Prostą w przestrzeni $\mathbb{R}^3$ o wektorze kierunkowym $\vec{v} \neq
-\vec{0}$ przechodzącem przez punkt $A$ nazywamy zbiór $p = \{X \in \mathbb{R}^3:
-X = A + t\cdot \vec{v}, t \in \mathbb{R}\}$
+Prosta w $\mathbb{R}^3$
+: o wektorze kierunkowym
+  $\vec{v} \neq \vec{0}$ przechodzącą przez punkt $A$ nazywamy zbiór
+  $p = \{X \in \mathbb{R}^3: X = A + t\cdot \vec{v}, t \in \mathbb{R}\}$
 
-Prostą przeznaczoną przez dwa punkty $A, B$ różne od siebie rozumieć będziemy, jako
-prostą o wektorze kierunkowym $\overrightarrow{AB}$ i przechodzącą przez punkt $A$
+: Prostą przechodzącą przez dwa punkty $A, B$ różne od siebie rozumieć będziemy
+  jako prostą o wektorze kierunkowym $\overrightarrow{AB}$ i przechodzącą przez
+  punkt $A$
 
-Jeżeli punkt $A$ ma współrzędne $A(a_{1},a_{2},a_{3})$, zaś wektor $\vec{v}$ ma
-współrzędne $\vec{v} =[v_{1}, v_{2}, v_{3}]$, to równanie prostej $p$ możemy
-zapisać w postaci
+Równanie parametryczne
+: Jeżeli punkt $A$ ma współrzędne $A(a_{1},a_{2},a_{3})$, zaś wektor $\vec{v}$ ma
+  współrzędne $\vec{v} =[v_{1}, v_{2}, v_{3}]$, to równanie prostej $p$ możemy
+  zapisać w postaci
+  $$
+  p
+  \begin{cases}
+    x_1 = a_1 + tv_1 \\
+    x_2 = a_2 + tv_2 \\
+    x_3 = a_3 + tv_3
+  \end{cases} t \in \mathbb{R}
+  .
+  $$
+  W ten sposób otrzymaliśmy równanie prostej $p,$ które nazywamy równaniem
+  parametrycznym
 
-$$
-p \left\{
-\begin{aligned}
-	x_1 = a_1 + tv_1 \\
-	x_2 = a_2 + tv_2 \\
-	x_3 = a_3 + tv_3
-\end{aligned}
-\right., t \in \mathbb{R}
-.
-$$
+Równanie kierunkowe
+: Z równań parametrycznych prostej można formalnie wyliczyć parametr $t$ i
+  porównując ze sobą otrzymać:
+  $$
+  \frac{x_1 - a_1}{v_1}
+  = \frac{x_2 - a_2}{v_2}
+  = \frac{x_3 - a_3}{v_3}
+  = t
+  .
+  $$
+  Równanie powyższe określamy jako równanie kierunkowe prostej $p$.
 
-W ten sposób otrzymaliśmy równanie prostej p, które nazywamy równaniem
-parametrycznym
+::: {.caution title="" ref=""}
 
-Z równań parametrycznych prostej można formalnie wyliczyć parametr $t$ i
-porównując ze sobą otrzymać:
-
-$$
-\frac{x_1 - a_1}{v_1}
-= \frac{x_2 - a_2}{v_2}
-= \frac{x_3 - a_3}{v_3}
-= t
-.
-$$
-
-Równanie powyższe określamy jako równanie kierunkowe prostej $p$.
-
-**Uwaga**. Dla prostej w $\mathbb{R}^3$ <u>nie istnieje</u> równanie
+Dla prostej w $\mathbb{R}^3$ [nie istnieje]{.underline} równanie
 ogólne(np jak dla prostej w $\mathbb{R}^2$: $y = kx + b$)
 
+:::
+
 ## Przykład
+
+::: {.example title="" ref=""}
 
 znaleźć równania prostej przechodzącej przez punkt $A(0, 0, -2)$ i prostopadłej
 do wektorów $\vec{a} = [0, 1, -5]$ i $\vec{b} = [-2, 3, 0]$
@@ -184,13 +218,12 @@ $$
 $$
 
 $$
-p \left\{
-\begin{aligned}
-	 & x_1 = 15t   \\
-	 & x_{2}=10t   \\
-	 & x_3=-2 + 2t
-\end{aligned}
-\right. , t \in \mathbb{R}
+p
+\begin{cases}
+	 x_1 = 15t   \\
+	 x_{2}=10t   \\
+	 x_3=-2 + 2t
+\end{cases} t \in \mathbb{R}.
 .
 $$
 
@@ -198,142 +231,131 @@ Równanie kierunkowe
 
 $$\frac{x_1}{15} = \frac{x_2}{10} = {x_3 + 2\over 2}$$
 
-**Uwaga** Jeżeli wektor kierunkowy ma wśród współrzędnych zero np.
+:::
+
+::: {.caution title="" ref=""}
+Jeżeli wektor kierunkowy ma wśród współrzędnych zero np.
 $\vec{v} = [v_{1}, v_{2}, 0]$, $A(a_1, a_2, a_3)$, to równanie kierunkowe ma
-postać:
+postać
+$$
+  \frac{x_{1}-a_{1}}{v_{1}}
+  = \frac{x_{2} - a_{2}}{v_{2}}
+  = \frac{x_{3}-a_{3}}{0}.
+$$
+Zaś parametryczne ma postać
+$$
+  p
+  \begin{cases}
+     x_{1}=v_{1}t+a_{1} \\
+     x_{2}=v_{2}t+a_{2} \\
+     x_{3}=a_{3}
+  \end{cases} \quad t \in \mathbb{R}.
+$$
 
-$$
-\frac{x_{1}-a_{1}}{v_{1}}
-= \frac{x_{2} - a_{2}}{v_{2}}
-= \frac{x_{3}-a_{3}}{0}\\
-\implies
-$$
-
-$$
-p \left\{
-\begin{aligned}
-	 & x_{1}=v_{1}t+a_{1} \\
-	 & x_{2}=v_{2}t+a_{2} \\
-	 & x_{3}=a_{3}
-\end{aligned}
-\right. , t \in \mathbb{R}
-.
-$$
+:::
 
 ## Płaszczyzna w $\mathbb{R}^3$
 
-Ustalmy w $\mathbb{R}^3$ punkt A i dwa wektory $\vec{u}, \vec{v}$ liniowo
-niezależne. Płaszczyznę $\pi w \mathbb{R}^3$ przechodzącą przez punkt $A$ i
-rozpiętą przez niewspółliniowe wektory $\vec{u}, \vec{v}$ nazywamy zbiór
+Płaszczyzna w $\mathbb{R}^3$
+: Ustalmy w $\mathbb{R}^3$ punkt A i dwa wektory $\vec{u}, \vec{v}$ liniowo
+  niezależne. Płaszczyznę $\pi w \mathbb{R}^3$ przechodzącą przez punkt $A$ i
+  rozpiętą przez niewspółliniowe wektory $\vec{u}, \vec{v}$ nazywamy zbiór
+  $$
+    \pi = \{X \in \mathbb{R}^3: X = A + t\cdot \vec{u} +s\cdot \vec{v}; t ,s\in \mathbb{R}\}
+  $$
 
-$$
-	\pi = \{X \in \mathbb{R}^3: X = A + t\cdot \vec{u} +s\cdot \vec{v}; t ,s\in \mathbb{R}\}
-$$
+: Płaszczyzną wyznaczoną przez trzy niewspółliniowe punkty $A, B, C$ rozumieć
+  będziemy jako płaszczyznę rozpiętą przez wektor
+  $\overrightarrow{AB}, \overrightarrow{AC}$
+  $$
+    X = A + t \vec{u} + s \vec{v}, \qquad t, s \in \mathbb{R}.
+  $$
 
-Płaszczyzną wyznaczoną przez trzy niewspółliniowe punkty $A, B, C$ rozumieć
-będziemy jako płaszczyznę rozpiętą przez wektor $\overrightarrow{AB}, \overrightarrow{AC}$
-
-$$
-X = A + t \vec{u} + s \vec{v} ; t, s \in \mathbb{R}
-.
-$$
-
-zapiszemy we współrzędnych $X(x_{1}, x_{2}, x_{3})$, $A(a_{1}, a_{2}, a_{3})$,
-$\vec{u} = [u_{1}, u_{2}, u_{3}]$, $\vec{v} = [v_{1}, v_{2}, v_{3}]$
-
-to
-
-$$
-\pi
-= \left\{
-\begin{aligned}
-	x_{1}=a_1 + t u_1 + s v_{1} \\
-	x_{2}=a_2 + t u_2 + s v_{2} \\
-	x_{3}=a_3 + t u_3 + s v_{3}
-\end{aligned}
-\right. t, s \in \mathbb{R}
-.
-$$
-
-Otrzymamy równanie parametryczne płaszczyzny
+Równanie parametryczne
+: Zapiszemy we współrzędnych $X(x_{1}, x_{2}, x_{3})$, $A(a_{1}, a_{2}, a_{3})$,
+  $\vec{u} = [u_{1}, u_{2}, u_{3}]$, $\vec{v} = [v_{1}, v_{2}, v_{3}]$:
+  $$
+  \pi =
+  \begin{cases}
+    x_{1}=a_1 + t u_1 + s v_{1} \\
+    x_{2}=a_2 + t u_2 + s v_{2} \\
+    x_{3}=a_3 + t u_3 + s v_{3}
+  \end{cases} t, s \in \mathbb{R}
+  .
+  $$
+  Otrzymaliśmy równanie parametryczne płaszczyzny
 
 Kolejnym z równań płaszczyzny jest tzw. równanie wyznacznikowe w $\mathbb{R}^3$
 
-Zauważmy, że płaszczyznę w $\mathbb{R}^3$ przechodzącą przez punkt $A$ i
-rozpiętą przez niewspółliniowe wektory $\vec{u}, \vec{v}$ możemy opisać
-warunkiem
+Równanie wyznacznikowe
+: Zauważmy, że płaszczyznę w $\mathbb{R}^3$ przechodzącą przez punkt $A$ i
+  rozpiętą przez niewspółliniowe wektory $\vec{u}, \vec{v}$ możemy opisać
+  warunkiem
+  $$
+    (\overrightarrow{AX}, \vec{u} ,\vec{v} ) = 0.
+  $$
+  zapisując we współrzędnych
+  $$
+    \begin{vmatrix}
+      x_1 - a_1 & x_2 - a_2 & x_3 - a_3 \\
+      u_1       & u_2       & u_3       \\
+      v_1       & v_2       & u_3
+    \end{vmatrix} =
+    0.
+  $$
+  Rozwijając względem pierwszego wiersza mamy:
 
-$$
-(\overrightarrow{AX}, \vec{u} ,\vec{v} ) = 0
-.
-$$
-
-zapisując we współrzędnych
-
-$$
-\begin{vmatrix}
-	x_1 - a_1 & x_2 - a_2 & x_3 - a_3 \\
-	u_1       & u_2       & u_3       \\
-	v_1       & v_2       & u_3
-\end{vmatrix}
-= 0
-.
-$$
-
-Rozwijając względem pierwszego wiersza mamy:
-
-$$
-\begin{aligned}
-	\begin{vmatrix}
-		x_1 - a_1 & x_2 - a_2 & x_3 - a_3 \\
-		u_1       & u_2       & u_3       \\
-		v_1       & v_2       & u_3
-	\end{vmatrix} & =
-	(x_1 - a_1)
-	\underbrace{
-		\begin{vmatrix}
-			u_2 & u_3 \\
-			v_2 & v_3
-		\end{vmatrix}}_A +
-	(x_2 - a_2)
-	\underbrace{
-		\begin{vmatrix}
-			u_1 & u_3 \\
-			v_1 & v_3
-		\end{vmatrix}}_B +
-	(x_3 - a_3)
-	\underbrace{
-		\begin{vmatrix}
-			u_1 & u_2 \\
+  $$
+    \begin{aligned}
+      \begin{vmatrix}
+        x_1 - a_1 & x_2 - a_2 & x_3 - a_3 \\
+        u_1       & u_2       & u_3       \\
+        v_1       & v_2       & u_3
+      \end{vmatrix} & =
+      (x_1 - a_1)
+      \underbrace{
+        \begin{vmatrix}
+          u_2 & u_3 \\
+          v_2 & v_3
+        \end{vmatrix}}_A +
+      (x_2 - a_2)
+      \underbrace{
+        \begin{vmatrix}
+          u_1 & u_3 \\
+          v_1 & v_3
+        \end{vmatrix}}_B +
+      (x_3 - a_3)
+      \underbrace{
+        \begin{vmatrix}
+          u_1 & u_2 \\
+          v_1 & v_2
+        \end{vmatrix}}_C\\ \\
+    \end{aligned}.
+  $$
+  $$
+    D =
+    a_1\begin{vmatrix}
+      u_2 & u_3 \\
+      v_2 & v_3
+    \end{vmatrix} +
+    a_2\begin{vmatrix}
+      u_1 & u_3 \\
+      v_1 & v_3
+    \end{vmatrix} +
+    \begin{vmatrix}
+      u_1 & u_2 \\
       v_1 & v_2
-		\end{vmatrix}}_C\\ \\
-\end{aligned}
-.
-$$
+    \end{vmatrix}.
+  $$
 
-$$
-D =
-a_1\begin{vmatrix}
-	u_2 & u_3 \\
-	v_2 & v_3
-\end{vmatrix} +
-a_2\begin{vmatrix}
-	u_1 & u_3 \\
-	v_1 & v_3
-\end{vmatrix} +
-\begin{vmatrix}
-	u_1 & u_2 \\
-	v_1 & v_2
-\end{vmatrix}
-.
-$$
+Równanie ogólne
+: Porządkując otrzymujemy równanie postaci $Ax_{1} + Bx_{2} + Cx_{3} + D = 0$,
+  które nazywamy równaniem ogólnym płaszczyzny w $\mathbb{R}^3$
 
-Porządkując otrzymujemy równanie postaci $Ax_{1} + Bx_{2} + Cx_{3} + D = 0$,
-które nazywamy równaniem ogólnym płaszczyzny w $\mathbb{R}^3$
-
-Zauważmy, że współrzędne $A, B, C$ są w równaniu ogólnym współrzędnymi wektora
-$\vec{n} = \vec{u} \times \vec{v}$ prostopadłego do płaszczyzny $\pi$. Wektor
-ten nazywamy wektorem normalnym płaszczyzny $\pi$
+Wektor normalny płaszczyzn
+: Zauważmy, że współrzędne $A, B, C$ są w równaniu ogólnym współrzędnymi wektora
+  $\vec{n} = \vec{u} \times \vec{v}$ prostopadłego do płaszczyzny $\pi$. Wektor
+  ten nazywamy wektorem normalnym płaszczyzny $\pi$
 
 ---
 
@@ -345,10 +367,10 @@ Równanie normalne płaszczyzny $\pi$ odcinającej na osiach $ox, oy, oz$ układ
 współrzędnych odcinki zorientowane $a, b, c \neq 0$ ma postać
 
 $$
-\frac{x}{a} + \frac{y}{b} + \frac{z}{c} = 1
+  \frac{x}{a} + \frac{y}{b} + \frac{z}{c} = 1
 $$
 
-### Przykład
+::: {.example title="" ref=""}
 
 Znaleźć równanie płaszczyzny przechodzącej przez środek odcinka
 $\overrightarrow{AB}$, gdzie $A(3, 2, -1)$ i $B(5, 0, 7)$ i prostopadłej do tego
@@ -390,7 +412,9 @@ x - y + 4z = 15\\
 \end{aligned}
 $$
 
-### Przykład
+:::
+
+::: {.example title="" ref=""}
 
 Napisać równanie płaszczyzny przechodzącej przez punkt $(0,0,0)$ oraz
 równoległej do wektorów $\vec{u} = [1, 2, 3]$ i $\vec{v} = [0, -1, 2]$
@@ -398,23 +422,21 @@ równoległej do wektorów $\vec{u} = [1, 2, 3]$ i $\vec{v} = [0, -1, 2]$
 Równanie parametryczne płaszczyzny
 
 $$
-\pi :
-\begin{cases}
-x = 0 + 1\cdot t + 0\cdot s\\
-y = 0 + 2\cdot t + -1\cdot s\\
-z = 0 + 3\cdot t + 2\cdot s
-\end{cases};\;
-s, t \in \mathbb{R}
+  \pi :
+  \begin{cases}
+  x = 0 + 1\cdot t + 0\cdot s\\
+  y = 0 + 2\cdot t + -1\cdot s\\
+  z = 0 + 3\cdot t + 2\cdot s
+  \end{cases} s, t \in \mathbb{R}
 $$
 
 $$
-\pi :
-\begin{cases}
-x = t\\
-y = 2\cdot t + -1\cdot s\\
-z = 3\cdot t + 2\cdot s
-\end{cases};\;
-s, t \in \mathbb{R}
+  \pi :
+  \begin{cases}
+  x = t\\
+  y = 2\cdot t + -1\cdot s\\
+  z = 3\cdot t + 2\cdot s
+  \end{cases} s, t \in \mathbb{R}
 $$
 
 Znajdziemy wektor normalny $\vec{n}: \vec{n} \perp \pi$.
@@ -422,74 +444,68 @@ Ponieważ $(\vec{u} \parallel \pi) \land (\vec{v} \parallel \pi)$, to
 $(\vec{n} \perp  \vec{u}) \land (\vec{n} \perp \vec{v})$
 
 $$
- \vec{n} =\vec{u} \times \vec{v} =
-\begin{vmatrix}
-\vec{i} & \vec{j} & \vec{k} \\
-1 & 2 & 3\\
-0 & -1 & 2
-\end{vmatrix} =
-\text{...obliczenia...} =
-7 \vec{i} -2 \vec{j} -\vec{k}
+  \vec{n} =\vec{u} \times \vec{v} =
+  \begin{vmatrix}
+  \vec{i} & \vec{j} & \vec{k} \\
+  1 & 2 & 3\\
+  0 & -1 & 2
+  \end{vmatrix} =
+  \text{...obliczenia...} =
+  7 \vec{i} -2 \vec{j} -\vec{k}
 $$
 
 $$
- \vec{n} =[7, -2, -1]
+  \vec{n} =[7, -2, -1]
 $$
 
 $$
- \pi : 7x - 2y -z = 0
+  \pi : 7x - 2y -z = 0
 $$
 
----
-
-## Zagadnienie Pęk płaszczyzn
-
-:::{.highlight-block}
-Pękiem płaszczyzn równoległych w $\mathbb{R}^3$ nazywamy zbiór wszystkich
-płaszczyzn równoległych do danej płaszczyzny
-:::
-
-:::{.highlight-block}
-Pękiem płaszczyzn przecinających się wzdłuż krawędzi $p$ nazywamy zbiór
-wszystkich płaszczyzn zawierających prostą $p$
 :::
 
 ---
+
+## Pęk płaszczyzn
+
+Pęk płaszczyzn równoległych
+: w $\mathbb{R}^3$ nazywamy zbiór wszystkich płaszczyzn równoległych do danej
+  płaszczyzny
+
+Pękiem płaszczyzn przecinających się wzdłuż krawędzi $p$
+: nazywamy zbiór wszystkich płaszczyzn zawierających prostą $p$
 
 Jeżeli
-
-$$
+$\displaystyle
 \begin{aligned}
- \pi_1: A_1x+A_2y + A_3z + A_4=0\\
- \pi_1: B_1x+B_2y + B_3z + B_4=0
-\end{aligned} \text{ są płaszczyznami przecinającymi się, to}
+  \pi_1: A_1x+A_2y + A_3z + A_4=0\\
+  \pi_1: B_1x+B_2y + B_3z + B_4=0
+\end{aligned}$
+są płaszczyznami przecinającymi się, to
 $$
-
-$$
- p:
-\begin{cases}
- \pi_1: A_1x+A_2y + A_3z + A_4=0\\
- \pi_1: B_1x+B_2y + B_3z + B_4=0
-\end{cases}
+  p:
+  \begin{cases}
+    \pi_1: A_1x+A_2y + A_3z + A_4=0\\
+    \pi_1: B_1x+B_2y + B_3z + B_4=0
+  \end{cases}
 $$
 
 przedstawia równanie krawędziowe prostej $p$, będącej częścią wspólną $\pi_1$ i
 $\pi_2$
 
-### Przykład
+::: {.example title="" ref=""}
 
-Znaleźć równanie płaszczyzny przechodzącej przez punkt $A(2, -1, 1)$ i $\perp$
-do prostej
-
+Znaleźć równanie płaszczyzny przechodzącej przez punkt $A(2, -1, 1)$ i
+prostopadłej do prostej
 $$
-\begin{cases}
-x - 2y + z - 3 = 0\\
-x + y - z + 2
-\end{cases}\ \ \ \
-\begin{aligned}
-\vec{n}_1 = [1, -2, 1]\\
-\vec{n}_2 = [1, 1, -1]
-\end{aligned}
+  \begin{cases}
+    x - 2y + z - 3 = 0\\
+    x + y - z + 2
+  \end{cases}\qquad
+  \begin{aligned}
+    \vec{n}_1 = [1, -2, 1]\\
+    \vec{n}_2 = [1, 1, -1]
+  \end{aligned}
 $$
 
 $$
@@ -516,13 +532,13 @@ Niech $y = 0$
 
 $$
 \begin{aligned}
- +\underline{\begin{cases}
- x + 2 = 3\\
-x-2=-2
- \end{cases}}\\
-2x = 1 \Rightarrow x = \frac{1}{2}\\
-2z = 5\\
-z = \frac{5}{2}
+	+\underline{\begin{cases}
+			            x + 2 = 3 \\
+			            x-2=-2
+		            \end{cases}}           \\
+	2x = 1 \Rightarrow x = \frac{1}{2} \\
+	2z = 5                             \\
+	z = \frac{5}{2}
 \end{aligned}
 $$
 
@@ -549,7 +565,9 @@ $$
 \end{aligned}
 $$
 
-### Przykład
+:::
+
+::: {.example title="" ref=""}
 
 Obliczyć odległość punktów $P_0(3, 4, 2)$ od prostej
 
@@ -585,7 +603,7 @@ $$
 $$
 
 Punkt $P$ będący rzutem punktu $P_0$ na prostą $l$ jest punktem wspólnym
-płaszczyzny $\pi$ i prostej $l$(punkt przebicia płaszczyzny prostej l)
+płaszczyzny $\pi$ i prostej $l$ (punkt przebicia płaszczyzny prostej l)
 
 $$
 \begin{aligned}
@@ -599,17 +617,19 @@ P(-1, 2, 0)
 $$
 
 $$
- d(P_0, l) = \left| PP_0 \right|  =
-\sqrt{(3+1)^2 + (4-2)^2 + (2-0)^2} =
-\sqrt{16 4 + 4} =
-\sqrt{24} =
-2\sqrt{6}
+  d(P_0, l) = \left| PP_0 \right| =
+  \sqrt{(3+1)^2 + (4-2)^2 + (2-0)^2} =
+  \sqrt{16 4 + 4} =
+  \sqrt{24} =
+  2\sqrt{6}
 $$
+
+:::
 
 # Przekształcenia afiniczne w przestrzeni Euklidesowej
 
 Niech $X$ będzie zbiorem $f: X \to X$ nazwiemy przekształceniem jeżeli funkcja
-ta jest injekcją(funkcją różnowartościową) i jest surjekcją, to znaczy jest
+ta jest iniekcją (funkcją różnowartościową) i jest surjekcją, to znaczy jest
 bijekcją
 
 Rozważmy następujące odwzorowanie przestrzeni euklidesowej $f: E^n \to E^n$
@@ -627,45 +647,37 @@ odwzorowaniem indukowanym odwzorowania $f$. Gdy $f_*$ jest automorfizmem
 przestrzeni wektorowej $TE^n$, to $f$ nazywamy przekształceniem afinicznym
 przestrzeni euklidesowej $E^n$
 
-## Automorfizm
-
-Na następnym wykładzie
-
 ---
 
 2023-11-22
-
-# Przekształcenie afiniczne w przestrzeni Euklidesowej
 
 ## Odwzorowanie liniowe
 
 Rozważmy dwie przestrzenie wektorowe $V, W$.
 
-<u>Odwzorowaniem liniowym</u> $A : V \to W$ nazwiemy odwzorowanie, które spełnia
-warunki:
+Odwzorowanie liniowe
+: Odwzorowaniem liniowym $A : V \to W$ nazwiemy odwzorowanie, które spełnia
+  warunki:
 
-1. addytywność
+  1. addytywność
 
-   $$
-   \bigwedge_{v_1, v_2 \in V}
-   A(v_1 + v_2) = A(v_1) + A(v_2)
-   $$
+     $$
+       \bigwedge_{v_1, v_2 \in V} A(v_1 + v_2) = A(v_1) + A(v_2)
+     $$
+  2. jednorodność
+     $$
+       \bigwedge_{\lambda \in \mathbb{R}}
+       \bigwedge_{v \in V}
+       A(\lambda \cdot v) = \lambda \cdot A(v)
+     $$
 
-2. jednorodność
-   $$
-   \bigwedge_{\lambda \in \mathbb{R}}
-   \bigwedge_{v \in V}
-   A(\lambda \cdot v) = \lambda \cdot A(v)
-   $$
+Izomorfizm liniowy
+: Izomorfizmem liniowym nazywamy odwzorowanie liniowe $A : V \to W$, które jest
+  bijekcją
 
-## Izomorfizm liniowy
-
-Izomorfizmem liniowym nazywamy odwzorowanie liniowe $A : V \to W$, które jest bijekcją
-
-## Automorfizm liniowy
-
-Automorfizmem liniowym nazywamy izomorfizm liniowy $A : V \to V$.
-Innymi słowy taki izomorfizm liniowy $A : V \to W$, że $V = W$
+Automorfizm liniowy
+: Automorfizmem liniowym nazywamy izomorfizm liniowy $A : V \to V$.
+  Innymi słowy taki izomorfizm liniowy $A : V \to W$, że $V = W$
 
 ## Zapis odwzorowania liniowego we współrzędnych wektorowych
 
@@ -711,38 +723,37 @@ a_{n1} & a_{n2} & \ldots & a_{nn}\\
 \end{bmatrix}
 $$
 
-## Odwzorowanie $A$ jest automorfizmem
+## Warunek na automorfizmem
 
 Odwzorowanie $A$ jest automorfizmem, jeżeli wyznacznik macierzy odwzorowania
-jest różny od zera
+jest różny od zera.
 
 Można podać macierzy zapis odwzorowania liniowego
-
 $$
-A(\overline{v}) =
-\begin{bmatrix}
-w_{1}\\w_{2}\\ \vdots\\w_n
-\end{bmatrix} =
-\begin{bmatrix}
-a_{11} & a_{12} & \ldots & a_{1n}\\
-a_{21} & a_{22} & \ldots & a_{2n}\\
-\vdots & \vdots & \ddots & \vdots\\
-a_{n1} & a_{n2} & \ldots & a_{nn}\\
-\end{bmatrix} \cdot
-\begin{bmatrix}
-v_{1}\\v_{2}\\ \vdots\\v_n
-\end{bmatrix}
+  A(\overline{v}) =
+  \begin{bmatrix}
+    w_{1} \\w_{2}\\ \vdots\\w_n
+  \end{bmatrix} =
+  \begin{bmatrix}
+    a_{11} & a_{12} & \ldots & a_{1n} \\
+    a_{21} & a_{22} & \ldots & a_{2n} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    a_{n1} & a_{n2} & \ldots & a_{nn} \\
+  \end{bmatrix} \cdot
+  \begin{bmatrix}
+    v_{1} \\v_{2}\\ \vdots\\v_n
+  \end{bmatrix}
 $$
 
 gdzie
 
 $$
-A(\overline{v}) = \overline{w} = \begin{bmatrix}
-w_{1}\\w_{2}\\ \vdots\\w_n
-\end{bmatrix}\qquad\qquad
-\overline{v} = \begin{bmatrix}
-v_{1}\\v_{2}\\ \vdots\\v_n
-\end{bmatrix}
+	A(\overline{v}) = \overline{w} = \begin{bmatrix}
+		w_{1} \\w_{2}\\ \vdots\\w_n
+	\end{bmatrix}\qquad\qquad
+	\overline{v} = \begin{bmatrix}
+		v_{1} \\v_{2}\\ \vdots\\v_n
+	\end{bmatrix}
 $$
 
 ## Odwzorowanie indukowane
@@ -756,15 +767,14 @@ $$
 
 ## Postać ogólna przekształcenia afinicznego
 
-W przestrzeni euklidesowej n-wymiarowej $E^n$ ustalmy dwa punkty $O, X \in E^n$
+W przestrzeni euklidesowej n-wymiarowej $E^n$ ustalmy dwa punkty $O, X \in E^n$.
 Wtedy dla przekształcenia afinicznego $f : E^n \to E^n$ mamy
 $f_*(\overrightarrow{OX}) = [f(O)f(X)]$
 
-Wykorzystując afinicznej sumy(punktu i wektora) powyższą równość możemy zapisać
+Wykorzystując afinicznej sumy (punktu i wektora) powyższą równość możemy zapisać
 w postaci
-
 $$
-f(X) = f(O) + f_*(\overline{OX})
+  f(X) = f(O) + f_*(\overline{OX})
 $$
 
 Otrzymany zapis nazywamy postacią ogólną przekształcenia afinicznego
@@ -779,29 +789,27 @@ Ustalmy w $E^3$ afiniczny układ współrzędnych $\{0, \overline{v}_{1}, \overl
 Zapiszemy odwzorowanie indukowane $f_*$:
 
 $$
-\left\{
-\begin{aligned}
-w_{1} = a_{11}\overline v_{1} + a_{12}\overline v_{2} + a_{13}\overline v_{3}\\
-w_{2} = a_{21}\overline v_{1} + a_{22}\overline v_{2} + a_{23}\overline v_{3}\\
-w_{3} = a_{31}\overline v_{1} + a_{32}\overline v_{2} + a_{33}\overline v_{3}\\
-\end{aligned}
-\right.
+  \begin{cases}
+    w_{1} = a_{11}\overline v_{1} + a_{12}\overline v_{2} + a_{13}\overline v_{3}\\
+    w_{2} = a_{21}\overline v_{1} + a_{22}\overline v_{2} + a_{23}\overline v_{3}\\
+    w_{3} = a_{31}\overline v_{1} + a_{32}\overline v_{2} + a_{33}\overline v_{3}
+  \end{cases}
 $$
 
 Ponieważ $f_*$ jest automorfizmem, to
 
 $$
-\begin{vmatrix}
-a_{11} & a_{12} & a_{13}\\
-a_{21} & a_{22} & a_{23}\\
-a_{31} & a_{32} & a_{33}
-\end{vmatrix} \neq 0
+  \begin{vmatrix}
+    a_{11} & a_{12} & a_{13}\\
+    a_{21} & a_{22} & a_{23}\\
+    a_{31} & a_{32} & a_{33}
+  \end{vmatrix} \neq 0
 $$
 
 Stąd otrzymujemy zapis przekształcenia afinicznego
 
 $$
-f(X) = f(O) + f_*(\overline{OX})
+  f(X) = f(O) + f_*(\overline{OX})
 $$
 
 w postaci następującej:
@@ -831,7 +839,7 @@ y_2 = a_2 + a_{21}\overline x_1 + a_{22}\overline x_2\\
 \right.
 $$
 
-### Przykład
+::: {.example title="" ref=""}
 
 Pokazać, że $f : E^2 \to E^2$ dane wzorem:
 
@@ -878,87 +886,68 @@ $$
 \vec{w} = [a_{11}v_{1}+a_{12}v_{2}, a_{21}v_{1} + a_{22}v_{2}]
 $$
 
+:::
+
 ## Własności przekształceń afinicznych
 
-### 1)
+I.    Przekształcenia afiniczne przeprowadzają proste w proste, a płaszczyzny w
+      płaszczyzny.
 
-Przekształcenia afiniczne przeprowadzają proste w proste, a płaszczyzny w
-płaszczyzny
+II.   Przekształcenie afiniczne zachowuje równoległość prostych i płaszczyzn.
 
-### 2)
+III.  Przekształcenie afiniczne zachowuje zachowuje stosunek podziału pary
+      punktów(lub wektora), tzn.
+      $$
+        \lambda _{AB}(C) = \lambda _{f(A)f(B)}(f(C))
+      $$
+      W szczególności środek odcinka $AB$ przechodzi w środek odcinka $f(A)f(B)$
 
-Przekształcenie afiniczne zachowuje równoległość prostych i płaszczyzn
 
-### 3)
+IV.   Przekształcenie afiniczne jest bijekcją.
 
-Przekształcenie afiniczne zachowuje zachowuje stosunek podziału pary punktów(lub
-wektora), tzn
+V.    Przekształcenie odwrotne do przekształcenia afinicznego jest
+      przekształceniem afinicznym przy czym:
+      $$
+        (f^{-1})_* = (f_*)^{-1}
+      $$
 
-$$
-  \lambda _{AB}(C) = \lambda _{f(A)f(B)}(f(C))
-$$
+VI.   Jednością w grupach przekształceń afinicznych jest przekształcenie
+      identycznościowe $I : E^n \to E^n$, takie, że
+      $I(X) = I(O) + I_*(\overline{OX}) = X$
 
-W szczególności środek odcinka $AB$ przechodzi w środek odcinka $f(A)f(B)$
+VII.  Złożenie przekształceń afinicznych jest przekształceniem afinicznym, przy
+      czym
+      $$
+        (f\circ g)_* = (f_*\circ g_*)
+      $$
 
-### 4)
+VIII. Składanie przekształceń afinicznym jest działaniem łącznym, tzn:
+      $$
+        (f \circ g) \circ h = f \circ (g \circ h)
+      $$
 
-Przekształcenie afiniczne jest bijekcją
+IX.   Jeżeli w $E^2$ dane są trzy punkty $A, B, C$ niewspółliniowe oraz trzy
+      punkty $D, E, F$ niewspółliniowe, to istnieje dokładnie jedno odwzorowanie
+      afiniczne $f: E^2 \to E^2$, takie, że
+      $\begin{aligned}
+      f(A) = D\\
+      f(B) = E\\
+      f(C) = F
+      \end{aligned}$
 
-### 5)
+      $$
+      \left\{
+      \begin{aligned}
+      y_1 = a_1 + a_{11}x_1 + a_{12}x_2\\
+      y_2 = a_1 + a_{21}x_1 + a_{22}x_2
+      \end{aligned}
+      \right.
+      $$
 
-Przekształcenie odwrotne do przekształcenia afinicznego jest przekształceniem
-afinicznym przy czym:
-
-$$
-  (f^{-1})_* = (f_*)^{-1}
-$$
-
-### 6)
-
-Jednością w grupach przekształceń afinicznych jest przekształcenie
-identycznościowe $I : E^n \to E^n$, takie, że
-$I(X) = I(O) + I_*(\overline{OX}) = X$
-
-### 7)
-
-Złożenie przekształceń afinicznych jest przekształceniem afinicznym, przy czym
-
-$$
-  (f\circ g)_* = (f_*\circ g_*)
-$$
-
-### 8)
-
-Składanie przekształceń afinicznym jest działaniem łącznym, tzn:
-
-$$
-  (f \circ g) \circ h = f \circ (g \circ h)
-$$
-
-### 9)
-
-Jeżeli w $E^2$ dane są trzy punkty $A, B, C$ niewspółliniowe oraz trzy punkty
-$D, E, F$ niewspółliniowe, to istnieje dokładnie jedno odwzorowanie afiniczne
-$f: E^2 \to E^2$, takie, że
-$\begin{aligned}
-f(A) = D\\
-f(B) = E\\
-f(C) = F
-\end{aligned}$
-
-$$
-\left\{
-\begin{aligned}
-y_1 = a_1 + a_{11}x_1 + a_{12}x_2\\
-y_2 = a_1 + a_{21}x_1 + a_{22}x_2
-\end{aligned}
-\right.
-$$
-
-w $E^3$ jeżeli dane są dwa układy punktów $\{A_1, A_{2}, A_{3}, A_{4}\}$ i
-$\{B_1, B_{2}, B_{3}, B_{4}\}$ niewspółliniowe, to istnieje dokładnie jedno
-odwzorowanie afiniczne $f: E^3 \to E^3$, takie, że $f(A_1) = B_1, f(A_2) = B_2,
-f(A_3) = B_3, f(A_4) = B_4$
+      w $E^3$ jeżeli dane są dwa układy punktów $\{A_1, A_{2}, A_{3}, A_{4}\}$ i
+      $\{B_1, B_{2}, B_{3}, B_{4}\}$ niewspółliniowe, to istnieje dokładnie jedno
+      odwzorowanie afiniczne $f: E^3 \to E^3$, takie, że $f(A_1) = B_1, f(A_2) = B_2,
+      f(A_3) = B_3, f(A_4) = B_4$
 
 ---
 
@@ -966,36 +955,41 @@ f(A_3) = B_3, f(A_4) = B_4$
 
 ## Twierdzenie
 
+::: {.theorem title="" ref=""}
+
 Przekształcenia afiniczne $f : E^2 \to E^2$ postaci
 
 $$
-  f:
-\begin{cases}
-y_1 = a_{11}x_1 + a_{12}x_2 + a_1\\
-y_1 = a_{21}x_1 + a_{22}x_2 + a_2
-\end{cases}
+	f:
+	\begin{cases}
+		y_1 = a_{11}x_1 + a_{12}x_2 + a_1 \\
+		y_1 = a_{21}x_1 + a_{22}x_2 + a_2
+	\end{cases}
 $$
 
 Zmieniają pole równoległoboków w skali
 
 $$
-  k =
-\underbrace{\begin{Vmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{Vmatrix}}
-_\text{wartość bezwzględna z wyznacznika}
+	k =
+	\underbrace{\begin{Vmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{Vmatrix}}
+	_\text{wartość bezwzględna z wyznacznika}
 $$
 
-Zaś jeżeli $f : E^3 \to E^3$ jest postaci
+:::
 
+::: {.theorem title="" ref=""}
+
+Przekształcenia afiniczne $f : E^3 \to E^3$ postaci
 $$
-  f:
-\begin{cases}
-y_1 = a_{11}x_1 + a_{12}x_2 + a_{13}x_2 + a_1\\
-y_1 = a_{21}x_1 + a_{22}x_2 + a_{23}x_2 + a_2\\
-y_1 = a_{31}x_1 + a_{32}x_2 + a_{33}x_2 + a_3
-\end{cases}
+	f:
+	\begin{cases}
+		y_1 = a_{11}x_1 + a_{12}x_2 + a_{13}x_2 + a_1 \\
+		y_1 = a_{21}x_1 + a_{22}x_2 + a_{23}x_2 + a_2 \\
+		y_1 = a_{31}x_1 + a_{32}x_2 + a_{33}x_2 + a_3
+	\end{cases}
 $$
 
-zmienia objętość równoległościanu(ewentualnie czworościanu) w skali
+zmienia objętość równoległościanu (ewentualnie czworościanu) w skali
 
 $$
 k = \begin{Vmatrix}
@@ -1004,6 +998,8 @@ a_{21} & a_{22} & a_{23}\\
 a_{31} & a_{32} & a_{33}\\
 \end{Vmatrix}
 $$
+
+:::
 
 ## Zmiana orientacji
 
@@ -1019,49 +1015,48 @@ Można udowodnić, że $[a_{ij}]$ jest macierzą odwzorowania afinicznego, to
 
 ## Przykłady przekształceń afinicznych
 
-### 1)
-
+::: {.example title="" ref=""}
 Tożsamość w $E^2$
 
 $$
-  f:
-\begin{cases}
-y_1 = x_1\\
-y_2 = x_2
-\end{cases} \iff
-\underbrace{\begin{bmatrix}
-1 & 0 \\ 0 & 1
-\end{bmatrix}}_\text{macierz jednostkowa}
-\cdot
-\begin{bmatrix} x_1 \\ x_2 \end{bmatrix} =
-\begin{bmatrix} y_1 \\ y_2 \end{bmatrix}
+	f:
+	\begin{cases}
+		y_1 = x_1 \\
+		y_2 = x_2
+	\end{cases} \iff
+	\underbrace{\begin{bmatrix}
+			1 & 0 \\ 0 & 1
+		\end{bmatrix}}_\text{macierz jednostkowa}
+	\cdot
+	\begin{bmatrix} x_1 \\ x_2 \end{bmatrix} =
+	\begin{bmatrix} y_1 \\ y_2 \end{bmatrix}
 $$
+:::
 
-### 2)
-
+::: {.example title="" ref=""}
 Translacja o wektor $\vec{v}= [v_1, v_2]$ w $E^2$
-
 $$
-f:
-\begin{cases}
-y_1 = x_1 + v_1\\
-y_2 = x_2 + v_2\\
-\end{cases}
+	f:
+	\begin{cases}
+		y_1 = x_1 + v_1 \\
+		y_2 = x_2 + v_2 \\
+	\end{cases}
 $$
+:::
 
-### 3)
-
+::: {.example title="" ref=""}
 Symetria względem prostej w $E^2$ lub względem punktu w $E^3$ jest
 przekształceniem afinicznym
+:::
 
-### 4)
-
+::: {.example title="" ref=""}
 Jednokładność w skali $k$ względem punktu $O$ który jest początkiem afinicznego
 układu współrzędnych jest przekształceniem afinicznym
+:::
 
-### 5)
-
+::: {.example title="" ref=""}
 Obrót w $E^2$ dookoła punktu $O$ o kąt $\alpha$ jest odwzorowaniem afinicznym
+:::
 
 ## Izometrie przestrzeni Euklidesowej punktowej
 
@@ -1098,9 +1093,7 @@ $$
   d_E(X, Y) = d_E(f(X), f(Y))
 $$
 
-Można udowodnić, że
-
-### Twierdzenie
+::: {.theorem title="" ref=""}
 
 Następujące warunki opisujące izometrię są sobie równoważne
 
@@ -1113,54 +1106,58 @@ $$
 \end{aligned}
 $$
 
-### Dowód
+:::
+
+::: {.proof title="" ref=""}
 
 Niech $X, Y \in E^n$ i $\vec{v} = \overrightarrow{XY}$.
 
-Udowodnimy $1 \iff 2$
+Udowodnimy $(1) \iff (2)$
 
 $$
   |\vec{v}| = |\overrightarrow{XY}| = d_E(X, Y)
 $$
 
 $$
-\begin{aligned}
-  |f_*(\vec{v})| =
-|f_*(\overrightarrow{XY})| =
-|\overrightarrow{f(Y) - f(X)}| =
-d_E(f(X), f(Y))
-\end{aligned}
+	\begin{aligned}
+		|f_*(\vec{v})| =
+		|f_*(\overrightarrow{XY})| =
+		|\overrightarrow{f(Y) - f(X)}| =
+		d_E(f(X), f(Y))
+	\end{aligned}
 $$
 
-udowodnimy $2 \iff 3$
+udowodnimy $(2) \iff (3)$
 
-Najpierw pokażemy, że $3 \Rightarrow 2$
+I.  Najpierw pokażemy, że $(3) \Rightarrow (2)$
 
-Jest oczywiste wystarczy zauważyć, że
-$|\vec{v}| = \sqrt{\vec{v}\circ\vec{v}} \overset{3}{=}
-\sqrt{f_*(\vec{v}) \circ f_*(\vec{v})} = |f_*(\vec{v})|$
+    Jest oczywiste wystarczy zauważyć, że
+    $|\vec{v}| = \sqrt{\vec{v}\circ\vec{v}} \overset{3}{=}
+    \sqrt{f_*(\vec{v}) \circ f_*(\vec{v})} = |f_*(\vec{v})|$
 
-Pokażemy, że $2 \Rightarrow 3$
+II. Pokażemy, że $2 \Rightarrow 3$
 
-Aby udowodnić tą implikację, wykorzystamy wzór wyrażający iloczyn skalarny tylko
-przy pomocy długości wektora, tzn.
+    Aby udowodnić tą implikację, wykorzystamy wzór wyrażający iloczyn skalarny tylko
+    przy pomocy długości wektora, tzn.
 
-$$
-  \vec{u} \circ \vec{v} =
-{1 \over 2}
-\left[|\vec{u}|^2 + |\vec{v}|^2 - |\vec{u}-\vec{v}|^2\right]
-$$
+    $$
+      \vec{u} \circ \vec{v} =
+      {1 \over 2}
+      \left[|\vec{u}|^2 + |\vec{v}|^2 - |\vec{u}-\vec{v}|^2\right]
+    $$
 
-$$
-\begin{aligned}
-\vec{u}\circ\vec{v} &=
-{1 \over 2}
-\left[|\vec{u}|^2 + |\vec{v}|^2 - |\vec{u}-\vec{v}|^2\right] \\&=
-{1 \over 2}
-\left[|f_* (\vec{u})|^2 + |f_* (\vec{v})|^2 - |f_* (\vec{u}) - f_* (\vec{v})|^2\right] \\&=
-f_*(\vec{u}) \circ f_*(\vec{v}) \\&\text{CND}
-\end{aligned}
-$$
+    $$
+      \begin{aligned}
+        \vec{u}\circ\vec{v} & =
+        {1 \over 2}
+        \left[|\vec{u}|^2 + |\vec{v}|^2 - |\vec{u}-\vec{v}|^2\right]                           \\&=
+        {1 \over 2}
+        \left[|f_* (\vec{u})|^2 + |f_* (\vec{v})|^2 - |f_* (\vec{u}) - f_* (\vec{v})|^2\right] \\&=
+        f_*(\vec{u}) \circ f_*(\vec{v})                                                        \\&\text{CND}
+      \end{aligned}
+    $$
+
+:::
 
 ## Zapis izometrii we współrzędnych ortonormalnych
 
@@ -1290,235 +1287,38 @@ $$
 
 ---
 
-2023-12-20
+2024-01-17
+
 
 # Krzywa stożkowa
 
-Krzywa stożkowa to wynik przecięcia powierzchni stożka przez płaszczyznę.
-
-Jeśli przeciąć stożek płaszczyzną, to możemy dostać
-
-- okrąg (oś prostopadła do płaszczyzny)
-- elipsę (kąt większy od kąta między tworzącą a osią)
-- hyperbolę (kąt mniejszy od kąta między tworzącą a osią)
-- parabola (płaszczyzna równoległa do tworzącej)
-
-- (szczególny nie rozpatrywany przypadek) dwie przecinające się proste (płaszczyzna przechodzi przez prostą)
-
-## Okrąg
-
-Zbiór wszystkich punktów płaszczyzny odległych od danego punktu o daną
-odległość.
-
-## Elipsa
-
-Zbiór punktów płaszczyzny, suma których odległości od dwóch ustalonych punktów (ognisk) jest stała.
-
-### Alt. definicja
-
-Niech $P$ – ognisko(punkt), $k$ – kierownicy(prosta).
-
-$$
-  {d(P, F) \over d(P, k)} = \varepsilon, \quad \varepsilon<1
-$$
-
-## Hiperbola
-
-Krzywa będąca zbiorem takich punktów, dla których wartość bezwzględna różnicy
-odległości tych punktów od dwóch ustalonych punktów – nazywanych ogniskami
-hiperboli – jest stała
-
-### Alt. definicja
-
-Niech $P$ – ognisko(punkt), $k$ – kierownicy(prosta).
-
-$$
-  {d(P, F) \over d(P, k)} = \varepsilon, \quad \varepsilon>1
-$$
-
-## Parabola
-
-Krzywa będąca zbiorem punktów równoodległych od prostej zwanej kierownicą
-paraboli i punktu zwanego ogniskiem paraboli
-
-### Alt. definicja
-
-Niech $P$ – ognisko(punkt), $k$ – kierownicy(prosta).
-
-$$
-  {d(P, F) \over d(P, k)} = 1
-$$
-
-## Równanie okręgu szkolne
-
-$$
-  (x - x_0)^2 +
-  (y - y_0)^2 =
-  r^2
-$$
-
-Możemy dostać to równanie przekształcając $x^2 + y^2 = r^2$
-(postać kanoniczna równania?)
-
-## Równanie kanoniczne elipsy
-
-Najprostsze równanie z centrum w początku współrzędnych
-
-$$
-{x^2 \over a^2} + {y^2 \over b^2} = 1
-$$
-
-- przecina $ox$ w punkcie $(0, a)$
-- przecina $oy$ w punkcie $(0, b)$
-
-Ogniska są punktach $F_1(-c, 0), F_1(c, 0)$, gdzie $c = \sqrt{a^2 - b^2}$
-
-## Równanie kanoniczne hiperboli
-
-$$
-{x^2 \over a^2} - {y^2 \over b^2} = 1
-$$
-
-<iframe src="https://www.desmos.com/calculator/0addh29d5d?embed" width="500" height="500" style="border: 1px solid #ccc" frameborder=0></iframe>
-
-Ogniska w punktach $F_1(-c, 0), F_2(c, 0)$, gdzie $c = \sqrt{a^2 + b^2}$
-
-Jeślibyśmy mieli $-$ przed ${x^2 \over a^2}$, to byłoby tak:
-
-<iframe src="https://www.desmos.com/calculator/n8esbai57o?embed" width="500" height="500" style="border: 1px solid #ccc" frameborder=0></iframe>
-
-## Parabola
-
-$$
-  y^2 = 2px
-$$
-
-<iframe src="https://www.desmos.com/calculator/qrm8cyklwu?embed" width="500" height="500" style="border: 1px solid #ccc" frameborder=0></iframe>
-
-## Równanie drugiego stopnia
-
-Każda z krzywych stożkowych mogliśmy zapisać jako równanie
-
-$$
-  (1)\quad Ax^2 + By^2 + Cxy + Dx + Ey + F = 0
-$$
-
-Jakie krzywe może opisywać równanie drugiego stopnia?
-
-### W wyniku obrotu o pewien kąt $\alpha$ równanie (1) przyjmuje postać
-
-$$
-  (2)\quad
-A_1x^2 + B_1y^2 + C_1xy + D_1x + E_1y + F_1 = 0
-$$
-
-#### Obrót punktu w liczbach zespolonych
-
-obrót o kąt $\alpha$
-
-$$
-  z' = z \cdot e^{i\alpha}
-$$
-
-$$
-  x' + iy' = (x + iy)(\cos \alpha+\sin \alpha)
-$$
-
-$$
-\begin{cases}
-x' = x\cos \alpha-y\sin \alpha\\
-y' = x\sin \alpha + y\cos \alpha
-\end{cases}
-$$
-
-### W wyniku translacji
-
-Niech $A_1B_1 \neq 0$
-
-W wyniku przesunięcia o wektor $[{D_1 \over 2A_1}, {E_1 \over 2B_1}]$ czynniki
-$D_1x, E_1y$ zostaną wyeliminowane
-
-$$
-  A_2x^2 + B_2y^2 + F_2 = 0, \quad A_2 > 0
-$$
-
-### Co opisuje otrzymane równanie?
-
-$$
-\begin{aligned}
-  &A_2B_2 > 0, F_2 > 0 &\text{zbiór pusty}\\
-  &A_2B_2 > 0, F_2 = 0 &\text{punkt $(0, 0)$}\\
-  &A_2B_2 > 0, F_2 < 0 &\text{elipsa}\\
-  &A_2B_2 < 0, F_2 \in \mathbb{R} \setminus \{0\} &\text{hiperbola}\\
-  &A_2B_2 < 0, F_2 = 0 &\text{dwie przecinające się proste}\\
-\end{aligned}
-$$
-
-Jeśli $A_1B_1 = 0$, to
-
-załóżmy, że $B_1 = 0$
-
-$$
-  A_1x^2 + D_1x + E_1y + F_1 = 0
-$$
-
-translacja o wektor $[{D_1 \over 2A_1}, 0]$ otrzymujemy
-
-$$
-  A_2x^2 + E_2y + F_2 = 0, \quad A_1 \neq 0
-$$
-
-Dostaliśmy równanie opisujące parabolę w przypadku $E_2 \neq 0$
-
-W przypadku $E_2 = 0$:
-
-- zbiór pusty $F_2 > 0$
-- prosta $F_2 = 0$
-- dwie proste równoległe $F_2 < 0$
-
-Translacja i obrót nie zmieniają krzywą, zatem wszystkie rozpatrzone równania to
-jedyne możliwe krzywe.
-
-<iframe src="https://www.desmos.com/calculator/dfnr4kjy0l?embed" width="500" height="500" style="border: 1px solid #ccc" frameborder=0></iframe>
-
----
-
-2024-01-17
-
-# Definicje pomocne
-
-## Wartość własna macierzy
-
-Wartości własne obliczamy jako $\lambda$ ze wzoru
-
-$$
-  \det (M - \lambda I) = 0
-$$
-
-gdzie
-
-- M – badana macierz
-- I – macierz jednostkowa
-
-### Twierdzenie
-
+## Definicje
+
+Wartość własna macierzy
+: Wartości własne obliczamy jako $\lambda$ ze wzoru
+  $$
+    \det (M - \lambda I) = 0
+  $$
+  gdzie $M$ – macierz dla której wyznaczamy wartości własne,
+  $I$ – macierz jednostkowa
+
+::: {.theorem title="" ref=""}
 Wartości własne $\lambda_1, \lambda_2$ małej macierzy stożkowej $M$ zawsze są
 rzeczywiste i nie zależą od wyboru ortonormalnego układu współrzędnych w którym
 zapisano równanie stożkowej
+:::
 
-## Ślad macierzy
+Sład macierzy
+: Śladem (ang. [trace](https://en.wikipedia.org/wiki/Trace_(linear_algebra)))
+  $\operatorname{tr} A$ macierzy kwadratowej $A$ nazywamy sumę elementów na
+  głównej przekątnej
+  $$
+    \operatorname{tr} A \overset{\text{def}}{=}
+    \sum_{i=1}^n a_{ii} =
+    a_{11} + a_{22} + \dots + a_{nn}
+  $$
 
-Śladem (ang. [trace](https://en.wikipedia.org/wiki/Trace_(linear_algebra)))
-$\operatorname{tr} A$ macierzy kwadratowej $A$ nazywamy sumę elementów na
-głównej przekątnej
-
-$$
-  \operatorname{tr} A \overset{\text{def}}{=}
-  \sum_{i=1}^n a_{ii} =
-  a_{11} + a_{22} + \dots + a_{nn}
-$$
-
-# Krzywa stożkowa
+## Postaci krzywej stożkowej
 
 Postać ogólna krzywej stożkowej
 
@@ -1553,10 +1353,11 @@ $$
 
 ## Obliczenie współczynników równania kanonicznego krzywej drugiego stopnia
 
-Aby obliczyć współczynniki równania kanonicznego musimy wykonać następujące kroki:
+Aby obliczyć współczynniki równania kanonicznego należy wykonać następujące
+kroki:
 
-1. określić typ stożkowej(obliczamy wyznaczniki $\det \tilde{A}, \det A$ i
-   patrzymy w tabelę)
+1. określić typ stożkowej (obliczamy wyznaczniki $\det \tilde{A}, \det A$ i
+   patrzymy do tabeli niżej)
 2. obliczyć wartości własne $\lambda_1, \lambda_2$ małej macierzy stożkowej $A$
    - Gdy jedna z tych wartości się zeruje, to zawsze ją oznaczamy $\lambda_1$.
    - Gdy istnieją wartości ujemne, to jedną z nich zawsze oznaczamy $\lambda_2$
@@ -1619,13 +1420,4 @@ c_{22}y^2 = 0&
 \end{array}
 $$
 
-Krzywa jest niezdegenorowana, gdy $\det \tilde{A} = 3$
-
-<!-- - На teamsie лежит tabela z krzywymi stożkowymi -->
-<!-- - стр 70 книжки Bogusława Gdowskiego -->
-<!-- - <https://pl.wikipedia.org/wiki/Krzywa_drugiego_stopnia> -->
-<!-- - на teamsie лежат задания с krzywymi stożkowymi -->
-
-$$
-  9x^2 + 24xy + 16y^2 - 18x + 226y + 209 = 0
-$$
+Krzywa jest niezdegenorowana, gdy $\operatorname{rz.} \tilde{A} = 3$
