@@ -10,8 +10,8 @@ toc-own-page: true
 # Przedmowa {-}
 
 To są notatki z przedmiotu Elementy Logiki i Teorii Mnogości prowadzonego na
-kierunku IAD w 2024 roku przez dr Małgorzatę Murat. Treści obejmują 12 wykładów
-z 15 (pierwsze trzy nie były notowane).
+kierunku IAD w 2023/2024 roku przez dr Małgorzatę Murat. Treści obejmują 12
+wykładów z 15 (pierwsze trzy nie były notowane).
 
 Autor starał się notować najlepiej jak potrafi, jednak mógł przepisać źle. W
 wykładach również zdarzały się niedoprecyzowania lub błędy i jeśli były
