@@ -49,7 +49,7 @@ Wprost z definicji wynika, że $A\times B \neq B\times A$
 $$
 \begin{aligned}
   (a, b) = \{\{a\},\{a, b\}\}\\
-  (b, b) = \{\{b\},\{a, b\}\}
+  (b, a) = \{\{b\},\{a, b\}\}
 \end{aligned}
 $$
 

@@ -7,7 +7,7 @@ toc: true
 toc-own-page: true
 ---
 
-# Przedmowa
+# Przedmowa {-}
 
 To są notatki z przedmiotu rachunek prawdopodobieństwa prowadzonego na kierunku
 IAD w 2024 roku przez dr hab. Annę Kuczmaszewską, prof. PL. Treści obejmują
