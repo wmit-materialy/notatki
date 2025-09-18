@@ -8,7 +8,7 @@
    version="1.1"
    id="svg1"
    sodipodi:docname="2024-10-11_RP_pole.svg"
-   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25)"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -24,15 +24,15 @@
      inkscape:pagecheckerboard="1"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="2.9718904"
-     inkscape:cx="192.80657"
-     inkscape:cy="73.185739"
-     inkscape:window-width="1669"
-     inkscape:window-height="910"
+     inkscape:zoom="10.205183"
+     inkscape:cx="168.78679"
+     inkscape:cy="175.40107"
+     inkscape:window-width="1536"
+     inkscape:window-height="864"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
-     inkscape:current-layer="layer3" />
+     inkscape:current-layer="layer2" />
   <defs
      id="defs1">
     <pattern
@@ -195,17 +195,11 @@
        height="33.19149"
        x="43.385044"
        y="40.367725" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.51563px;font-family:FreeSerif;-inkscape-font-specification:FreeSerif;display:inline;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.307055"
-       x="70.107254"
-       y="72.427734"
-       id="text5"><tspan
-         sodipodi:role="line"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:FreeSerif;-inkscape-font-specification:FreeSerif;stroke-width:0.307055"
-         x="70.107254"
-         y="72.427734"
-         id="tspan6">Ω</tspan></text>
+    <path
+       d="m 70.204988,71.430843 h 0.156376 q 0.01303,0.234563 0.136828,0.351844 0.123797,0.117281 0.384422,0.117281 h 0.853547 l -0.0065,-0.280172 q -0.215016,-0.04561 -0.443063,-0.169406 -0.221531,-0.123797 -0.430032,-0.325782 -0.201984,-0.2085 -0.332297,-0.527766 -0.130312,-0.325781 -0.130312,-0.703688 0,-0.788391 0.579891,-1.329188 0.579891,-0.540797 1.511626,-0.540797 0.899157,0 1.472532,0.508219 0.573376,0.501703 0.573376,1.335704 0,0.658078 -0.351844,1.120688 -0.345329,0.456094 -0.957798,0.632016 l -0.03258,0.280172 h 0.873094 q 0.488673,0 0.501704,-0.469125 h 0.156375 l -0.03909,0.996891 h -1.772251 l 0.0847,-0.957797 q 0.794907,-0.25411 0.794907,-1.518142 0,-0.482157 -0.130313,-0.834001 -0.130312,-0.351844 -0.345328,-0.527766 -0.2085,-0.175922 -0.417,-0.254109 -0.208501,-0.07819 -0.423516,-0.07819 -0.599438,0 -0.970829,0.46261 -0.364875,0.46261 -0.364875,1.185845 0,1.264032 0.814453,1.563751 l 0.06516,0.957797 h -1.772252 z"
+       id="text5"
+       style="font-size:6.51563px;font-family:FreeSerif;-inkscape-font-specification:FreeSerif;stroke:#000000;stroke-width:0.307055"
+       aria-label="Ω" />
     <path
        style="display:inline;fill:none;fill-opacity:1;stroke:none;stroke-width:0.143622;stroke-dasharray:none;stroke-opacity:1"
        d="m 165.24688,215.4035 v -61.38147 h 61.38147 61.38148 v 61.38147 61.38147 h -61.38148 -61.38147 z m 107.60015,57.36136 c -0.10042,-0.9607 -0.18534,-2.07963 -0.18872,-2.48652 -0.005,-0.54857 -0.23888,-0.84997 -0.9065,-1.16605 -1.12009,-0.5303 -1.91776,-2.04647 -2.12118,-4.03185 -0.30607,-2.98734 1.11364,-5.60483 3.36951,-6.21227 1.65794,-0.44643 3.53932,0.5216 4.42422,2.27643 1.34163,2.66054 0.60137,7.14956 -1.31919,7.99968 -0.48574,0.21501 -0.89225,0.51955 -0.90337,0.67677 -0.0111,0.15721 -0.11044,1.2769 -0.22071,2.48819 l -0.2005,2.20234 h 4.01658 4.01657 l 0.18257,-1.74672 c 0.34129,-3.26533 0.31645,-3.3684 -0.81204,-3.3684 -0.67255,0 -0.99461,0.13146 -0.99461,0.40596 0,0.74783 -0.86635,1.29908 -2.04163,1.29908 h -1.14851 l 1.3715,-0.92356 c 1.98326,-1.33552 2.95624,-3.31278 2.95256,-6.00009 -0.005,-3.4229 -1.45609,-5.6934 -4.544,-7.10837 -0.98358,-0.4507 -1.86919,-0.58793 -3.83634,-0.59444 -2.23818,-0.007 -2.7607,0.0913 -4.18424,0.79033 -1.98444,0.97448 -3.50286,2.68177 -4.0632,4.56862 -0.53047,1.78628 -0.52916,2.82864 0.006,4.63008 0.50124,1.68787 1.23286,2.68928 2.78757,3.8155 l 1.13464,0.82193 h -1.12249 c -1.2164,0 -1.80452,-0.38899 -1.80452,-1.19353 0,-0.39513 -0.22628,-0.51151 -0.9946,-0.51151 h -0.99461 v 2.55756 2.55756 h 4.161 4.16099 z"
