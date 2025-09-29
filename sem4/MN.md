@@ -1,6 +1,8 @@
 ---
-title: "Archiwum: Notatki z Metod Numerycznych"
+title: "Notatki z Metod Numerycznych"
+titlepage: true
 lang: pl
+date: 2025-02-25 – 2025-06-17
 toc: true
 toc-own-page: true
 
@@ -11,9 +13,23 @@ eqnPrefix:
   - równania
 ---
 
-- wyk: Tomasz Krajka konsultacje mechaniczny 733(lub 701) wtorek 18:30-20:00
+# Przedmowa {-}
 
----
+To są notatki z przedmiotu rachunek prawdopodobieństwa prowadzonego na kierunku
+IAD w 2024/2025 roku przez dr Tomasza Krajkę. Treści obejmują 15 wykładów.
+Notatki zawierają nie tylko treści omówione na wykładach, ale też implementacje
+algorytmów w Octave które powstały podczas zajęć laboratoryjnych.
+
+Notatki mogą zawierać błędy (w tym gramatyczne).
+
+Notatki znajdują się w **domenie publicznej** na warunkach licencji CC0 1.0
+Universal[^license-link]
+
+[^license-link]: <https://creativecommons.org/publicdomain/zero/1.0/deed.pl>
+
+```{=latex}
+\newpage
+```
 
 2025-02-25
 
@@ -31,7 +47,7 @@ Warunki zaliczenia wykładu:
 
 :::
 
-# Wykład. Reprezentacja liczb w pamięci komputera. Arytmetyka zmiennopozycyjna, błędy obliczeń
+# Reprezentacja liczb w pamięci komputera. Arytmetyka zmiennopozycyjna, błędy obliczeń
 
 Metody numeryczne (_analiza numeryczna_)
 : to dział matematyki stosowanej zajmujący się opracowywaniem i badaniem metod
@@ -590,7 +606,7 @@ bezwzględnych
 
 :::
 
-# Wykład. Rozwiązanie układu równań liniowych
+# Rozwiązanie układu równań liniowych
 
 Niech będzie dany układ równań liniowych
 
@@ -2272,7 +2288,7 @@ $$
 
 :::
 
-# Wykład. Rozwiązywanie równań nieliniowych
+# Rozwiązywanie równań nieliniowych
 
 Niech $g(x)$ i $h(x)$ będą dwoma funkcjami rzeczywistymi zmiennej
 $x \in \mathbb{R}$, czyli $g, h : \mathbb{R} \to \mathbb{R}$
@@ -3016,7 +3032,7 @@ Terminy egzaminów są dostępne (czy będą dostępne) na stronie doktora
 
 :::
 
-# Wykład. Interpolacja
+# Interpolacja
 
 Interpolacja
 : przybliżenie nieznanej funkcji na podstawie przyjmowanych przez nią wartości w
@@ -3957,7 +3973,7 @@ $$
 
 :::
 
-# Wykład. Różniczkowanie i całkowanie numeryczne
+# Różniczkowanie i całkowanie numeryczne
 
 ## Różniczkowanie numeryczne
 

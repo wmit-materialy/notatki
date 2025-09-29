@@ -1,11 +1,28 @@
 ---
-title: "Archiwum: Notatki z Ekonometrii"
+title: "Notatki z Ekonometrii"
+titlepage: true
 lang: pl
+date: 2025-02-26 – 2025-06-04
 toc: true
 toc-own-page: true
 ---
 
-- wyk: dr A. Makarewicz-Trześniewska
+# Przedmowa {-}
+
+To są notatki z przedmiotu rachunek prawdopodobieństwa prowadzonego na kierunku
+IAD w 2024/2025 roku przez dr Annę Makarewicz-Trześniewską. Treści obejmują 13
+wykładów.
+
+Notatki mogą zawierać błędy (w tym gramatyczne).
+
+Notatki znajdują się w **domenie publicznej** na warunkach licencji CC0 1.0
+Universal[^license-link]
+
+[^license-link]: <https://creativecommons.org/publicdomain/zero/1.0/deed.pl>
+
+```{=latex}
+\newpage
+```
 
 ---
 
